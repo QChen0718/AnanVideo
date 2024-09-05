@@ -113,7 +113,8 @@ class AnAnRecommentCollectionViewCell: UICollectionViewCell {
     
     var contentModel:ContentModel?{
         didSet{
-//            movieCoverImageView.setImageWith(url: contentModel?.coverUrl ?? "")
+            movieCoverImageView.layoutIfNeeded()
+            movieCoverImageView.setImageWith(url: contentModel?.coverUrl ?? "")
             scoreLabel.text = String(format: "%.1f", contentModel?.score ?? 0.0) 
             movieTitleLabel.text = contentModel?.title
             movieSubTitle.text = contentModel?.subTitle

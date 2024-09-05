@@ -17,8 +17,9 @@ class AnAnCUBECollectionViewCell: UICollectionViewCell {
     
     lazy var titleLab:UILabel = {
        let label = UILabel()
-        label.textColor = UIColor.hexadecimalColor(hexadecimal: An_222222)
-        label.font = UIFont.pingFangMediumWithSize(fontSize: 14)
+        label.textColor = UIColor.hexadecimalColor(hexadecimal: An_84879A)
+        label.font = UIFont.pingFangRegularWithSize(fontSize: 12)
+        label.textAlignment = .center
         return label
     }()
     

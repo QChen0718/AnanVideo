@@ -101,7 +101,7 @@ class AnAnVideoActorItemCollectionViewCell: UICollectionViewCell {
         didSet{
             actorNameLabel.text = actorListModel?.chineseName
             actorInfo.text = actorListModel?.roleName
-//            actorImageView.setImageWith(url: actorListModel?.headUrl ?? "")
+            actorImageView.setImageWith(url: actorListModel?.headUrl ?? "")
             starIconImageView.startAnimating()
         }
     }

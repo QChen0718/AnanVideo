@@ -26,8 +26,8 @@ class AnAnSelectEpisodeCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     private func createSubviews() {
-        addSubview(titleLabel)
-        addSubview(episodeBtn)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(episodeBtn)
     }
     
     private func setSubviewsFrame() {
@@ -37,9 +37,8 @@ class AnAnSelectEpisodeCollectionViewCell: UICollectionViewCell {
             make.size.equalTo(CGSize(width: 34, height: 24))
         }
         episodeBtn.snp.makeConstraints { make in
-            make.trailing.equalTo(-16)
+            make.trailing.equalTo(contentView).inset(16)
             make.centerY.equalTo(titleLabel)
-            make.size.equalTo(CGSize(width: 100, height: 15))
         }
     }
     
@@ -76,12 +75,11 @@ fileprivate class ShowEpisodeViewBtn:UIButton{
     
     private func setSubviewsFrame() {
         introLabel.snp.makeConstraints { make in
-            make.leading.equalTo(5)
+            make.trailing.equalTo(arrowIcon.snp.leading).offset(-2)
             make.centerY.equalToSuperview()
-            make.size.equalTo(CGSize(width: 81, height: 15))
         }
         arrowIcon.snp.makeConstraints { make in
-            make.leading.equalTo(introLabel.snp.trailing).offset(2)
+            make.trailing.equalTo(self)
             make.centerY.equalToSuperview()
             make.size.equalTo(12)
         }

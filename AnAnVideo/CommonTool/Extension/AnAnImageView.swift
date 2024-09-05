@@ -17,6 +17,8 @@ class AnAnImageView:UIImageView {
 
 extension UIImageView {
     func setImageWith(url:String){
+        self.layoutIfNeeded()
+//        self.kf.setImage(with: URL(string: url))
         self.kf.setImage(with: URL(string: url),placeholder: UIColor.imageFromColor(color: UIColor.lightGray, viewSize: self.bounds.size))
     }
 //    旋转图片

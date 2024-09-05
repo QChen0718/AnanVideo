@@ -113,7 +113,7 @@ extension AnAnHomeTableView:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let sectionModel = self.sections?[section]
         guard let sectionType = sectionModel?.sectionType else { return 0 }
-        if sectionType == "BANNER_TOP"{
+        if sectionType == "BANNER_TOP" || sectionType == "MAGIC_CUBE"{
             return 0
         }
         return 34

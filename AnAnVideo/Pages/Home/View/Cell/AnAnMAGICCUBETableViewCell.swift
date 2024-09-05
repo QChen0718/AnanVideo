@@ -11,10 +11,10 @@ class AnAnMAGICCUBETableViewCell: UITableViewCell {
 
     lazy var mfCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width:floor((AnAnAppDevice.an_screenWidth()-150)/4.0), height: 60)
+        layout.itemSize = CGSize(width:floor((AnAnAppDevice.an_screenWidth()-160)/4.0), height: 60)
         layout.minimumLineSpacing = 40
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .white;
@@ -32,6 +32,7 @@ class AnAnMAGICCUBETableViewCell: UITableViewCell {
         self.contentView.addSubview(self.mfCollectionView)
         self.mfCollectionView.snp.makeConstraints { make in
             make.edges.equalTo(self.contentView)
+            make.height.equalTo(60)
         }
     }
     
