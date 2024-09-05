@@ -24,6 +24,8 @@
 		16275DF229E999F5002E0F69 /* AnAnDownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16275DF129E999F5002E0F69 /* AnAnDownloadModel.swift */; };
 		16275DF929EAFA37002E0F69 /* qnlibtitan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16275DF829EAFA37002E0F69 /* qnlibtitan.a */; };
 		16275DFB29EAFC56002E0F69 /* AnAnDownloadPcdnUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16275DFA29EAFC56002E0F69 /* AnAnDownloadPcdnUrl.swift */; };
+		163D14C22C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163D14C12C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift */; };
+		163D14C42C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163D14C32C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift */; };
 		1641E2B129ACF86A000D12BC /* AnAnAppDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641E2B029ACF86A000D12BC /* AnAnAppDevice.swift */; };
 		1641E2B529ACF956000D12BC /* AnAnHomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641E2B429ACF956000D12BC /* AnAnHomeTableView.swift */; };
 		1641E2B829ACFC53000D12BC /* AnAnHomeRecommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641E2B729ACFC53000D12BC /* AnAnHomeRecommentTableViewCell.swift */; };
@@ -163,6 +165,8 @@
 		16275DF629EAF81E002E0F69 /* TitanSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitanSDK.h; sourceTree = "<group>"; };
 		16275DF829EAFA37002E0F69 /* qnlibtitan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = qnlibtitan.a; sourceTree = "<group>"; };
 		16275DFA29EAFC56002E0F69 /* AnAnDownloadPcdnUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnDownloadPcdnUrl.swift; sourceTree = "<group>"; };
+		163D14C12C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnMAGICCUBETableViewCell.swift; sourceTree = "<group>"; };
+		163D14C32C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnCUBECollectionViewCell.swift; sourceTree = "<group>"; };
 		1641E2B029ACF86A000D12BC /* AnAnAppDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnAppDevice.swift; sourceTree = "<group>"; };
 		1641E2B429ACF956000D12BC /* AnAnHomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHomeTableView.swift; sourceTree = "<group>"; };
 		1641E2B729ACFC53000D12BC /* AnAnHomeRecommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHomeRecommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -405,6 +409,8 @@
 				16897CBE29C4A9CF006BE17E /* AnAnHomeActorCollectionViewCell.swift */,
 				16897CC029C58991006BE17E /* AnAnBannerTableViewCell.swift */,
 				16897CC429C5945A006BE17E /* AnAnBannerCollectionViewCell.swift */,
+				163D14C12C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift */,
+				163D14C32C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1009,6 +1015,7 @@
 				16D8F9B029CF3D7300653BE0 /* AnAnEpisodeItemCollectionViewCell.swift in Sources */,
 				16A0812529B4E70E000DA73C /* AnAnString.swift in Sources */,
 				16D8456129A21F7700B4EC3E /* ViewController.swift in Sources */,
+				163D14C42C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift in Sources */,
 				16897CCC29C5FB03006BE17E /* AnAnVideoDetailCollectionView.swift in Sources */,
 				16D8F97D29CB1CD500653BE0 /* AnAnQualityTableView.swift in Sources */,
 				16A0812329B4C732000DA73C /* AnAnRequest.swift in Sources */,
@@ -1063,6 +1070,7 @@
 				16D8458129A2263F00B4EC3E /* AnAnMeViewController.swift in Sources */,
 				16275DE629E84F06002E0F69 /* AnAnDownloadViewController.swift in Sources */,
 				16D8F9A229CC97C700653BE0 /* AnAnRecommentCollectionViewCell.swift in Sources */,
+				163D14C22C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift in Sources */,
 				161920E129E01A4700B6668C /* AnAnSeriesCodeData.swift in Sources */,
 				16897CFA29C9A8A1006BE17E /* AnAnPlayerBottomView.swift in Sources */,
 				16D8F97B29CB1B3F00653BE0 /* AnAnEpisodeCollectionView.swift in Sources */,

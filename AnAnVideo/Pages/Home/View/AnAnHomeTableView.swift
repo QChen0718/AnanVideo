@@ -38,6 +38,7 @@ class AnAnHomeTableView: UITableView {
         self.register(AnAnHomeHorizontalTableViewCell.self, forCellReuseIdentifier: vipCellId);
         self.register(AnAnHomeActorTableViewCell.self, forCellReuseIdentifier: anAnHomeActorTableViewCellId)
         self.register(AnAnBannerTableViewCell.self, forCellReuseIdentifier: anAnBannerTableViewCellId)
+        self.register(AnAnMAGICCUBETableViewCell.self, forCellReuseIdentifier: AnAnMAGICCUBETableViewCell.description())
     }
     
     required init?(coder: NSCoder) {
@@ -64,9 +65,17 @@ extension AnAnHomeTableView:UITableViewDelegate,UITableViewDataSource{
             cell.sectionContentModels = sectionModel?.sectionContents
             return cell
         }else if sectionType == "VIDEO_RECOMMEND"{
-            let cell:AnAnHomeHorizontalTableViewCell = tableView.dequeueReusableCell(withIdentifier: vipCellId) as! AnAnHomeHorizontalTableViewCell
-            cell.sectionContentModels = sectionModel?.sectionContents
-            return cell
+            if let display = sectionModel?.display,display == "SLIDE" {
+//                横滑组件
+                let cell:AnAnHomeHorizontalTableViewCell = tableView.dequeueReusableCell(withIdentifier: vipCellId) as! AnAnHomeHorizontalTableViewCell
+                cell.sectionContentModels = sectionModel?.sectionContents
+                return cell
+            }else{
+//                平铺组件
+                let cell:AnAnHomeRecommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: recommentCellId) as! AnAnHomeRecommentTableViewCell
+                cell.sectionContentModels = sectionModel?.sectionContents
+                return cell
+            }
         }else if sectionType == "MULTI_IMAGE"{
             let cell:AnAnHomeActorTableViewCell = tableView.dequeueReusableCell(withIdentifier: anAnHomeActorTableViewCellId) as! AnAnHomeActorTableViewCell
             cell.sectionContentModels = sectionModel?.sectionContents
@@ -74,6 +83,11 @@ extension AnAnHomeTableView:UITableViewDelegate,UITableViewDataSource{
         }else if sectionType == "BANNER_TOP"{
             let cell:AnAnBannerTableViewCell = tableView.dequeueReusableCell(withIdentifier: anAnBannerTableViewCellId) as! AnAnBannerTableViewCell
             cell.bannerTops = sectionModel?.bannerTop
+            return cell
+        }else if sectionType == "MAGIC_CUBE"{
+//            魔方组件（支持平铺）
+            let cell:AnAnMAGICCUBETableViewCell = tableView.dequeueReusableCell(withIdentifier: AnAnMAGICCUBETableViewCell.description(), for: indexPath) as! AnAnMAGICCUBETableViewCell
+            cell.sectionContentModels = sectionModel?.sectionContents
             return cell
         }
         else{
@@ -88,11 +102,11 @@ extension AnAnHomeTableView:UITableViewDelegate,UITableViewDataSource{
         }else{
             let view = AnAnTableSectionView()
             view.titleLabel.text = self.sections?[section].name
-    //        if cellType == recommentCellId{
-    //            view.refreshBtn.isHidden = false
-    //        }else{
-    //            view.refreshBtn.isHidden = true
-    //        }
+//            if cellType == recommentCellId{
+//                view.refreshBtn.isHidden = false
+//            }else{
+                view.refreshBtn.isHidden = true
+//            }
             return view
         }
     }
