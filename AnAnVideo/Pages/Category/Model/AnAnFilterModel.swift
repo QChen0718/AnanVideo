@@ -9,9 +9,6 @@ import UIKit
 import HandyJSON
 
 struct AnAnFilterModel: HandyJSON {
-    var title:String?
-    var type:Int?
-    var index:Int?
     var filterType:String?
     var dramaFilterItemList:[AnAnFilterItemModel]?
 }

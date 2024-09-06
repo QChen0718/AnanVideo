@@ -20,6 +20,12 @@ class AnAnFilterCollectionViewCell: UICollectionViewCell {
         return layout
     }()
     
+    var typeTags:[AnAnFilterItemModel]?{
+        didSet{
+            filterCollectionView.typeTags = typeTags
+        }
+    }
+    
     lazy var filterCollectionView:AnAnFilterCollectionView = {
         let collectionView = AnAnFilterCollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.filterArray = ["全部","综艺","电视剧第三方","电影","脱口秀","纪录片"]

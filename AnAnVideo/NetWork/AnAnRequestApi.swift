@@ -252,6 +252,23 @@ extension MoyaProvider {
             failure(error)
         }
     }
+//    返回数组
+    @discardableResult
+    public func requestListModel<T:HandyJSON>(_ target:Target,callbackQueue:DispatchQueue? = DispatchQueue.main,
+                                          model:T.Type?,success:((_ returnData:[T?],_ msg:String?) -> Void)?,failure:Failure? = nil) -> Cancellable? {
+        return self.requestData(target,callbackQueue: callbackQueue,success:{ (response) in
+            guard let success = success else { return }
+            do {
+                let modelData:AnAnBaseModel = try response.mapModel(AnAnBaseModel<[T]>.self)
+                success(modelData.data ?? [],modelData.msg)
+            } catch (let error) {
+                failure?(error as! MoyaError)
+            }
+        }){(error) in
+            guard let failure = failure else { return }
+            failure(error)
+        }
+    }
     
     @discardableResult
     public func requestData(_ target:Target,callbackQueue:DispatchQueue? = DispatchQueue.main,success: Success? = nil,failure: Failure? = nil) -> Cancellable?{
