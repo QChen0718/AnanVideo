@@ -44,7 +44,7 @@ class AnAnCategoryViewController: AnAnBaseViewController {
     }()
     
     func addFilterItem(title:String,index:Int) -> AnAnFilterModel {
-        let model = AnAnFilterModel()
+        var model = AnAnFilterModel()
         model.title = title
         model.index = index
         return model
@@ -66,11 +66,19 @@ class AnAnCategoryViewController: AnAnBaseViewController {
             make.leading.bottom.trailing.equalToSuperview()
             make.top.equalTo(ananSearchView.snp.bottom).offset(4)
         }
+        
+        loadData()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         ananSearchView.layoutIfNeeded()
         ananSearchView.insertGradientColor(cornerRadius: 20, colors: [UIColor.hexadecimalColor(hexadecimal: An_C1ECFA).cgColor,UIColor.hexadecimalColor(hexadecimal: An_DADCFF).cgColor])
+    }
+    
+    func loadData() {
+        AnAnRequest.shared.requestCatoryFilterTagData {[weak self] model in
+            guard let `self` else {return}
+        }
     }
 }
 

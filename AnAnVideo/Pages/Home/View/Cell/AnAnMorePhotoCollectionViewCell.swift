@@ -38,7 +38,6 @@ class AnAnMorePhotoCollectionViewCell: UICollectionViewCell {
     
     var sectionContentModel:SectionContentModel?{
         didSet{
-            movieCoverImageView.layoutIfNeeded()
             movieCoverImageView.setImageWith(url: sectionContentModel?.coverUrl ?? "")
             movieNameLabel.text = sectionContentModel?.title ?? ""
             movieDesLabel.text = sectionContentModel?.subTitle ?? ""

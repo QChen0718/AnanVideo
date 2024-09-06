@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import MJRefresh
 
 class AnAnRecommendViewController: AnAnBaseViewController {
 
     lazy var recommendTableview:AnAnHomeTableView = {
         let tableView = AnAnHomeTableView(frame: .zero, style: .grouped)
+        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {[weak self] in
+            guard let `self` else {return}
+            self.loadData()
+            tableView.mj_header?.endRefreshing()
+        })
         return tableView
     }()
     var dataArray:[SectionModel] = []

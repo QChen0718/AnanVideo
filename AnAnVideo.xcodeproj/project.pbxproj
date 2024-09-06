@@ -88,6 +88,9 @@
 		16A0812129B34357000DA73C /* AnAnRequestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A0812029B34357000DA73C /* AnAnRequestApi.swift */; };
 		16A0812329B4C732000DA73C /* AnAnRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A0812229B4C732000DA73C /* AnAnRequest.swift */; };
 		16A0812529B4E70E000DA73C /* AnAnString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A0812429B4E70E000DA73C /* AnAnString.swift */; };
+		16B70ED32C8AE79F00D2D524 /* AnAnShortVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B70ED22C8AE79F00D2D524 /* AnAnShortVideoTableViewCell.swift */; };
+		16B70ED52C8AE7CE00D2D524 /* AnAnShortVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B70ED42C8AE7CE00D2D524 /* AnAnShortVideoCollectionViewCell.swift */; };
+		16B70ED72C8AE83B00D2D524 /* AnAnShortVideoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B70ED62C8AE83B00D2D524 /* AnAnShortVideoCollectionView.swift */; };
 		16BA71B829EFF5D200BE7449 /* AnAnUrlSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BA71B729EFF5D200BE7449 /* AnAnUrlSessionTaskOperation.swift */; };
 		16BA71BA29F0DAE200BE7449 /* AnAnDownloadMp4Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BA71B929F0DAE200BE7449 /* AnAnDownloadMp4Task.swift */; };
 		16BA71BC29F0DB1500BE7449 /* AnAnDownloadM3u8Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BA71BB29F0DB1500BE7449 /* AnAnDownloadM3u8Task.swift */; };
@@ -229,6 +232,9 @@
 		16A0812029B34357000DA73C /* AnAnRequestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnRequestApi.swift; sourceTree = "<group>"; };
 		16A0812229B4C732000DA73C /* AnAnRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnRequest.swift; sourceTree = "<group>"; };
 		16A0812429B4E70E000DA73C /* AnAnString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnString.swift; sourceTree = "<group>"; };
+		16B70ED22C8AE79F00D2D524 /* AnAnShortVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortVideoTableViewCell.swift; sourceTree = "<group>"; };
+		16B70ED42C8AE7CE00D2D524 /* AnAnShortVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortVideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		16B70ED62C8AE83B00D2D524 /* AnAnShortVideoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortVideoCollectionView.swift; sourceTree = "<group>"; };
 		16BA71B029EC20BE00BE7449 /* AnAnVideo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnAnVideo-Bridging-Header.h"; sourceTree = "<group>"; };
 		16BA71B729EFF5D200BE7449 /* AnAnUrlSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnUrlSessionTaskOperation.swift; sourceTree = "<group>"; };
 		16BA71B929F0DAE200BE7449 /* AnAnDownloadMp4Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnDownloadMp4Task.swift; sourceTree = "<group>"; };
@@ -393,6 +399,7 @@
 				1641E2BD29AD0002000D12BC /* AnAnHorizontalCollectionView.swift */,
 				1641E2CD29AE50A4000D12BC /* AnAnTableSectionView.swift */,
 				16897CBC29C4A8B6006BE17E /* AnAnActorCollectionView.swift */,
+				16B70ED62C8AE83B00D2D524 /* AnAnShortVideoCollectionView.swift */,
 				16897CC229C589E7006BE17E /* AnAnBannerView.swift */,
 			);
 			path = View;
@@ -411,6 +418,8 @@
 				16897CC429C5945A006BE17E /* AnAnBannerCollectionViewCell.swift */,
 				163D14C12C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift */,
 				163D14C32C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift */,
+				16B70ED22C8AE79F00D2D524 /* AnAnShortVideoTableViewCell.swift */,
+				16B70ED42C8AE7CE00D2D524 /* AnAnShortVideoCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1070,6 +1079,8 @@
 				16D8458129A2263F00B4EC3E /* AnAnMeViewController.swift in Sources */,
 				16275DE629E84F06002E0F69 /* AnAnDownloadViewController.swift in Sources */,
 				16D8F9A229CC97C700653BE0 /* AnAnRecommentCollectionViewCell.swift in Sources */,
+				16B70ED72C8AE83B00D2D524 /* AnAnShortVideoCollectionView.swift in Sources */,
+				16B70ED32C8AE79F00D2D524 /* AnAnShortVideoTableViewCell.swift in Sources */,
 				163D14C22C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift in Sources */,
 				161920E129E01A4700B6668C /* AnAnSeriesCodeData.swift in Sources */,
 				16897CFA29C9A8A1006BE17E /* AnAnPlayerBottomView.swift in Sources */,
@@ -1125,6 +1136,7 @@
 				16BA71B829EFF5D200BE7449 /* AnAnUrlSessionTaskOperation.swift in Sources */,
 				16275DEE29E85264002E0F69 /* AnAnDownloadLoadingItemTableViewCell.swift in Sources */,
 				16897C6E29C3231A006BE17E /* AnAnVideoDetailViewController.swift in Sources */,
+				16B70ED52C8AE7CE00D2D524 /* AnAnShortVideoCollectionViewCell.swift in Sources */,
 				16C671A029B78653005AF603 /* AnAnHistoryCollectionViewCell.swift in Sources */,
 				1641E2B129ACF86A000D12BC /* AnAnAppDevice.swift in Sources */,
 			);

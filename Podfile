@@ -23,6 +23,7 @@ target 'AnAnVideo' do
   pod 'NetSpeed'
   pod 'AlicloudMAN'
   pod 'AlicloudUT'
+  pod 'MJRefresh'
 
   # Pods for AnAnVideo
 

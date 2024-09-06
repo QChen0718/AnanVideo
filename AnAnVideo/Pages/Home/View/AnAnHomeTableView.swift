@@ -39,6 +39,7 @@ class AnAnHomeTableView: UITableView {
         self.register(AnAnHomeActorTableViewCell.self, forCellReuseIdentifier: anAnHomeActorTableViewCellId)
         self.register(AnAnBannerTableViewCell.self, forCellReuseIdentifier: anAnBannerTableViewCellId)
         self.register(AnAnMAGICCUBETableViewCell.self, forCellReuseIdentifier: AnAnMAGICCUBETableViewCell.description())
+        self.register(AnAnShortVideoTableViewCell.self, forCellReuseIdentifier: AnAnShortVideoTableViewCell.description())
     }
     
     required init?(coder: NSCoder) {
@@ -87,6 +88,12 @@ extension AnAnHomeTableView:UITableViewDelegate,UITableViewDataSource{
         }else if sectionType == "MAGIC_CUBE"{
 //            魔方组件（支持平铺）
             let cell:AnAnMAGICCUBETableViewCell = tableView.dequeueReusableCell(withIdentifier: AnAnMAGICCUBETableViewCell.description(), for: indexPath) as! AnAnMAGICCUBETableViewCell
+            cell.sectionContentModels = sectionModel?.sectionContents
+            return cell
+        }
+        else if sectionType == "SHORT_VIDEO"{
+//            短视频
+            let cell:AnAnShortVideoTableViewCell = tableView.dequeueReusableCell(withIdentifier: AnAnShortVideoTableViewCell.description(), for: indexPath) as! AnAnShortVideoTableViewCell
             cell.sectionContentModels = sectionModel?.sectionContents
             return cell
         }

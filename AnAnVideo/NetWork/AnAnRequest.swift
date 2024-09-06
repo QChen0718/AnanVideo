@@ -120,4 +120,13 @@ class AnAnRequest{
             
         }
     }
+    
+//    获取分类筛选项
+    func requestCatoryFilterTagData(success:@escaping (AnAnFilterModel?)->Void) {
+        provider.requestModel(.typeFilter, model: AnAnFilterModel.self) { returnData, msg in
+            success(returnData)
+        }failure: { error in
+            
+        }
+    }
 }

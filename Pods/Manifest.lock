@@ -41,6 +41,7 @@ PODS:
   - JXPageControl/Transform (0.1.5):
     - JXPageControl/Common
   - Kingfisher (6.3.1)
+  - MJRefresh (3.7.6)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - HandyJSON
   - JXBanner
   - Kingfisher
+  - MJRefresh
   - Moya
   - NetSpeed
   - Reusable
@@ -80,6 +82,7 @@ SPEC REPOS:
     - JXBanner
     - JXPageControl
     - Kingfisher
+    - MJRefresh
     - Moya
     - NetSpeed
     - Reusable
@@ -97,6 +100,7 @@ SPEC CHECKSUMS:
   JXBanner: 348dbef856e786494cbf30fb45d6b84826f2d3c5
   JXPageControl: e9487b39e2e58fc17790833214f3b8e935bef98b
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  MJRefresh: 2fe7fb43a5167ceda20bb7e63f130c04fd1814a5
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   NetSpeed: 0c08cd0c4343de6311987ffe0f0edb93fb695523
   Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
@@ -104,6 +108,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: ea1c085a3f4182727b1bacc0d9e55a7bbd6ec3d7
+PODFILE CHECKSUM: 577424d7bd415af8115e2dee25fcd36e223271fd
 
 COCOAPODS: 1.12.1
