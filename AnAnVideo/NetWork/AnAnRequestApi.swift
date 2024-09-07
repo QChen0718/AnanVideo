@@ -41,7 +41,8 @@ enum AnAnRequestApi {
     case search
 //    类型筛选
     case typeFilter
-    case typeCats
+//    分类筛选数据
+    case typeCats(keys:[String:Any],page:String,rows:String)
     case dramaFocus
 //    获取用户信息
     case getUserInfo(token:String,otherUser:String)
@@ -170,8 +171,15 @@ extension AnAnRequestApi:TargetType{
             parmeters["episodeSid"] = episodeSid
             parmeters["quality"] = quality
             parmeters["hsdrOpen"] = "1"
+            break
         case .shortVideoList:
             parmeters["closeRecommend"] = "1"
+            break
+        case .typeCats(let keys, let page, let rows):
+            parmeters = keys
+            parmeters["page"] = page
+            parmeters["rows"] = rows
+            break
         default:
             break
         }
@@ -183,7 +191,14 @@ extension AnAnRequestApi:TargetType{
         let encoding: ParameterEncoding
         switch self.method {
             case .post:
-                encoding = URLEncoding.default
+            switch self {
+                case .typeCats:
+                    encoding = JSONEncoding.default
+                    break
+                default:
+                    encoding = URLEncoding.default
+                    break
+                }
             default:
                 encoding = URLEncoding.default
         }
@@ -194,7 +209,7 @@ extension AnAnRequestApi:TargetType{
     var headers: [String : String]? {
         var paramsStr:String = ""
         for  key in params.keys.sorted(by: {$0 < $1}){
-            paramsStr += key + String(format: "%@", params[key] as! CVarArg)
+            paramsStr += key +  String(format: "%@", params[key] as? CVarArg ?? "")
         }
         let timestamp = Int(Date().timeIntervalSince1970) * 1000
         let t = String(format: "%ld", timestamp)
@@ -272,6 +287,7 @@ extension MoyaProvider {
     
     @discardableResult
     public func requestData(_ target:Target,callbackQueue:DispatchQueue? = DispatchQueue.main,success: Success? = nil,failure: Failure? = nil) -> Cancellable?{
+    
         return request(target,callbackQueue: callbackQueue,progress:.none) { result in
             switch result {
             case let .success(response):

@@ -23,7 +23,6 @@ class AnAnRequest{
             }else {
 //                结束请求
 //                AnAnJumpPageManager.shared.currentVC?.view?.hideToastActivity()
-    
             }
         }
         plugins.append(networkActivityPlugin)
@@ -125,6 +124,14 @@ class AnAnRequest{
     func requestCatoryFilterTagData(success:@escaping ([AnAnFilterModel?])->Void) {
         
         provider.requestListModel(.typeFilter, model: AnAnFilterModel.self) { returnData, msg in
+            success(returnData)
+        }failure: { error in
+            
+        }
+    }
+//    获取分类数据
+    func requestCategoryListData(keys:[String:Any],page:String,rows:String,success:@escaping ([AnAnCategoryDataModel?])->Void) {
+        provider.requestListModel(.typeCats(keys: keys, page: page, rows: rows), model: AnAnCategoryDataModel.self) { returnData, msg in
             success(returnData)
         }failure: { error in
             

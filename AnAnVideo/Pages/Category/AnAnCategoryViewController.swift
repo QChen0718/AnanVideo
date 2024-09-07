@@ -22,36 +22,6 @@ class AnAnCategoryViewController: AnAnBaseViewController {
         return collectionView
     }()
     
-    var filterDataArray:[AnAnFilterModel?] = []
-    
-//    private lazy var filterDataArray:[[AnAnFilterModel]] = {
-//        let array1 = [addFilterItem(title: "最热播放", index: 0),
-//        addFilterItem(title: "最近更新", index: 1),
-//        addFilterItem(title: "最受好评", index: 2),
-//        addFilterItem(title: "本季新剧", index: 3)]
-//        let array2 = [addFilterItem(title: "全部", index: 0),
-//        addFilterItem(title: "2023", index: 1),
-//        addFilterItem(title: "2022", index: 2),
-//        addFilterItem(title: "2021", index: 3),
-//        addFilterItem(title: "2020", index: 4),
-//                      addFilterItem(title: "2019", index: 4),
-//                      addFilterItem(title: "2018", index: 4)]
-//        let array3 = [addFilterItem(title: "全部", index: 0),
-//        addFilterItem(title: "美国", index: 1),
-//        addFilterItem(title: "", index: 2),
-//        addFilterItem(title: "", index: 3),
-//        addFilterItem(title: "", index: 4)]
-//        let modelArray = [array1,array2,array3]
-//        return modelArray
-//    }()
-//    
-//    func addFilterItem(title:String,index:Int) -> AnAnFilterModel {
-//        var model = AnAnFilterModel()
-//        model.title = title
-//        model.index = index
-//        return model
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,10 +50,23 @@ class AnAnCategoryViewController: AnAnBaseViewController {
     func loadData() {
         AnAnRequest.shared.requestCatoryFilterTagData {[weak self] listModel in
             guard let `self` else {return}
-//            print("type--->\(model?.filterType ?? "")")
-            filterDataArray = listModel
-            categoryCollectionView.tagsArray = listModel
-//            categoryCollectionView.reloadData()
+            var filterDatas:[AnAnFilterModel?] = listModel
+            filterDatas.append(AnAnFilterModel(filterType: CellType.CellTypeCategoryItem.rawValue))
+            categoryCollectionView.tagsArray = filterDatas
+            loadCategoryListData()
+        }
+    }
+    
+    private func loadCategoryListData() {
+        var paramsDict:[String:Any] = [:]
+        categoryCollectionView.tagsArray?.forEach({ model in
+            guard let key = model?.filterType else {return}
+            paramsDict[key] = model?.dramaFilterItemList?.first?.value
+            
+        })
+        AnAnRequest.shared.requestCategoryListData(keys: paramsDict, page: String(format: "%d", 1), rows: String(format: "%d", 20)) {[weak self] listModel in
+            guard let `self` else {return}
+            self.categoryCollectionView.categoryDataArray = listModel
         }
     }
 }

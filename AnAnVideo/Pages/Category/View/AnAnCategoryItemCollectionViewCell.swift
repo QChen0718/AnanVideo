@@ -12,6 +12,7 @@ class AnAnCategoryItemCollectionViewCell: UICollectionViewCell {
     private lazy var movieCoverImageView:UIImageView = {
         let imageView = AnAnImageView()
         imageView.layer.cornerRadius = 17
+        imageView.layer.masksToBounds = true
         imageView.backgroundColor = .red
         return imageView
     }()
@@ -70,6 +71,14 @@ class AnAnCategoryItemCollectionViewCell: UICollectionViewCell {
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(movieNameLabel.snp.bottom).offset(4)
             make.height.equalTo(15)
+        }
+    }
+    
+    var model:AnAnCategoryDataModel?{
+        didSet{
+            movieCoverImageView.setImageWith(url: model?.coverUrl ?? "")
+            movieNameLabel.text = model?.title ?? ""
+            descLabel.text = model?.subtitle ?? ""
         }
     }
 }

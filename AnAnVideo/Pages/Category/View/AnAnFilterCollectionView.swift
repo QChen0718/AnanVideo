@@ -8,13 +8,6 @@
 import UIKit
 
 class AnAnFilterCollectionView: UICollectionView {
-
-    var filterArray:[String]?{
-        didSet {
-//            赋值更新
-            self.reloadData()
-        }
-    }
     
     let anAnFilterItemCollectionViewCellId = "AnAnFilterItemCollectionViewCellId"
     

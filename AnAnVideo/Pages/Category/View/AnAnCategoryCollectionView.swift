@@ -16,7 +16,7 @@ enum CellType:String {
   case CellTypeMovieUpdate // 播放
   case CellTypeMovieisFree //是否收费
   case CellTypeSpread   //展开或收起
-  case CellTypeCategoryItem //电影
+  case CellTypeCategoryItem = "category" //电影
 }
 
 class AnAnCategoryCollectionView: UICollectionView {
@@ -29,6 +29,13 @@ class AnAnCategoryCollectionView: UICollectionView {
     var tagsArray:[AnAnFilterModel?]? {
         didSet{
             self.reloadData()
+        }
+    }
+//    分类内容数组
+    var categoryDataArray:[AnAnCategoryDataModel?]?{
+        didSet{
+            guard let tags = tagsArray else { return }
+            self.reloadSections(IndexSet(integer: tags.count-1))
         }
     }
     lazy var zsectionArray:[CellType] = {
@@ -49,7 +56,6 @@ class AnAnCategoryCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
         self.showsVerticalScrollIndicator = false
-//        sectionArray = zsectionArray
         self.register(AnAnFilterCollectionViewCell.self, forCellWithReuseIdentifier: anAnFilterCollectionViewCellId)
         self.register(AnAnSpreadCollectionViewCell.self, forCellWithReuseIdentifier: anAnSpreadCollectionViewCellId)
         self.register(AnAnCategoryItemCollectionViewCell.self, forCellWithReuseIdentifier: anAnCategoryItemCollectionViewCellId)
@@ -68,91 +74,76 @@ extension AnAnCategoryCollectionView:UICollectionViewDelegate,UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let type:CellType = sectionArray[section]
-//        switch type {
-//            case .CellTypeCategoryItem:
-//                return 19
-//            default:
+        guard let model:AnAnFilterModel = tagsArray?[section] else {return 0}
+        switch model.filterType {
+            case CellType.CellTypeCategoryItem.rawValue:
+                return categoryDataArray?.count ?? 0
+            default:
                 return 1
-//        }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let type:CellType = sectionArray[indexPath.section]
-//        if type == .CellTypeSpread{
-//            let cell:AnAnSpreadCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: anAnSpreadCollectionViewCellId, for: indexPath) as! AnAnSpreadCollectionViewCell
-//            return cell
-//        }else if type == .CellTypeCategoryItem{
-//            let cell:AnAnCategoryItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: anAnCategoryItemCollectionViewCellId, for: indexPath) as! AnAnCategoryItemCollectionViewCell
-//            return cell
-//        }else {
+        guard let model:AnAnFilterModel = tagsArray?[indexPath.section] else {return UICollectionViewCell()}
+        if model.filterType == CellType.CellTypeCategoryItem.rawValue{
+            let cell:AnAnCategoryItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: anAnCategoryItemCollectionViewCellId, for: indexPath) as! AnAnCategoryItemCollectionViewCell
+            cell.model = categoryDataArray?[indexPath.row]
+            return cell
+        }else {
             let cell:AnAnFilterCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: anAnFilterCollectionViewCellId, for: indexPath) as! AnAnFilterCollectionViewCell
             cell.typeTags = tagsArray?[indexPath.section]?.dramaFilterItemList
             return cell
-//        }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let type:CellType = sectionArray[indexPath.section]
-//        if type == .CellTypeSpread {
-//            return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 28)
-//        }else if type == .CellTypeCategoryItem {
-//            let width:CGFloat = (AnAnAppDevice.an_screenWidth()-60)/3.0
-//            return CGSize(width: width, height: width * 183/105)
-//        }else {
+        guard let model:AnAnFilterModel = tagsArray?[indexPath.section] else {return .zero}
+        if model.filterType == CellType.CellTypeCategoryItem.rawValue {
+            let width:CGFloat = (AnAnAppDevice.an_screenWidth()-60)/3.0
+            return CGSize(width: width, height: width * 183/105)
+        }else {
             return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 30)
-//        }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        let type:CellType = sectionArray[section]
-//        if type == .CellTypeCategoryItem{
-//            return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 14)
-//        }else if type == .CellTypeSpread{
-//            return CGSize.zero
-//        }
-//        else{
+        guard let model:AnAnFilterModel = tagsArray?[section] else {return .zero}
+        if model.filterType == CellType.CellTypeCategoryItem.rawValue {
+            return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 14)
+        }
+        else{
             return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 12)
-//        }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        let type:CellType = sectionArray[section]
-//        if type == .CellTypeCategoryItem{
-//            return 15.5
-//        }else{
+        guard let model:AnAnFilterModel = tagsArray?[section] else {return 0}
+        if model.filterType == CellType.CellTypeCategoryItem.rawValue{
+            return 15.5
+        }else{
             return 0
-//        }
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        let type:CellType = sectionArray[section]
-//        if type == .CellTypeCategoryItem{
-//            return 10
-//        }else{
+        guard let model:AnAnFilterModel = tagsArray?[section] else {return 0}
+        if model.filterType == CellType.CellTypeCategoryItem.rawValue{
+            return 10
+        }else{
             return 0
-//        }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        let type:CellType = sectionArray[section]
-//        if type == .CellTypeCategoryItem{
-//            return UIEdgeInsets(top: 0, left: 20, bottom: 12, right: 20)
-//        }else{
+        guard let model:AnAnFilterModel = tagsArray?[section] else {return .zero}
+        if model.filterType == CellType.CellTypeCategoryItem.rawValue{
+            return UIEdgeInsets(top: 0, left: 20, bottom: 12, right: 20)
+        }else{
             return UIEdgeInsets.zero
-//        }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let type:CellType = sectionArray[indexPath.section]
-        if type == .CellTypeSpread{
-            if sectionArray.count == 6 {
-                sectionArray = ssectionArray
-            }else{
-                sectionArray = zsectionArray
-            }
-            
-            self.reloadData()
-        }
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -21,7 +21,7 @@ class AnAnFilterItemCollectionViewCell: UICollectionViewCell {
     }
     var indexPath:IndexPath?{
         didSet{
-            if indexPath?.row == 2{
+            if indexPath?.row == 0{
                 self.contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_1890FF,alpha: 0.1)
                 self.contentView.layer.cornerRadius = 15
                 self.titleLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_1890FF)
