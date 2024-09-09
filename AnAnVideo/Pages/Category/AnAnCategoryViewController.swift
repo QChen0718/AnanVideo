@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import MJRefresh
 
 class AnAnCategoryViewController: AnAnBaseViewController {
-
+    private var page:Int = 1
+    var categoryDataArray:[AnAnCategoryDataModel?] = []
     private lazy var ananSearchView:AnAnSearch = {
         let view = AnAnSearch()
         return view
@@ -19,6 +21,11 @@ class AnAnCategoryViewController: AnAnBaseViewController {
     }()
     private lazy var categoryCollectionView:AnAnCategoryCollectionView = {
         let collectionView = AnAnCategoryCollectionView(frame: .zero,collectionViewLayout: layout)
+        collectionView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock:{[weak self] in
+            guard let `self` else { return }
+            page += 1
+            self.loadCategoryListData()
+        })
         return collectionView
     }()
     
@@ -38,7 +45,7 @@ class AnAnCategoryViewController: AnAnBaseViewController {
             make.leading.bottom.trailing.equalToSuperview()
             make.top.equalTo(ananSearchView.snp.bottom).offset(4)
         }
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCategoryListData), name: Notification.Name(rawValue: "notification.updateCategoryListData"), object: nil)
         loadData()
     }
     override func viewWillLayoutSubviews() {
@@ -50,23 +57,41 @@ class AnAnCategoryViewController: AnAnBaseViewController {
     func loadData() {
         AnAnRequest.shared.requestCatoryFilterTagData {[weak self] listModel in
             guard let `self` else {return}
+            for i in 0..<listModel.count{
+                listModel[i]?.dramaFilterItemList?[0].isSelect = true
+            }
             var filterDatas:[AnAnFilterModel?] = listModel
             filterDatas.append(AnAnFilterModel(filterType: CellType.CellTypeCategoryItem.rawValue))
+            
             categoryCollectionView.tagsArray = filterDatas
             loadCategoryListData()
         }
     }
-    
+    @objc func updateCategoryListData(){
+        page = 1
+        categoryDataArray = []
+        loadCategoryListData()
+    }
     private func loadCategoryListData() {
         var paramsDict:[String:Any] = [:]
         categoryCollectionView.tagsArray?.forEach({ model in
             guard let key = model?.filterType else {return}
-            paramsDict[key] = model?.dramaFilterItemList?.first?.value
-            
+            model?.dramaFilterItemList?.forEach({ itemModel in
+                if itemModel.isSelect == true {
+                    paramsDict[key] = itemModel.value
+                }
+            })
         })
-        AnAnRequest.shared.requestCategoryListData(keys: paramsDict, page: String(format: "%d", 1), rows: String(format: "%d", 20)) {[weak self] listModel in
+        AnAnRequest.shared.requestCategoryListData(keys: paramsDict, page: String(format: "%d", page), rows: String(format: "%d", 21)) {[weak self] listModel in
             guard let `self` else {return}
-            self.categoryCollectionView.categoryDataArray = listModel
+            
+            if listModel.count < 21 {
+                self.categoryCollectionView.mj_footer?.endRefreshingWithNoMoreData()
+            }else{
+                self.categoryCollectionView.mj_footer?.endRefreshing()
+            }
+            categoryDataArray.append(contentsOf: listModel)
+            self.categoryCollectionView.categoryDataArray = categoryDataArray
         }
     }
 }

@@ -12,10 +12,14 @@ struct AnAnFilterModel: HandyJSON {
     var filterType:String?
     var dramaFilterItemList:[AnAnFilterItemModel]?
 }
-
-struct AnAnFilterItemModel:HandyJSON {
+//改成引用类型，对model的修改全局有效
+class AnAnFilterItemModel:HandyJSON {
     var displayName:String?
     var value:String?
+    var isSelect:Bool? = false
+    required init() {
+        
+    }
 }
 /*
 {

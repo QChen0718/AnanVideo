@@ -13,10 +13,8 @@ class AnAnFilterCollectionViewCell: UICollectionViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        
 //       item之间的间距为0时需要两个同时设置不然有问题
         layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
         return layout
     }()
     

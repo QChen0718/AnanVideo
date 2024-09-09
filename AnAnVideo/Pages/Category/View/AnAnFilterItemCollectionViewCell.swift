@@ -14,14 +14,10 @@ class AnAnFilterItemCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    var filterName:String?{
+    var model:AnAnFilterItemModel?{
         didSet{
-            titleLabel.text = filterName
-        }
-    }
-    var indexPath:IndexPath?{
-        didSet{
-            if indexPath?.row == 0{
+            titleLabel.text = model?.displayName
+            if model?.isSelect == true{
                 self.contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_1890FF,alpha: 0.1)
                 self.contentView.layer.cornerRadius = 15
                 self.titleLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_1890FF)
@@ -33,6 +29,7 @@ class AnAnFilterItemCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         createSubviews()
@@ -50,11 +47,9 @@ class AnAnFilterItemCollectionViewCell: UICollectionViewCell {
     
     private func setSubviewsFrame() {
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(14)
-            make.trailing.equalTo(-14)
-            make.top.equalTo(6.5)
-            make.height.equalTo(17)
-            make.bottom.equalTo(-6.5)
+            make.leading.trailing.equalToSuperview().inset(14)
+            make.height.equalTo(30)
+            make.top.bottom.equalToSuperview()
         }
     }
     
