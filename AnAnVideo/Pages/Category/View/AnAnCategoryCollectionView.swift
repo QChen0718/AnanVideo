@@ -143,7 +143,11 @@ extension AnAnCategoryCollectionView:UICollectionViewDelegate,UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard let model:AnAnFilterModel = tagsArray?[indexPath.section] else {return}
+        if model.filterType == CellType.CellTypeCategoryItem.rawValue {
+            
+            AnAnJumpPageManager.gotToDetailPage(dramaId: categoryDataArray?[indexPath.row]?.dramaId ?? "")
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
