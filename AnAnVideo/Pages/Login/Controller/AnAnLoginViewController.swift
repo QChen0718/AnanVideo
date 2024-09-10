@@ -38,6 +38,11 @@ class AnAnLoginViewController: AnAnBaseViewController {
         view.placeholderName = "请输入手机号码"
         view.inputType = .InputTypePhone
         view.inputTextField.delegate = self
+        view.btnBlock = {[weak self] btn in
+            if btn.tag == 200 {
+//                清空输入内容
+            }
+        }
         return view
     }()
     private lazy var checkCodeInputView:AnAnLoginInputView = {
@@ -45,7 +50,12 @@ class AnAnLoginViewController: AnAnBaseViewController {
         view.placeholderName = "请输验证码"
         view.inputType = .InputTypeCheckCode
         view.inputTextField.delegate = self
-        view.sendBtn.addTarget(self, action: #selector(sendCheckCodeClick), for: .touchUpInside)
+        view.btnBlock = {[weak self] btn in
+            guard let `self` else { return }
+            if btn.tag == 300 {
+                self.sendCheckCodeClick()
+            }
+        }
         return view
     }()
     private lazy var loginBtn:UIButton = {
@@ -79,11 +89,23 @@ class AnAnLoginViewController: AnAnBaseViewController {
     
     var gradientLayer:CAGradientLayer?
     var updateGradientColor:Bool = false
+    var timerCount = 60
     
-//    private lazy var timer:Timer = {
-//        let timer = Timer(timeInterval: 1, target: self, selector: <#T##Selector#>, userInfo: <#T##Any?#>, repeats: <#T##Bool#>)
-//        return timer
-//    }()
+    private lazy var timer:Timer = {
+        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerChangeClick), userInfo: nil, repeats: true)
+        return timer
+    }()
+    
+    @objc func timerChangeClick(){
+        timerCount -= 1
+        if timerCount == 0 {
+            timerCount = 60
+            timer.invalidate()
+        }else{
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -189,7 +211,6 @@ class AnAnLoginViewController: AnAnBaseViewController {
             self.view.makeToastActivity(.center)
             AnAnRequest.shared.requestLogin(mobile: phoneInputView.inputTextField.text ?? "", countryCode: "+86", code: checkCodeInputView.inputTextField.text ?? "") {[weak self] in
 //                保存用户信息
-                self?.saveUserInfo()
                 self?.navigationController?.popViewController(animated: true)
             }
             break
@@ -254,7 +275,7 @@ extension AnAnLoginViewController:UITextFieldDelegate{
 
 
 extension AnAnLoginViewController{
-    @objc func sendCheckCodeClick() {
+    func sendCheckCodeClick() {
         if checkPhoneNumber {
             self.view.makeToastActivity(.center)
             AnAnRequest.shared.getCheckCodel(mobile: phoneInputView.inputTextField.text!, countryCode: "+86")
@@ -267,10 +288,6 @@ extension AnAnLoginViewController{
             return false
         }
         return true
-    }
-    
-    fileprivate func saveUserInfo(){
-        
     }
     
 //    获取当前渐变色layer,更改颜色

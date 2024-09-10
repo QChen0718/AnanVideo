@@ -49,7 +49,7 @@ class AnAnRecommentCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         layer.cornerRadius = 8
         clipsToBounds = true
-        backgroundColor = .gray
+        backgroundColor = .white
         createSubviews()
         setSubviewsFrame()
     }
@@ -100,10 +100,10 @@ class AnAnRecommentCollectionViewCell: UICollectionViewCell {
             make.trailing.equalTo(-10)
         }
         movieTopButton.snp.makeConstraints { make in
-            make.leading.equalTo(10)
+            make.leading.trailing.equalToSuperview().inset(10)
             make.top.equalTo(movieSubTitle.snp.bottom).offset(6)
             make.height.equalTo(20)
-            make.width.equalTo(100)
+            
         }
     }
     
@@ -124,6 +124,10 @@ class AnAnRecommentCollectionViewCell: UICollectionViewCell {
             }else {
                 movieTopButton.isHidden = true
             }
+            
+            movieTopButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: (movieTopButton.titleLabel?.intrinsicContentSize.width ?? 0) + 5, bottom: 0, right: -(movieTopButton.titleLabel?.intrinsicContentSize.width ?? 0))
+            
+            movieTopButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -(movieTopButton.currentImage?.size.width ?? 0), bottom: 0, right: movieTopButton.currentImage?.size.width ?? 0)
         }
     }
 }

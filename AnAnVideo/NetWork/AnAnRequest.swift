@@ -49,6 +49,7 @@ class AnAnRequest{
         provider.requestModel(.checkCodelLogin(mobile: mobile, captchaSms: code, countryCode: countryCode), model: AnAnLoginModel.self) { returnData, msg in
             
 //            print("nikename--->\(returnData?.user?.nickName)")
+//            保存用户信息
             AnAnUserData.saveUserData(user: returnData ?? AnAnLoginModel())
             successBlock()
             AnAnJumpPageManager.shared.currentVC?.view.hideToastActivity()

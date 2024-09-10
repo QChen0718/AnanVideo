@@ -13,6 +13,8 @@ enum InputType {
 }
 class AnAnLoginInputView: UIView {
 
+    var btnBlock:((UIButton)->Void)?
+    
     var placeholderName:String?{
         didSet{
             inputTextField.placeholder = placeholderName
@@ -150,7 +152,7 @@ class AnAnLoginInputView: UIView {
     }
     
     @objc func btnClick(btn:UIButton){
-        
+       btnBlock?(btn)
     }
     func placeHolderTextSetting(str:String?) -> NSAttributedString {
         let attributedStr = NSAttributedString(string: str ?? "",attributes: [NSAttributedString.Key.foregroundColor:UIColor.hexadecimalColor(hexadecimal: An_CACBCC),NSAttributedString.Key.font:UIFont.pingFangRegularWithSize(fontSize: 14)])
