@@ -42,7 +42,7 @@ class AnAnHeaderView: UIView {
         super.init(frame: frame)
         createSubviews()
         setSubviewsFrame()
-        movieCoverImageView.setImageWith(url: "http://img.jimihua.pro/img/img/20230208/o_48a866f6ca9d4b7d94de5c64163ca319.png")
+//        movieCoverImageView.setImageWith(url: "http://img.jimihua.pro/img/img/20230208/o_48a866f6ca9d4b7d94de5c64163ca319.png")
     }
     
     required init?(coder: NSCoder) {

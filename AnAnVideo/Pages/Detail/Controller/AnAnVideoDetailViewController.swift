@@ -140,8 +140,10 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        headerView.layoutIfNeeded()
-        headerView.insertGradientColor(cornerRadius: 0, colors: [UIColor.hexadecimalColor(hexadecimal: An_1F2126).cgColor,UIColor.hexadecimalColor(hexadecimal: An_1F2126,alpha: 0.5).cgColor])
+        if !isPlayer {
+            headerView.layoutIfNeeded()
+            headerView.insertGradientColor(cornerRadius: 0, colors: [UIColor.hexadecimalColor(hexadecimal: An_1F2126).cgColor,UIColor.hexadecimalColor(hexadecimal: An_1F2126,alpha: 0.5).cgColor])
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
