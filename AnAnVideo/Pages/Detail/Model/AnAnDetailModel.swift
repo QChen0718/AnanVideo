@@ -128,6 +128,9 @@ struct TopInfoModel:HandyJSON {
 struct DramaSeriesListModel:HandyJSON {
     var dramaId:String = ""
     var seriesName:String = ""
+    var normalImageName:String = ""
+    var selectImageName:String = ""
+    var isCurPlay:Bool = false
 }
 
 

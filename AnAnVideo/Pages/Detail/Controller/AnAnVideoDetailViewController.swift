@@ -337,13 +337,33 @@ extension AnAnVideoDetailViewController{
             self.detailController.dramaModuleModel = model
         }
     }
+//    请求季信息数据
     fileprivate func requestDramaSecondaryData(){
         AnAnRequest.shared.requestDramaDetailSecondaryData(dramaId: dramaId) {[weak self] model in
             guard let `self` else { return }
-            self.detailController.seconDarayModel = model
+            var formatModel = model;
+            
+            guard var seriesList = formatModel?.dramaSeriesList else {return}
+            for (i,smodel) in seriesList.enumerated(){
+                if smodel.dramaId == self.dramaId{
+                    seriesList[i].isCurPlay = true
+                }
+                if i == 0 {
+                    seriesList[i].normalImageName = "rectangle_1"
+                    seriesList[i].selectImageName = "rectangle_4"
+                }else if i == seriesList.count-1 {
+                    seriesList[i].normalImageName = "rectangle_3"
+                    seriesList[i].selectImageName = "rectangle_6"
+                }else{
+                    seriesList[i].normalImageName = "rectangle_2"
+                    seriesList[i].selectImageName = "rectangle_5"
+                }
+            }
+            formatModel?.dramaSeriesList = seriesList
+            self.detailController.seconDarayModel = formatModel
         }
     }
-    
+//    请求剧集相关推荐数据
     fileprivate func requestDramaRecommendData(){
         AnAnRequest.shared.requestDramaRecommendData(dramaId: dramaId, isRecByUser: isRecByUser) {[weak self] model in
             guard let `self` else { return }

@@ -36,6 +36,7 @@ extension AnAnPeriodCollectionView:UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:AnAnPeriodItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: anAnPeriodItemCollectionViewCellId, for: indexPath) as! AnAnPeriodItemCollectionViewCell
+        cell.sectionModel = dramaSeriesList?[indexPath.row]
         return cell
     }
 }

@@ -13,7 +13,6 @@ class AnAnCategoryItemCollectionViewCell: UICollectionViewCell {
         let imageView = AnAnImageView()
         imageView.layer.cornerRadius = 17
         imageView.layer.masksToBounds = true
-        imageView.backgroundColor = .red
         return imageView
     }()
     
@@ -23,12 +22,12 @@ class AnAnCategoryItemCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var movieNameLabel:UILabel = {
-        let label = AnAnLabel.createLabel(text:"龙之家族",fontColor: UIColor.hexadecimalColor(hexadecimal: An_222222), font: UIFont.pingFangMediumWithSize(fontSize: 14))
+        let label = AnAnLabel.createLabel(fontColor: UIColor.hexadecimalColor(hexadecimal: An_222222), font: UIFont.pingFangMediumWithSize(fontSize: 14))
         return label
     }()
     
     private lazy var descLabel:UILabel = {
-        let label = AnAnLabel.createLabel(text:"重生复仇记",fontColor: UIColor.hexadecimalColor(hexadecimal: An_84879A), font: UIFont.pingFangRegularWithSize(fontSize: 12))
+        let label = AnAnLabel.createLabel(fontColor: UIColor.hexadecimalColor(hexadecimal: An_84879A), font: UIFont.pingFangRegularWithSize(fontSize: 12))
         return label
     }()
     

@@ -16,7 +16,7 @@ class AnAnPeriodItemCollectionViewCell: UICollectionViewCell {
     
     private lazy var periodLabel:UILabel = {
         let label = AnAnLabel.createLabel(fontColor: UIColor.hexadecimalColor(hexadecimal: An_BABCC2), font: UIFont.pingFangRegularWithSize(fontSize: 12))
-        label.text = "第一季"
+//        label.text = "第一季"
         label.textAlignment = .center
         return label
     }()
@@ -45,4 +45,17 @@ class AnAnPeriodItemCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var sectionModel:DramaSeriesListModel?{
+        didSet{
+            guard let model = sectionModel else { return }
+            periodLabel.text = model.seriesName
+            if model.isCurPlay {
+                periodLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_1890FF)
+                bgImageView.image = UIImage(named: model.selectImageName)
+            }else{
+                periodLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_BABCC2)
+                bgImageView.image = UIImage(named: model.normalImageName)
+            }
+        }
+    }
 }
