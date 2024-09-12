@@ -108,8 +108,8 @@ class AnAnHeaderCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func btnClick(){
-//        if !AnAnUserData.isLogin{
+        if !AnAnUserData.isLogin{
             AnAnJumpPageManager.goToLoginPage()
-//        }
+        }
     }
 }

@@ -53,6 +53,11 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
         return collectionView
     }()
     
+    fileprivate lazy var barrageOpenView:AnAnBarrageOpenView = {
+       let view = AnAnBarrageOpenView()
+        return view
+    }()
+    
 //    详情
     private lazy var detailController:AnAnDetailViewController = {
         let controller = AnAnDetailViewController()
@@ -135,8 +140,8 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-//        headerView.layoutIfNeeded()
-//        headerView.insertGradientColor(cornerRadius: 0, colors: [UIColor.hexadecimalColor(hexadecimal: An_1F2126).cgColor,UIColor.hexadecimalColor(hexadecimal: An_1F2126,alpha: 0.5).cgColor])
+        headerView.layoutIfNeeded()
+        headerView.insertGradientColor(cornerRadius: 0, colors: [UIColor.hexadecimalColor(hexadecimal: An_1F2126).cgColor,UIColor.hexadecimalColor(hexadecimal: An_1F2126,alpha: 0.5).cgColor])
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -169,6 +174,7 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
             view.addSubview(headerView)
         }
         view.addSubview(sengmentCollectionView)
+        view.addSubview(barrageOpenView)
         view.addSubview(pageController.view)
         view.addSubview(downloadPopView)
     }
@@ -193,6 +199,11 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
             make.top.equalTo(top)
             make.trailing.equalTo(-146)
             make.height.equalTo(46.5)
+        }
+        barrageOpenView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(16)
+            make.centerY.equalTo(sengmentCollectionView)
+            make.size.equalTo(CGSize(width: 120, height: 30))
         }
         pageController.view.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()

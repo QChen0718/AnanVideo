@@ -29,7 +29,7 @@ class AnAnMeViewController: AnAnBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        collectionView.reloadData()
     }
     
     private func createSubviews() {

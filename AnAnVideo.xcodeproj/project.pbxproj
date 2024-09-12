@@ -54,6 +54,7 @@
 		1647600329BE1447000B319D /* AnAnLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1647600229BE1447000B319D /* AnAnLoginModel.swift */; };
 		164761B229C2BCBC000B319D /* AnAnUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164761B129C2BCBC000B319D /* AnAnUserData.swift */; };
 		164761B429C2BD97000B319D /* AnAnSaveTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164761B329C2BD97000B319D /* AnAnSaveTool.swift */; };
+		167451502C931576005E1D58 /* AnAnBarrageOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */; };
 		1683D7E02A3F592000B93354 /* AnAnShortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */; };
 		16897C6E29C3231A006BE17E /* AnAnVideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */; };
 		16897C7129C325E7006BE17E /* AnAnHomeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897C7029C325E7006BE17E /* AnAnHomeRequest.swift */; };
@@ -198,6 +199,7 @@
 		1647600229BE1447000B319D /* AnAnLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnLoginModel.swift; sourceTree = "<group>"; };
 		164761B129C2BCBC000B319D /* AnAnUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnUserData.swift; sourceTree = "<group>"; };
 		164761B329C2BD97000B319D /* AnAnSaveTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSaveTool.swift; sourceTree = "<group>"; };
+		1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageOpenView.swift; sourceTree = "<group>"; };
 		1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortModel.swift; sourceTree = "<group>"; };
 		16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVideoDetailViewController.swift; sourceTree = "<group>"; };
 		16897C7029C325E7006BE17E /* AnAnHomeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHomeRequest.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 				16D8F9B529D08DC400653BE0 /* AnAnVideoAlbumCollectionView.swift */,
 				16275DDA29E7D52A002E0F69 /* AnAnDownloadEpisodePopView.swift */,
 				16275DDC29E7DC8A002E0F69 /* AnAnEpisodeSectionCollectionView.swift */,
+				1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1139,6 +1142,7 @@
 				16B70ED52C8AE7CE00D2D524 /* AnAnShortVideoCollectionViewCell.swift in Sources */,
 				16C671A029B78653005AF603 /* AnAnHistoryCollectionViewCell.swift in Sources */,
 				1641E2B129ACF86A000D12BC /* AnAnAppDevice.swift in Sources */,
+				167451502C931576005E1D58 /* AnAnBarrageOpenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
