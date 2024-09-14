@@ -125,12 +125,15 @@ struct TopInfoModel:HandyJSON {
     var title:String?
 }
 
-struct DramaSeriesListModel:HandyJSON {
+class DramaSeriesListModel:HandyJSON {
     var dramaId:String = ""
     var seriesName:String = ""
     var normalImageName:String = ""
     var selectImageName:String = ""
     var isCurPlay:Bool = false
+    required init() {
+        
+    }
 }
 
 

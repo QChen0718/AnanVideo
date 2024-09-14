@@ -39,4 +39,14 @@ extension AnAnPeriodCollectionView:UICollectionViewDelegate,UICollectionViewData
         cell.sectionModel = dramaSeriesList?[indexPath.row]
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard var seriesList = dramaSeriesList else { return }
+        for i in 0..<seriesList.count{
+            seriesList[i].isCurPlay = false
+        }
+        dramaSeriesList = seriesList
+        dramaSeriesList?[indexPath.row].isCurPlay = true
+        reloadData()
+    }
 }

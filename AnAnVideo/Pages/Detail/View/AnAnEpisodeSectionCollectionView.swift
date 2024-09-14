@@ -43,4 +43,8 @@ extension AnAnEpisodeSectionCollectionView:UICollectionViewDelegate,UICollection
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }
