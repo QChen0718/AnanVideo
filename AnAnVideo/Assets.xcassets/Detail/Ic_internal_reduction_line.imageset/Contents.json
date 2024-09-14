@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_video_loading.png",
+      "filename" : "Ic_internal_reduction_line.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ic_video_loading@2x.png",
+      "filename" : "Ic_internal_reduction_line@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic_video_loading@3x.png",
+      "filename" : "Ic_internal_reduction_line@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -207,7 +207,7 @@ class AnAnVideoPlayerViewController: UIViewController {
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 //        监听
         NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
-        
+//        测网速 NetSpeed
         NetSpeed.shared.delegate = self
         NetSpeed.shared.begin()
         
@@ -227,8 +227,7 @@ class AnAnVideoPlayerViewController: UIViewController {
     
     private func setSubviewsFrame() {
         topView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(40)
+            make.leading.top.trailing.equalToSuperview()
             make.height.equalTo(38)
         }
         
@@ -246,22 +245,29 @@ class AnAnVideoPlayerViewController: UIViewController {
 // 切换很竖屏时，重设子view布局
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-//        判断很竖屏切换
-        topView.orientationUpdateViews()
-        bottomView.orientationUpdateViews()
+//        判断横竖屏切换
+        
         let orientation = UIApplication.shared.statusBarOrientation
         switch orientation {
         case .portrait,.portraitUpsideDown,.unknown:  /// 竖屏
             print("---->竖屏")
             currentOrientation = .set_port
+            topView.snp.updateConstraints { make in
+                make.top.equalToSuperview()
+            }
             break
         case .landscapeLeft,.landscapeRight: ///横屏
             print("---->横屏")
             currentOrientation = .set_land
+            topView.snp.updateConstraints { make in
+                make.top.equalTo(AnAnAppDevice.deviceLeft)
+            }
             break
         default:
             break
         }
+        topView.orientationUpdateViews()
+        bottomView.orientationUpdateViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -386,7 +392,7 @@ class AnAnVideoPlayerViewController: UIViewController {
     
     fileprivate func animationHiddenVideoOperationView(){
         topView.snp.updateConstraints { make in
-            make.top.equalTo(-78)
+            make.top.equalTo(-38)
         }
         bottomView.snp.updateConstraints { make in
             make.bottom.equalTo(45)
@@ -401,7 +407,7 @@ class AnAnVideoPlayerViewController: UIViewController {
     
     fileprivate func animationShowVideoOperationView() {
         topView.snp.updateConstraints { make in
-            make.top.equalTo(40)
+            make.top.equalToSuperview()
         }
         bottomView.snp.updateConstraints { make in
             make.bottom.equalToSuperview()

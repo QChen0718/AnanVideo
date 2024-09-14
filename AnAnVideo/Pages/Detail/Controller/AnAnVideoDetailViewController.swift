@@ -25,6 +25,12 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
         return viewController
     }()
     
+    private lazy var playerBgView:UIView = {
+       let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
+    
 //
     private lazy var headerView:AnAnHeaderView = {
         let view = AnAnHeaderView()
@@ -152,8 +158,9 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
         switch orientation {
         case .portrait,.portraitUpsideDown,.unknown:  /// 竖屏
             playerViewController.view.snp.remakeConstraints { make in
-                make.leading.top.trailing.equalToSuperview()
-                make.height.equalTo(210 + max(AnAnAppDevice.deviceTop(), AnAnAppDevice.deviceLeft) )
+                make.leading.trailing.equalToSuperview()
+                make.top.equalTo(max(AnAnAppDevice.deviceTop(), AnAnAppDevice.deviceLeft))
+                make.height.equalTo(AnAnAppDevice.an_screenWidth() * 9/16)
             }
             break
         case .landscapeLeft,.landscapeRight: ///横屏
@@ -168,6 +175,7 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
     
     private func createSubviews() {
         if isPlayer {
+            view.addSubview(playerBgView)
             self.addChild(playerViewController)
             view.willRemoveSubview(playerViewController.view)
             view.addSubview(playerViewController.view)
@@ -184,9 +192,14 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
     private func setSubviewsFrame() {
         var top:ConstraintItem
         if isPlayer {
+            playerBgView.snp.makeConstraints { make in
+                make.leading.trailing.top.equalToSuperview()
+                make.height.equalTo(AnAnAppDevice.an_screenWidth() * 9/16+AnAnAppDevice.deviceTop())
+            }
             playerViewController.view.snp.makeConstraints { make in
-                make.leading.top.trailing.equalToSuperview()
-                make.height.equalTo(210 + AnAnAppDevice.deviceTop())
+                make.leading.trailing.equalToSuperview()
+                make.top.equalTo(AnAnAppDevice.deviceTop())
+                make.height.equalTo(AnAnAppDevice.an_screenWidth() * 9/16)
             }
             top = playerViewController.view.snp.bottom
         }else{
@@ -204,7 +217,7 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
         }
         barrageOpenView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(16)
-            make.centerY.equalTo(sengmentCollectionView)
+            make.top.equalTo(sengmentCollectionView.snp.top).offset(8)
             make.size.equalTo(CGSize(width: 120, height: 30))
         }
         pageController.view.snp.makeConstraints { make in

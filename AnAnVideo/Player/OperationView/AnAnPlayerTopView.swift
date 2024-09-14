@@ -19,9 +19,22 @@ class AnAnPlayerTopView: UIView {
         return btn
     }()
     
+    private lazy var pipBtn:UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "Ic_internal_reduction_line"), for: .normal)
+        btn.addTarget(self, action: #selector(pipBtnClick), for: .touchUpInside)
+        return btn
+    }()
+    
+    private lazy var tvBtn:UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "Ic_cast screen_line"), for: .normal)
+        btn.addTarget(self, action: #selector(tvBtnClick), for: .touchUpInside)
+        return btn
+    }()
+    
     private lazy var movieNameLabel:UILabel = {
         let label = UILabel()
-        label.text = "怪奇物语 第一季 第1集"
         label.textColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF)
         return label
     }()
@@ -71,6 +84,9 @@ class AnAnPlayerTopView: UIView {
             backArrowIconBtn.snp.updateConstraints { make in
                 make.leading.equalTo(30)
             }
+            pipBtn.snp.updateConstraints { make in
+                make.trailing.equalToSuperview().inset(30)
+            }
             break
         case .portrait:
             movieNameLabel.isHidden = true
@@ -78,6 +94,9 @@ class AnAnPlayerTopView: UIView {
             selectQualityBtn.isHidden = true
             backArrowIconBtn.snp.updateConstraints { make in
                 make.leading.equalToSuperview()
+            }
+            pipBtn.snp.updateConstraints { make in
+                make.trailing.equalToSuperview().inset(6)
             }
             break
         default:
@@ -87,6 +106,8 @@ class AnAnPlayerTopView: UIView {
     
     private func createSubviews() {
         addSubview(backArrowIconBtn)
+        addSubview(pipBtn)
+        addSubview(tvBtn)
         addSubview(movieNameLabel)
         addSubview(selectEpisodeBtn)
         addSubview(selectQualityBtn)
@@ -103,6 +124,17 @@ class AnAnPlayerTopView: UIView {
             make.centerY.equalToSuperview()
             make.height.equalTo(15)
             make.trailing.equalTo(selectEpisodeBtn.snp.leading).offset(-10)
+        }
+        pipBtn.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(6)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(44)
+        }
+        
+        tvBtn.snp.makeConstraints { make in
+            make.trailing.equalTo(pipBtn.snp.leading)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(pipBtn)
         }
         selectEpisodeBtn.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -128,6 +160,14 @@ class AnAnPlayerTopView: UIView {
     }
     
     @objc func backClick(btn:UIButton){
-        selectBtnBlock!(btn)
+        selectBtnBlock?(btn)
+    }
+    
+    @objc func pipBtnClick(btn:UIButton){
+        
+    }
+    
+    @objc func tvBtnClick(){
+        
     }
 }
