@@ -113,11 +113,60 @@ class AnAnPlayerBottomView: UIView {
         return btn
     }()
     
+    private lazy var barrageStatusBtn:UIButton = {
+        let btn = AnAnButton.createButton(image:UIImage(named: "ic_bulletchat_close"),selectImage: UIImage(named: "ic_bulletchat_open"),target: self, action: #selector(barrageBtnClick))
+        btn.tag = 300
+        return btn
+    }()
+    
+    private lazy var barrageSetBtn:UIButton = {
+        let btn = AnAnButton.createButton(image:UIImage(named: "ic_bulletchat_set"),target: self, action: #selector(barrageBtnClick))
+        btn.tag = 400
+        return btn
+    }()
+    
+    private lazy var sendBarrageBtn:UIButton = {
+        let btn = AnAnButton.createButton(target: self, action: #selector(barrageBtnClick))
+        btn.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_F2F4F5).withAlphaComponent(0.1)
+        btn.layer.cornerRadius = 18
+        btn.layer.masksToBounds = true
+        btn.setTitle("弹幕走一波", for: .normal)
+        btn.setTitleColor(UIColor.hexadecimalColor(hexadecimal: An_E5E7EB, alpha: 0.6), for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
+        btn.contentHorizontalAlignment = .left
+        btn.titleEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
+        btn.tag = 500
+        return btn
+    }()
+    
+    private lazy var selectEpBtn:UIButton = {
+        let btn = AnAnButton.createButton(title:"选集",target: self, action: #selector(selectEpBtnClick))
+        btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
+        btn.setTitleColor(.white, for: .normal)
+        return btn
+    }()
+    
+    private lazy var selectSpeedBtn:UIButton = {
+        let btn = AnAnButton.createButton(title:"倍速",target: self, action: #selector(selectEpBtnClick))
+        btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
+        btn.setTitleColor(.white, for: .normal)
+        return btn
+    }()
+    
+    private lazy var selectQualityEpBtn:UIButton = {
+        let btn = AnAnButton.createButton(title:"清晰度",target: self, action: #selector(selectEpBtnClick))
+        btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
+        btn.setTitleColor(.white, for: .normal)
+        btn.contentHorizontalAlignment = .right
+        return btn
+    }()
+    
+    
     private var updateTimeAndSlider:Timer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .clear
+        backgroundColor = UIColor.hexadecimalColor(hexadecimal: "#000000", alpha: 0.5)
         createSubviews()
         setSubviewsFrame()
         orientationUpdateViews()
@@ -151,25 +200,49 @@ class AnAnPlayerBottomView: UIView {
 //    屏幕旋转,更新控件大小
     func orientationUpdateViews(){
         let orientation = UIApplication.shared.statusBarOrientation
+        var isSP = true
         switch orientation {
         case .landscapeLeft,.landscapeRight:
             fullScreenBtn.isHidden = true
             nextPlayerBtn.isHidden = false
-            playerIconBtn.snp.updateConstraints { make in
-                make.leading.equalTo(30)
-            }
+            isSP = false
+            
             playerEndTimeLabel.snp.remakeConstraints { make in
-                make.leading.equalTo(playerProgressSlider.snp.trailing).offset(15)
-                make.centerY.equalTo(playerIconBtn)
-                make.trailing.equalTo(nextPlayerBtn.snp.leading).offset(-10)
+                make.leading.equalTo(playerProgressSlider.snp.trailing).offset(5)
+                make.centerY.equalTo(playerStartTimeLabel)
+                make.trailing.equalToSuperview().inset(55)
                 make.height.equalTo(10)
+            }
+            
+            playerStartTimeLabel.snp.remakeConstraints { make in
+                make.leading.equalTo(55)
+                make.trailing.equalTo(playerProgressSlider.snp.leading).offset(-10)
+                make.top.equalTo(7)
+                make.height.equalTo(10)
+            }
+            
+            playerProgressSlider.snp.remakeConstraints { make in
+                make.leading.equalTo(playerStartTimeLabel.snp.trailing).offset(8)
+                make.centerY.equalTo(playerStartTimeLabel)
+                make.trailing.equalTo(playerEndTimeLabel.snp.leading).offset(-10)
+                make.height.equalTo(2.5)
+            }
+            
+            playerIconBtn.snp.remakeConstraints { make in
+                make.leading.equalTo(45)
+                make.top.equalTo(playerStartTimeLabel.snp.bottom).offset(7)
+                make.width.equalTo(40)
             }
             break
         case .portrait:
             fullScreenBtn.isHidden = false
             nextPlayerBtn.isHidden = true
-            playerIconBtn.snp.updateConstraints { make in
+            isSP = true
+            
+            playerIconBtn.snp.remakeConstraints { make in
                 make.leading.equalToSuperview()
+                make.top.bottom.equalToSuperview()
+                make.width.equalTo(45)
             }
             playerEndTimeLabel.snp.remakeConstraints { make in
                 make.leading.equalTo(playerProgressSlider.snp.trailing).offset(15)
@@ -177,10 +250,29 @@ class AnAnPlayerBottomView: UIView {
                 make.trailing.equalTo(fullScreenBtn.snp.leading).offset(-10)
                 make.height.equalTo(10)
             }
+            playerStartTimeLabel.snp.remakeConstraints { make in
+                make.leading.equalTo(playerIconBtn.snp.trailing).offset(10)
+                make.trailing.equalTo(playerProgressSlider.snp.leading).offset(-10)
+                make.centerY.equalToSuperview()
+                make.height.equalTo(10)
+            }
+            playerProgressSlider.snp.remakeConstraints { make in
+                make.leading.equalTo(playerStartTimeLabel.snp.trailing).offset(15)
+                make.centerY.equalToSuperview()
+                make.trailing.equalTo(playerEndTimeLabel.snp.leading).offset(-10)
+                make.height.equalTo(2.5)
+            }
+            
             break
         default:
             break
         }
+        barrageStatusBtn.isHidden = isSP
+        barrageSetBtn.isHidden = isSP
+        sendBarrageBtn.isHidden = isSP
+        selectEpBtn.isHidden = isSP
+        selectSpeedBtn.isHidden = isSP
+        selectQualityEpBtn.isHidden = isSP
     }
     
     private func createSubviews() {
@@ -189,6 +281,12 @@ class AnAnPlayerBottomView: UIView {
         addSubview(playerProgressSlider)
         addSubview(playerEndTimeLabel)
         addSubview(nextPlayerBtn)
+        addSubview(barrageStatusBtn)
+        addSubview(barrageSetBtn)
+        addSubview(sendBarrageBtn)
+        addSubview(selectEpBtn)
+        addSubview(selectSpeedBtn)
+        addSubview(selectQualityEpBtn)
         addSubview(fullScreenBtn)
     }
     
@@ -221,9 +319,46 @@ class AnAnPlayerBottomView: UIView {
         }
         
         nextPlayerBtn.snp.makeConstraints { make in
-            make.trailing.equalTo(-30)
-            make.centerY.equalToSuperview()
-            make.size.equalTo(45)
+            make.leading.equalTo(playerIconBtn.snp.trailing).offset(4)
+            make.centerY.equalTo(playerIconBtn)
+            make.size.equalTo(40)
+        }
+        
+        barrageStatusBtn.snp.makeConstraints { make in
+            make.leading.equalTo(nextPlayerBtn.snp.trailing).offset(10)
+            make.centerY.equalTo(playerIconBtn)
+            make.size.equalTo(40)
+        }
+        
+        barrageSetBtn.snp.makeConstraints { make in
+            make.leading.equalTo(barrageStatusBtn.snp.trailing).offset(4)
+            make.centerY.equalTo(playerIconBtn)
+            make.size.equalTo(40)
+        }
+        
+        sendBarrageBtn.snp.makeConstraints { make in
+            make.leading.equalTo(barrageSetBtn.snp.trailing).offset(23)
+            make.centerY.equalTo(playerIconBtn)
+            make.height.equalTo(36)
+            make.trailing.equalTo(selectEpBtn.snp.leading).offset(-28)
+        }
+        
+        selectEpBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(playerIconBtn)
+            make.size.equalTo(CGSize(width: 50, height: 30))
+            make.trailing.equalTo(selectSpeedBtn.snp.leading).offset(-4)
+        }
+        
+        selectSpeedBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(playerIconBtn)
+            make.size.equalTo(CGSize(width: 50, height: 30))
+            make.trailing.equalTo(selectQualityEpBtn.snp.leading).offset(-4)
+        }
+        
+        selectQualityEpBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(playerIconBtn)
+            make.size.equalTo(CGSize(width: 55, height: 30))
+            make.trailing.equalToSuperview().inset(55)
         }
         
         fullScreenBtn.snp.makeConstraints { make in
@@ -281,6 +416,22 @@ class AnAnPlayerBottomView: UIView {
             playerManagerView?.startPlayer()
         }
         playerIconBtn.isSelected = !playerIconBtn.isSelected
+    }
+//    开启或关闭弹幕
+    @objc fileprivate func barrageBtnClick(btn:UIButton){
+        
+    }
+//    选集
+    @objc fileprivate func selectEpBtnClick(){
+        
+    }
+    
+    @objc fileprivate func selectSpeedBtnClick(){
+        
+    }
+    
+    @objc fileprivate func selectQualityBtnClick(){
+        
     }
     
     deinit {

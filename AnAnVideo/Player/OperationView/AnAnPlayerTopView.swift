@@ -39,27 +39,27 @@ class AnAnPlayerTopView: UIView {
         return label
     }()
     
-    private lazy var selectEpisodeBtn:UIButton = {
-        let btn = UIButton(type: .custom)
-        btn.setTitle("选集", for: .normal)
-        btn.titleLabel?.font = UIFont.pingFangSemiboldWithSize(fontSize: 12)
-        btn.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_000000,alpha: 0.6)
-        btn.addTarget(self, action: #selector(backClick), for: .touchUpInside)
-        btn.layer.cornerRadius = 19
-        btn.clipsToBounds = true
-        btn.tag = 200
-        return btn
-    }()
-    
-    private lazy var selectQualityBtn:UIButton = {
-        let btn = UIButton(type: .custom)
-        btn.setTitle("臻彩", for: .normal)
-        btn.titleLabel?.font = UIFont.pingFangSemiboldWithSize(fontSize: 12)
-        btn.setTitleColor(UIColor.hexadecimalColor(hexadecimal: An_DBB258), for: .normal)
-        btn.addTarget(self, action: #selector(backClick), for: .touchUpInside)
-        btn.tag = 300
-        return btn
-    }()
+//    private lazy var selectEpisodeBtn:UIButton = {
+//        let btn = UIButton(type: .custom)
+//        btn.setTitle("选集", for: .normal)
+//        btn.titleLabel?.font = UIFont.pingFangSemiboldWithSize(fontSize: 12)
+//        btn.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_000000,alpha: 0.6)
+//        btn.addTarget(self, action: #selector(backClick), for: .touchUpInside)
+//        btn.layer.cornerRadius = 19
+//        btn.clipsToBounds = true
+//        btn.tag = 200
+//        return btn
+//    }()
+//    
+//    private lazy var selectQualityBtn:UIButton = {
+//        let btn = UIButton(type: .custom)
+//        btn.setTitle("臻彩", for: .normal)
+//        btn.titleLabel?.font = UIFont.pingFangSemiboldWithSize(fontSize: 12)
+//        btn.setTitleColor(UIColor.hexadecimalColor(hexadecimal: An_DBB258), for: .normal)
+//        btn.addTarget(self, action: #selector(backClick), for: .touchUpInside)
+//        btn.tag = 300
+//        return btn
+//    }()
     
     var selectBtnBlock:BtnSelectBlcok?
     override init(frame: CGRect) {
@@ -79,8 +79,8 @@ class AnAnPlayerTopView: UIView {
         switch orientation {
         case .landscapeLeft,.landscapeRight:
             movieNameLabel.isHidden = false
-            selectEpisodeBtn.isHidden = false
-            selectQualityBtn.isHidden = false
+//            selectEpisodeBtn.isHidden = false
+//            selectQualityBtn.isHidden = false
             backArrowIconBtn.snp.updateConstraints { make in
                 make.leading.equalTo(30)
             }
@@ -90,8 +90,8 @@ class AnAnPlayerTopView: UIView {
             break
         case .portrait:
             movieNameLabel.isHidden = true
-            selectEpisodeBtn.isHidden = true
-            selectQualityBtn.isHidden = true
+//            selectEpisodeBtn.isHidden = true
+//            selectQualityBtn.isHidden = true
             backArrowIconBtn.snp.updateConstraints { make in
                 make.leading.equalToSuperview()
             }
@@ -109,8 +109,8 @@ class AnAnPlayerTopView: UIView {
         addSubview(pipBtn)
         addSubview(tvBtn)
         addSubview(movieNameLabel)
-        addSubview(selectEpisodeBtn)
-        addSubview(selectQualityBtn)
+//        addSubview(selectEpisodeBtn)
+//        addSubview(selectQualityBtn)
     }
     
     private func setSubviewsFrame() {
@@ -123,7 +123,7 @@ class AnAnPlayerTopView: UIView {
             make.leading.equalTo(backArrowIconBtn.snp.trailing).offset(12)
             make.centerY.equalToSuperview()
             make.height.equalTo(15)
-            make.trailing.equalTo(selectEpisodeBtn.snp.leading).offset(-10)
+            make.trailing.equalTo(tvBtn.snp.leading).offset(-10)
         }
         pipBtn.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(6)
@@ -136,16 +136,16 @@ class AnAnPlayerTopView: UIView {
             make.centerY.equalToSuperview()
             make.size.equalTo(pipBtn)
         }
-        selectEpisodeBtn.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.size.equalTo(CGSize(width: 56, height: 38))
-            make.trailing.equalTo(selectQualityBtn.snp.leading).offset(-30)
-        }
-        selectQualityBtn.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.size.equalTo(CGSize(width: 56, height: 38))
-            make.trailing.equalTo(-30)
-        }
+//        selectEpisodeBtn.snp.makeConstraints { make in
+//            make.centerY.equalToSuperview()
+//            make.size.equalTo(CGSize(width: 56, height: 38))
+//            make.trailing.equalTo(selectQualityBtn.snp.leading).offset(-30)
+//        }
+//        selectQualityBtn.snp.makeConstraints { make in
+//            make.centerY.equalToSuperview()
+//            make.size.equalTo(CGSize(width: 56, height: 38))
+//            make.trailing.equalTo(-30)
+//        }
     }
     var movieName:String = "" {
         didSet{
@@ -155,7 +155,7 @@ class AnAnPlayerTopView: UIView {
 //    更改清晰度
     var currentQuality:String = "高清"{
         didSet{
-            selectQualityBtn.setTitle(currentQuality, for: .normal)
+//            selectQualityBtn.setTitle(currentQuality, for: .normal)
         }
     }
     

@@ -77,6 +77,8 @@ class AnAnVideoPlayerViewController: UIViewController {
     private var oldVolumeLocation:CGFloat?
 //  上次水平滑动的位置，来调整滑动进度
     private var oldHorizontalLocation:CGFloat? = 0
+//  底部操作视图高度
+    private var bottomHeight:CGFloat = 45
     
     private lazy var bottomView:AnAnPlayerBottomView = {
         let view = AnAnPlayerBottomView()
@@ -233,7 +235,7 @@ class AnAnVideoPlayerViewController: UIViewController {
         
         bottomView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(45)
+            make.height.equalTo(bottomHeight)
             make.bottom.equalToSuperview()
         }
         loadingView.snp.makeConstraints { make in
@@ -246,25 +248,27 @@ class AnAnVideoPlayerViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 //        判断横竖屏切换
-        
+        topView.snp.updateConstraints { make in
+            make.top.equalToSuperview()
+        }
         let orientation = UIApplication.shared.statusBarOrientation
         switch orientation {
         case .portrait,.portraitUpsideDown,.unknown:  /// 竖屏
             print("---->竖屏")
             currentOrientation = .set_port
-            topView.snp.updateConstraints { make in
-                make.top.equalToSuperview()
-            }
+            bottomHeight = 45
             break
         case .landscapeLeft,.landscapeRight: ///横屏
             print("---->横屏")
             currentOrientation = .set_land
-            topView.snp.updateConstraints { make in
-                make.top.equalTo(AnAnAppDevice.deviceLeft)
-            }
+            bottomHeight = 84
+            
             break
         default:
             break
+        }
+        bottomView.snp.updateConstraints { make in
+            make.height.equalTo(bottomHeight)
         }
         topView.orientationUpdateViews()
         bottomView.orientationUpdateViews()
@@ -395,7 +399,7 @@ class AnAnVideoPlayerViewController: UIViewController {
             make.top.equalTo(-38)
         }
         bottomView.snp.updateConstraints { make in
-            make.bottom.equalTo(45)
+            make.bottom.equalTo(bottomHeight)
         }
         UIView.animate(withDuration: 0.5) {[weak self] in
             self?.view.layoutIfNeeded()
