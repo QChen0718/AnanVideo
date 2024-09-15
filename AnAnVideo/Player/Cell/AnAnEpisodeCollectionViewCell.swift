@@ -11,7 +11,7 @@ class AnAnEpisodeCollectionViewCell: UICollectionViewCell {
     
     private lazy var numberLabel:UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF)
+        label.textColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF,alpha: 0.4)
         label.font = UIFont.pingFangSemiboldWithSize(fontSize: 17)
         label.textAlignment = .center
         return label
@@ -19,9 +19,9 @@ class AnAnEpisodeCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.layer.cornerRadius = 20
+        contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
-        contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF,alpha: 0.1)
+        contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF,alpha: 0.15)
         createSubviews()
         setSubviewsFrame()
     }
@@ -42,9 +42,9 @@ class AnAnEpisodeCollectionViewCell: UICollectionViewCell {
     var isSelectIndex:Bool = false{
         didSet{
             if isSelectIndex{
-                contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_F75C94)
+                contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_0091FF)
             }else{
-                contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF,alpha: 0.1)
+                contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF,alpha: 0.15)
             }
         }
     }

@@ -98,7 +98,14 @@ class AnAnVideoPlayerViewController: UIViewController {
             }else if btn.tag == 200 {
 //                全屏播放
                 AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_land)
+            }else if btn.tag == 600 {
+                self.addEpisodeView()
+            }else if btn.tag == 700 {
+                
+            }else if btn.tag == 800 {
+                self.addQualityView()
             }
+            
         }
         return view
     }()
@@ -122,12 +129,6 @@ class AnAnVideoPlayerViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                     
                 }
-            }else if btn.tag == 200 {
-//                选择剧集
-                self.addEpisodeView()
-            }else{
-//                选择画质
-                self.addQualityView()
             }
         }
         return view
@@ -165,7 +166,7 @@ class AnAnVideoPlayerViewController: UIViewController {
         return view
     }()
     
-//    滑动提示播放进度快
+//    滑动提示播放进度块
     private lazy var dragPlayerTimeView:AnAnDragPlayerTimeView = {
         let view = AnAnDragPlayerTimeView()
         return view
@@ -294,6 +295,7 @@ class AnAnVideoPlayerViewController: UIViewController {
         selectEpisodeView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        selectEpisodeView.showSelectEpView()
     }
     
     private func addQualityView(){
@@ -307,7 +309,7 @@ class AnAnVideoPlayerViewController: UIViewController {
     
     private func removeVideoOperitionView(){
         if view.subviews.contains(selectEpisodeView) {
-            selectEpisodeView.removeFromSuperview()
+            selectEpisodeView.hiddenSelectEpView()
         }
         if view.subviews.contains(selectQualityView)  {
             selectQualityView.removeFromSuperview()

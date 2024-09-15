@@ -143,21 +143,24 @@ class AnAnPlayerBottomView: UIView {
         let btn = AnAnButton.createButton(title:"选集",target: self, action: #selector(selectEpBtnClick))
         btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
         btn.setTitleColor(.white, for: .normal)
+        btn.tag = 600
         return btn
     }()
     
     private lazy var selectSpeedBtn:UIButton = {
-        let btn = AnAnButton.createButton(title:"倍速",target: self, action: #selector(selectEpBtnClick))
+        let btn = AnAnButton.createButton(title:"倍速",target: self, action: #selector(selectSpeedBtnClick))
         btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
         btn.setTitleColor(.white, for: .normal)
+        btn.tag = 700
         return btn
     }()
     
     private lazy var selectQualityEpBtn:UIButton = {
-        let btn = AnAnButton.createButton(title:"清晰度",target: self, action: #selector(selectEpBtnClick))
+        let btn = AnAnButton.createButton(title:"清晰度",target: self, action: #selector(selectQualityBtnClick))
         btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
         btn.setTitleColor(.white, for: .normal)
         btn.contentHorizontalAlignment = .right
+        btn.tag = 800
         return btn
     }()
     
@@ -386,7 +389,7 @@ class AnAnPlayerBottomView: UIView {
 //    滑动滑块
     @objc private func sliderValueChanged(slider:UISlider){
         //    关闭消失操作栏定时器
-        closeTimeBlock!(true)
+        closeTimeBlock?(true)
         cancelTimer()
         playerStartTimeLabel.text = String(format: "%.f", slider.value).playerTimerFormat()
         playerManagerView?.seekToPlayerLocation = slider.value
@@ -394,17 +397,17 @@ class AnAnPlayerBottomView: UIView {
 //    点击滑块
     @objc private func sliderTouchInside(slider:UISlider){
         //    开启消失操作栏定时器
-        closeTimeBlock!(false)
+        closeTimeBlock?(false)
         initTimer()
     }
     
     @objc fileprivate func fullScreenClick(){
 
-        selectBtnBlock!(fullScreenBtn)
+        selectBtnBlock?(fullScreenBtn)
     }
     
     @objc fileprivate func nextBtnClick(){
-        selectBtnBlock!(nextPlayerBtn)
+        selectBtnBlock?(nextPlayerBtn)
     }
     
     @objc private func btnClick(){
@@ -419,19 +422,19 @@ class AnAnPlayerBottomView: UIView {
     }
 //    开启或关闭弹幕
     @objc fileprivate func barrageBtnClick(btn:UIButton){
-        
+        selectBtnBlock?(btn)
     }
 //    选集
     @objc fileprivate func selectEpBtnClick(){
-        
+        selectBtnBlock?(selectEpBtn)
     }
     
     @objc fileprivate func selectSpeedBtnClick(){
-        
+        selectBtnBlock?(selectSpeedBtn)
     }
     
     @objc fileprivate func selectQualityBtnClick(){
-        
+        selectBtnBlock?(selectQualityEpBtn)
     }
     
     deinit {

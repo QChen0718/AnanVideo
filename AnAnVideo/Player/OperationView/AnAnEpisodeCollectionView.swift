@@ -18,7 +18,7 @@ class AnAnEpisodeCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
         backgroundColor = .clear
-        self.contentInset = UIEdgeInsets(top: 30, left: 30, bottom: 10, right: 30)
+        self.contentInset = UIEdgeInsets(top: 0, left: 21, bottom: 15, right: 21)
         self.register(AnAnEpisodeCollectionViewCell.self, forCellWithReuseIdentifier: anAnEpisodeCollectionViewCellId)
     }
     
