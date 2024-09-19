@@ -135,6 +135,7 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
 //        添加
         self.addChild(pageController)
         NotificationCenter.default.addObserver(self, selector: #selector(swichEpisodeNotifi), name: AnAnNotifacationName.SwitchEpisode, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(swichSectionNotifi), name: AnAnNotifacationName.SwitchSeaction, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(popDownloadSelectEpisodeView), name: AnAnNotifacationName.PopDownloadView, object: nil)
 //        请求网路数据
         requestDramaDetailData()
@@ -212,7 +213,7 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
         sengmentCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.top.equalTo(top)
-            make.trailing.equalTo(-146)
+            make.trailing.equalToSuperview()
             make.height.equalTo(46.5)
         }
         barrageOpenView.snp.makeConstraints { make in
@@ -260,12 +261,22 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
             self?.downloadPopView.removeFromSuperview()
         }
     }
-//
+//  切换剧集
     @objc private func swichEpisodeNotifi(noti:Notification){
         let model:EpisodeListModel = noti.userInfo?["episodeModel"] as? EpisodeListModel ?? EpisodeListModel()
         playerViewController.sid = model.sid
         playerViewController.currentPlayerEpisode = (Int(model.episodeNo ?? "") ?? 0) - 1
         playerViewController.requestDetailPlayerInfoData()
+    }
+//    切换季
+    @objc private func swichSectionNotifi(noti:Notification){
+        let model:DramaSeriesListModel = noti.userInfo?["seactionModel"] as? DramaSeriesListModel ?? DramaSeriesListModel()
+        dramaId = model.dramaId
+        episodeSid = ""
+        requestDramaDetailData()
+        requestDramaIntroData()
+        requestDramaModuleData()
+        requestDramaRecommendData()
     }
     
     @objc private func popDownloadSelectEpisodeView(noti:Notification){
