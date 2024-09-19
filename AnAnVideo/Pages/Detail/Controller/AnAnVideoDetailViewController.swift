@@ -18,6 +18,8 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
     var isRecByUser:Int = 0
     var subtitle:Int = 0
     
+    private var newContet:[ContentModel]  = []
+    
     private var videoDetailModel:AnAnDetailModel?
     
     private lazy var playerViewController:AnAnVideoPlayerViewController = {
@@ -67,6 +69,9 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
 //    详情
     private lazy var detailController:AnAnDetailViewController = {
         let controller = AnAnDetailViewController()
+        controller.loadMoreRecommentBlock = {[weak self] in
+            self?.requestDramaRecommendData()
+        }
         return controller
     }()
 //    讨论
@@ -367,7 +372,7 @@ extension AnAnVideoDetailViewController{
             guard let `self` else { return }
             var formatModel = model;
             
-            guard var seriesList = formatModel?.dramaSeriesList else {return}
+            guard let seriesList = formatModel?.dramaSeriesList else {return}
             for (i,smodel) in seriesList.enumerated(){
                 if smodel.dramaId == self.dramaId{
                     seriesList[i].isCurPlay = true
@@ -391,7 +396,10 @@ extension AnAnVideoDetailViewController{
     fileprivate func requestDramaRecommendData(){
         AnAnRequest.shared.requestDramaRecommendData(dramaId: dramaId, isRecByUser: isRecByUser) {[weak self] model in
             guard let `self` else { return }
-            self.detailController.recommendModel = model
+            guard var newModel = model else {return}
+            self.newContet.append(contentsOf: newModel.content ?? [])
+            newModel.content = self.newContet
+            self.detailController.recommendModel = newModel
         }
     }
 }
