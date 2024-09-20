@@ -51,7 +51,7 @@ extension AnAnPeriodCollectionView:UICollectionViewDelegate,UICollectionViewData
         }
         dramaSeriesList = seriesList
         dramaSeriesList?[indexPath.row].isCurPlay = true
-        NotificationCenter.default.post(name: AnAnNotifacationName.SwitchSeaction, object: nil,userInfo: ["seactionModel":seriesList[indexPath.row]])
+        NotificationCenter.default.post(name: AnAnNotifacationName.SwitchSeaction, object: nil,userInfo: ["dramaId":seriesList[indexPath.row].dramaId])
         reloadData()
     }
 }

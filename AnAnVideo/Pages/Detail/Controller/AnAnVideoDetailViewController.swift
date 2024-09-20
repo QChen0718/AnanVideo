@@ -275,8 +275,8 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
     }
 //    切换季
     @objc private func swichSectionNotifi(noti:Notification){
-        let model:DramaSeriesListModel = noti.userInfo?["seactionModel"] as? DramaSeriesListModel ?? DramaSeriesListModel()
-        dramaId = model.dramaId
+        let dId:String = noti.userInfo?["dramaId"] as? String ?? ""
+        dramaId = dId
         episodeSid = ""
         requestDramaDetailData()
         requestDramaIntroData()

@@ -157,6 +157,15 @@ extension AnAnVideoDetailCollectionView:UICollectionViewDelegate,UICollectionVie
         }
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cellType = sectionArray[indexPath.section]
+        if cellType == anAnRecommentCollectionViewCellId {
+//            推荐剧集
+            guard let contentModel = recommendModel?.content?[indexPath.row] else { return }
+            NotificationCenter.default.post(name: AnAnNotifacationName.SwitchSeaction, object: nil,userInfo: ["dramaId":contentModel.dramaId])
+        }
+    }
 }
 
 extension AnAnVideoDetailCollectionView:AnAnWaterFallFlowLayoutDelegate{
