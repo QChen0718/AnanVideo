@@ -32,6 +32,7 @@ class AnAnVideoPlayerViewController: UIViewController {
         didSet{
             selectQualityView.qualityArray = videoDetail?.watchInfo?.sortedItems
             topView.movieName = String(format: "%@ 第%d集", videoDetail?.dramaInfo?.title ?? "",currentPlayerEpisode+1)
+            sid = videoDetail?.watchInfo?.m3u8?.episodeSid
         }
     }
     

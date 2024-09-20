@@ -12,7 +12,7 @@ class AnAnQualityTableViewCell: UITableViewCell {
     private lazy var qualityLabel:UILabel = {
         let label = UILabel()
         label.textColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF)
-        label.font = UIFont.pingFangSemiboldWithSize(fontSize: 17)
+        label.font = UIFont.pingFangSemiboldWithSize(fontSize: 15)
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -29,6 +29,7 @@ class AnAnQualityTableViewCell: UITableViewCell {
         btn.layer.cornerRadius = 3
         btn.layer.masksToBounds = true
         btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
+        btn.titleLabel?.font = UIFont.pingFangMediumWithSize(fontSize: 12)
         return btn
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -79,14 +80,27 @@ class AnAnQualityTableViewCell: UITableViewCell {
         didSet{
             if isSelectIndex{
                 qualityLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_216DFF)
+                qualityLabel.font = UIFont.pingFangSemiboldWithSize(fontSize: 15)
             }else{
                 qualityLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF)
+                qualityLabel.font = UIFont.pingFangRegularWithSize(fontSize: 15)
             }
         }
     }
     var huaZhiInfoModel:SortedItemModel?{
         didSet{
             qualityLabel.text = huaZhiInfoModel?.qualityDescription
+            if huaZhiInfoModel?.canShowVip == true {
+                vipIconImg.isHidden = false
+                loginBtn.isHidden = true
+            }else{
+                vipIconImg.isHidden = true
+                if huaZhiInfoModel?.canPlay == true {
+                    loginBtn.isHidden = true
+                }else{
+                    loginBtn.isHidden = false
+                }
+            }
         }
     }
     
