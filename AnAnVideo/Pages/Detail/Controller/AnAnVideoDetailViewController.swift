@@ -18,6 +18,8 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
     var isRecByUser:Int = 0
     var subtitle:Int = 0
     
+    private var newContet:[ContentModel]  = []
+    
     private var videoDetailModel:AnAnDetailModel?
     
     private lazy var playerViewController:AnAnVideoPlayerViewController = {
@@ -67,6 +69,9 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
 //    详情
     private lazy var detailController:AnAnDetailViewController = {
         let controller = AnAnDetailViewController()
+        controller.loadMoreRecommentBlock = {[weak self] in
+            self?.requestDramaRecommendData()
+        }
         return controller
     }()
 //    讨论
@@ -135,6 +140,7 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
 //        添加
         self.addChild(pageController)
         NotificationCenter.default.addObserver(self, selector: #selector(swichEpisodeNotifi), name: AnAnNotifacationName.SwitchEpisode, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(swichSectionNotifi), name: AnAnNotifacationName.SwitchSeaction, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(popDownloadSelectEpisodeView), name: AnAnNotifacationName.PopDownloadView, object: nil)
 //        请求网路数据
         requestDramaDetailData()
@@ -212,7 +218,7 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
         sengmentCollectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.top.equalTo(top)
-            make.trailing.equalTo(-146)
+            make.trailing.equalToSuperview()
             make.height.equalTo(46.5)
         }
         barrageOpenView.snp.makeConstraints { make in
@@ -260,12 +266,22 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
             self?.downloadPopView.removeFromSuperview()
         }
     }
-//
+//  切换剧集
     @objc private func swichEpisodeNotifi(noti:Notification){
         let model:EpisodeListModel = noti.userInfo?["episodeModel"] as? EpisodeListModel ?? EpisodeListModel()
         playerViewController.sid = model.sid
         playerViewController.currentPlayerEpisode = (Int(model.episodeNo ?? "") ?? 0) - 1
         playerViewController.requestDetailPlayerInfoData()
+    }
+//    切换季
+    @objc private func swichSectionNotifi(noti:Notification){
+        let model:DramaSeriesListModel = noti.userInfo?["seactionModel"] as? DramaSeriesListModel ?? DramaSeriesListModel()
+        dramaId = model.dramaId
+        episodeSid = ""
+        requestDramaDetailData()
+        requestDramaIntroData()
+        requestDramaModuleData()
+        requestDramaRecommendData()
     }
     
     @objc private func popDownloadSelectEpisodeView(noti:Notification){
@@ -356,7 +372,7 @@ extension AnAnVideoDetailViewController{
             guard let `self` else { return }
             var formatModel = model;
             
-            guard var seriesList = formatModel?.dramaSeriesList else {return}
+            guard let seriesList = formatModel?.dramaSeriesList else {return}
             for (i,smodel) in seriesList.enumerated(){
                 if smodel.dramaId == self.dramaId{
                     seriesList[i].isCurPlay = true
@@ -380,7 +396,10 @@ extension AnAnVideoDetailViewController{
     fileprivate func requestDramaRecommendData(){
         AnAnRequest.shared.requestDramaRecommendData(dramaId: dramaId, isRecByUser: isRecByUser) {[weak self] model in
             guard let `self` else { return }
-            self.detailController.recommendModel = model
+            guard var newModel = model else {return}
+            self.newContet.append(contentsOf: newModel.content ?? [])
+            newModel.content = self.newContet
+            self.detailController.recommendModel = newModel
         }
     }
 }

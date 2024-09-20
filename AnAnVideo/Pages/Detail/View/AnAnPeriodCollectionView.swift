@@ -41,12 +41,17 @@ extension AnAnPeriodCollectionView:UICollectionViewDelegate,UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard var seriesList = dramaSeriesList else { return }
+        guard let seriesList = dramaSeriesList else { return }
+//        当前选中的点击无效
+        if seriesList[indexPath.row].isCurPlay {
+            return
+        }
         for i in 0..<seriesList.count{
             seriesList[i].isCurPlay = false
         }
         dramaSeriesList = seriesList
         dramaSeriesList?[indexPath.row].isCurPlay = true
+        NotificationCenter.default.post(name: AnAnNotifacationName.SwitchSeaction, object: nil,userInfo: ["seactionModel":seriesList[indexPath.row]])
         reloadData()
     }
 }

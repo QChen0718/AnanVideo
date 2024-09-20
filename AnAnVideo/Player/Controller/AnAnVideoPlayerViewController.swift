@@ -358,6 +358,7 @@ class AnAnVideoPlayerViewController: UIViewController {
     }
     
     private func initPlayerManagerView(){
+        loadingView.isHidden = false;
         playerManagerView?.removeFromSuperview()
         let playerView = AnAnVideoPlayerManager(playerUrl: playerUrl ?? "")
         
@@ -644,7 +645,7 @@ extension AnAnVideoPlayerViewController{
 //        AnAnPlayerUrlParse 视频地址解码
         AnAnPlayerUrlParse.playerUrlParse(url: currentPlayerUrl ?? "") {[weak self] parseUrl in
             self?.removePlayerManagerView()
-            self?.loadingView.isHidden = false
+//            self?.loadingView.isHidden = false
             self?.playerUrl = parseUrl
             self?.addPlayerManagerView()
             self?.topView.movieName = String(format: "%@ 第%d集", self?.videoDetail?.dramaInfo?.title ?? "",(self?.currentPlayerEpisode ?? 0)+1)

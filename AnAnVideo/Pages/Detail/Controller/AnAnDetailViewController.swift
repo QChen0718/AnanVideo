@@ -6,6 +6,7 @@
 //  详情
 
 import UIKit
+import MJRefresh
 
 class AnAnDetailViewController: UIViewController {
 
@@ -41,6 +42,8 @@ class AnAnDetailViewController: UIViewController {
     
     var playerManager:AnAnVideoPlayerManager?
     
+    var loadMoreRecommentBlock:(()->Void)?
+    
     private lazy var viewLayout:AnAnWaterFallFlowLayout = {
         let layout = AnAnWaterFallFlowLayout()
         return layout
@@ -49,6 +52,11 @@ class AnAnDetailViewController: UIViewController {
     private lazy var detailCollectionView:AnAnVideoDetailCollectionView = {
         let collectionView = AnAnVideoDetailCollectionView(frame: .zero, collectionViewLayout: viewLayout)
         collectionView.backgroundColor = .white
+        collectionView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {[weak self] in
+            guard let `self` else { return }
+            self.loadMoreRecommentBlock?()
+            collectionView.mj_footer?.endRefreshing()
+        })
         return collectionView
     }()
     
