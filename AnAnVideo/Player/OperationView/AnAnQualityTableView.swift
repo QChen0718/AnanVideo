@@ -62,7 +62,7 @@ extension AnAnQualityTableView:UITableViewDelegate,UITableViewDataSource{
             return
         }
         selectIndex = indexPath.row
-        currentQualityBlock!(qualityArray?[indexPath.row])
+        currentQualityBlock?(qualityArray?[indexPath.row])
         self.reloadData()
     }
 }

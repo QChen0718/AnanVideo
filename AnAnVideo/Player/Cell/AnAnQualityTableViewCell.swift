@@ -17,6 +17,20 @@ class AnAnQualityTableViewCell: UITableViewCell {
         label.textAlignment = .center
         return label
     }()
+    
+    private lazy var vipIconImg:UIImageView = {
+        let img = UIImageView(image: UIImage(named: "ic_poster_corner_mark_vip"))
+        return img
+    }()
+    
+    lazy var loginBtn:UIButton = {
+        let btn = AnAnButton.createButton(title:"登录立享",target: self, action: #selector(openLoginPage))
+        btn.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_216DFF)
+        btn.layer.cornerRadius = 3
+        btn.layer.masksToBounds = true
+        btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
+        return btn
+    }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -31,6 +45,9 @@ class AnAnQualityTableViewCell: UITableViewCell {
     
     private func createSubviews() {
         contentView.addSubview(qualityLabel)
+        contentView.addSubview(loginBtn)
+        contentView.addSubview(vipIconImg)
+        vipIconImg.isHidden = true
     }
     
     private func setSubviewsFrame() {
@@ -44,12 +61,24 @@ class AnAnQualityTableViewCell: UITableViewCell {
             make.top.equalTo(20)
             make.bottom.equalTo(-20)
         }
+        
+        loginBtn.snp.makeConstraints { make in
+            make.leading.equalTo(qualityLabel.snp.trailing).offset(4)
+            make.centerY.equalTo(qualityLabel)
+            make.height.equalTo(16)
+        }
+        vipIconImg.snp.makeConstraints { make in
+            make.leading.equalTo(qualityLabel.snp.trailing).offset(4)
+            make.centerY.equalTo(qualityLabel)
+            make.size.equalTo(CGSize(width: 35, height: 16))
+        }
+        
     }
     
     var isSelectIndex:Bool = false{
         didSet{
             if isSelectIndex{
-                qualityLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_F75C94)
+                qualityLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_216DFF)
             }else{
                 qualityLabel.textColor = UIColor.hexadecimalColor(hexadecimal: An_FFFFFF)
             }
@@ -59,5 +88,9 @@ class AnAnQualityTableViewCell: UITableViewCell {
         didSet{
             qualityLabel.text = huaZhiInfoModel?.qualityDescription
         }
+    }
+    
+    @objc func openLoginPage(){
+        
     }
 }

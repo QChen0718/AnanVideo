@@ -111,7 +111,12 @@ class AnAnVideoPlayerManager: UIView {
     }
 //    播放速率
     var playerRate:Float?{
-        return player?.rate
+        set{
+            player?.rate = newValue ?? 1.0
+        }get{
+            return player?.rate
+        }
+        
     }
 
 //    当前播放时间

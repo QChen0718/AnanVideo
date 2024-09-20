@@ -101,7 +101,7 @@ class AnAnVideoPlayerViewController: UIViewController {
             }else if btn.tag == 600 {
                 self.addEpisodeView()
             }else if btn.tag == 700 {
-                
+                self.addSpeedView()
             }else if btn.tag == 800 {
                 self.addQualityView()
             }
@@ -162,6 +162,16 @@ class AnAnVideoPlayerViewController: UIViewController {
 //            self?.saveLookHistoryData()
             self?.requestDetailPlayerInfoData()
             self?.removeVideoOperitionView()
+        }
+        return view
+    }()
+    
+    private lazy var selectSpeedView:AnAnSelectSpeedView = {
+       let view = AnAnSelectSpeedView()
+        view.currentSpeedBlock = {[weak self] value in
+            guard let `self` else {return}
+            self.playerManagerView?.playerRate = value
+            self.removeVideoOperitionView()
         }
         return view
     }()
@@ -305,6 +315,17 @@ class AnAnVideoPlayerViewController: UIViewController {
         selectQualityView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        selectQualityView.showSelectQualityView()
+    }
+    
+    private func addSpeedView(){
+        animationHiddenVideoOperationView()
+        selectSpeedView.removeFromSuperview()
+        view.addSubview(selectSpeedView)
+        selectSpeedView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        selectSpeedView.showSelectSpeedView()
     }
     
     private func removeVideoOperitionView(){
@@ -312,9 +333,14 @@ class AnAnVideoPlayerViewController: UIViewController {
             selectEpisodeView.hiddenSelectEpView()
         }
         if view.subviews.contains(selectQualityView)  {
-            selectQualityView.removeFromSuperview()
+            selectQualityView.hiddenSelectQualityView()
+        }
+        if view.subviews.contains(selectSpeedView)  {
+            selectSpeedView.hiddenSelectSpeedView()
         }
     }
+    
+    
     
 //
     private func addDragPlayerTimeView(){
@@ -588,6 +614,11 @@ extension AnAnVideoPlayerViewController:UIGestureRecognizerDelegate{
                 return false
             }
         }
+        if view.subviews.contains(selectSpeedView) {
+            if touch.view != selectSpeedView {
+                return false
+            }
+        }
         return true
     }
 }
@@ -616,7 +647,7 @@ extension AnAnVideoPlayerViewController{
             self?.loadingView.isHidden = false
             self?.playerUrl = parseUrl
             self?.addPlayerManagerView()
-            topView.movieName = String(format: "%@ 第%d集", videoDetail?.dramaInfo?.title ?? "",currentPlayerEpisode+1)
+            self?.topView.movieName = String(format: "%@ 第%d集", self?.videoDetail?.dramaInfo?.title ?? "",(self?.currentPlayerEpisode ?? 0)+1)
 //            updateVideoDetailSelectEpisodeBlock!(currentPlayerEpisode)
         }
     }

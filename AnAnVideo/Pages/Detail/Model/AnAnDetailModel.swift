@@ -206,3 +206,9 @@ struct ContentModel:HandyJSON {
     var itemType:String = ""
 }
 
+struct SpeedModel:HandyJSON {
+    var value:Float = 0.0
+    var name:String = ""
+    var isSelect:Bool = false
+}
+
