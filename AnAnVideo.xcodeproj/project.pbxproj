@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16110C0D2CA06B70000E705F /* AnAnVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C0C2CA06B70000E705F /* AnAnVolumeView.swift */; };
+		16110C0F2CA06B89000E705F /* AnAnluminanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C0E2CA06B89000E705F /* AnAnluminanceView.swift */; };
+		16110C112CA06CA1000E705F /* AnAnLongSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C102CA06CA1000E705F /* AnAnLongSpeedView.swift */; };
 		161920E129E01A4700B6668C /* AnAnSeriesCodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161920E029E01A4700B6668C /* AnAnSeriesCodeData.swift */; };
 		1621594329D5DF4F00B1A29A /* AnAnCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621594229D5DF4F00B1A29A /* AnAnCustomSlider.swift */; };
 		16275DD529E69D73002E0F69 /* AnAnNotifacationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16275DD429E69D73002E0F69 /* AnAnNotifacationName.swift */; };
@@ -154,6 +157,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16110C0C2CA06B70000E705F /* AnAnVolumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVolumeView.swift; sourceTree = "<group>"; };
+		16110C0E2CA06B89000E705F /* AnAnluminanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnluminanceView.swift; sourceTree = "<group>"; };
+		16110C102CA06CA1000E705F /* AnAnLongSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnLongSpeedView.swift; sourceTree = "<group>"; };
 		161920E029E01A4700B6668C /* AnAnSeriesCodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnSeriesCodeData.swift; sourceTree = "<group>"; };
 		1621594229D5DF4F00B1A29A /* AnAnCustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnCustomSlider.swift; sourceTree = "<group>"; };
 		16275DD429E69D73002E0F69 /* AnAnNotifacationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnNotifacationName.swift; sourceTree = "<group>"; };
@@ -662,6 +668,9 @@
 				16D8F97C29CB1CD500653BE0 /* AnAnQualityTableView.swift */,
 				16E52D862C98867C00048925 /* AnAnSpeedTableView.swift */,
 				16D8F99929CC917900653BE0 /* AnAnVideoPlayerManager.swift */,
+				16110C0C2CA06B70000E705F /* AnAnVolumeView.swift */,
+				16110C0E2CA06B89000E705F /* AnAnluminanceView.swift */,
+				16110C102CA06CA1000E705F /* AnAnLongSpeedView.swift */,
 			);
 			path = OperationView;
 			sourceTree = "<group>";
@@ -1049,6 +1058,7 @@
 				16897CCF29C5FB7C006BE17E /* AnAnDetailModel.swift in Sources */,
 				1641E2EA29B0A253000D12BC /* AnAnCategoryCollectionView.swift in Sources */,
 				16475FFB29BCC8A7000B319D /* AnAnLoginViewController.swift in Sources */,
+				16110C0F2CA06B89000E705F /* AnAnluminanceView.swift in Sources */,
 				16D8457229A2212F00B4EC3E /* AnAnBaseViewController.swift in Sources */,
 				16D8458B29A260F800B4EC3E /* AnAnVipViewController.swift in Sources */,
 				1641E2BA29ACFF2C000D12BC /* AnAnHomeHorizontalTableViewCell.swift in Sources */,
@@ -1086,6 +1096,7 @@
 				16E52D852C98861F00048925 /* AnAnSelectSpeedView.swift in Sources */,
 				16897CD229C5FFE1006BE17E /* AnAnVideoInfoCollectionViewCell.swift in Sources */,
 				16D8455D29A21F7700B4EC3E /* AppDelegate.swift in Sources */,
+				16110C0D2CA06B70000E705F /* AnAnVolumeView.swift in Sources */,
 				16475FF729BCBE6B000B319D /* AnAnPersonalSectionCollectionReusableView.swift in Sources */,
 				16897CBD29C4A8B6006BE17E /* AnAnActorCollectionView.swift in Sources */,
 				16C671A529B78BFD005AF603 /* AnAnVipView.swift in Sources */,
@@ -1108,6 +1119,7 @@
 				1641E2C229AD01BF000D12BC /* AnAnHorizontalCollectionViewCell.swift in Sources */,
 				16D8458929A260EB00B4EC3E /* AnAnRecommendViewController.swift in Sources */,
 				16BA71E829F57B3400BE7449 /* AnAnCustomProgress.swift in Sources */,
+				16110C112CA06CA1000E705F /* AnAnLongSpeedView.swift in Sources */,
 				16275DFB29EAFC56002E0F69 /* AnAnDownloadPcdnUrl.swift in Sources */,
 				16475FF529BC9015000B319D /* AnAnPersonalCenterModel.swift in Sources */,
 				16D8457829A225AF00B4EC3E /* AnAnNavigationViewController.swift in Sources */,

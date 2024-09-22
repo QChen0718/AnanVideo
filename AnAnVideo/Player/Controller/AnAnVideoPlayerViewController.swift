@@ -183,6 +183,17 @@ class AnAnVideoPlayerViewController: UIViewController {
         return view
     }()
     
+//    长按提示播放速度视图
+    private lazy var longSpeedView:AnAnLongSpeedView = {
+        let view = AnAnLongSpeedView()
+        return view
+    }()
+    
+//    音量调节提示视图
+    private lazy var volumeView:AnAnVolumeView = {
+       let view = AnAnVolumeView()
+        return view
+    }()
 //    点击手势
     private lazy var tapGesture:UITapGestureRecognizer = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapClick))
@@ -205,6 +216,13 @@ class AnAnVideoPlayerViewController: UIViewController {
         return pan
     }()
     
+//    添加长按手势
+    private lazy var longGesture:UILongPressGestureRecognizer = {
+        let long = UILongPressGestureRecognizer(target: self, action: #selector(longDirection))
+        long.delegate = self
+        return long
+    }()
+    
     
     
     var currentOrientation:SCREEN_SET = .set_auto
@@ -217,6 +235,7 @@ class AnAnVideoPlayerViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
         view.addGestureRecognizer(doubleTapGesture)
         view.addGestureRecognizer(panGesture)
+        view.addGestureRecognizer(longGesture)
 //        设备方向通知
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 //        监听
@@ -230,6 +249,8 @@ class AnAnVideoPlayerViewController: UIViewController {
         initTimer()
         currentScrrenBrightness = getCurrentScreenBrightness()
         currentVolume = getSystemVolumValue()
+        
+        addVolumeView()
     }
     
     private func createSubviews() {
@@ -343,7 +364,7 @@ class AnAnVideoPlayerViewController: UIViewController {
     
     
     
-//
+//   添加
     private func addDragPlayerTimeView(){
         dragPlayerTimeView.removeFromSuperview()
         view.addSubview(dragPlayerTimeView)
@@ -356,6 +377,32 @@ class AnAnVideoPlayerViewController: UIViewController {
 //    移除
     private func removeDragPlayerTimeView(){
         dragPlayerTimeView.removeFromSuperview()
+    }
+    
+    private func addLongSpeedView(){
+        longSpeedView.removeFromSuperview()
+        view.addSubview(longSpeedView)
+        longSpeedView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 176, height: 48))
+        }
+    }
+    
+    private func removeLongSpeedView(){
+        longSpeedView.removeFromSuperview()
+    }
+    
+    private func addVolumeView(){
+        volumeView.removeFromSuperview()
+        view.addSubview(volumeView)
+        volumeView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 176, height: 48))
+        }
+    }
+    
+    private func removeVolumeView(){
+        volumeView.removeFromSuperview()
     }
     
     private func initPlayerManagerView(){
@@ -556,6 +603,33 @@ class AnAnVideoPlayerViewController: UIViewController {
             default:
                 break
             }
+            break
+        default:
+            break
+        }
+    }
+//    长按触发2倍速播放
+    @objc func longDirection(longGesture:UILongPressGestureRecognizer) {
+        switch longGesture.state {
+        case .possible:
+            break
+        case .began:
+            addLongSpeedView()
+            self.playerManagerView?.playerRate = 2
+//            开始
+            break
+        case .changed:
+//            长按中
+            break
+        case .ended:
+            removeLongSpeedView()
+            self.playerManagerView?.playerRate = 1
+            break
+        case .cancelled:
+            break
+        case .failed:
+            break
+        case .recognized:
             break
         default:
             break
