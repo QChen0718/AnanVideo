@@ -194,6 +194,11 @@ class AnAnVideoPlayerViewController: UIViewController {
        let view = AnAnVolumeView()
         return view
     }()
+//    亮度调节提示视图
+    lazy var brightnessView:AnAnluminanceView = {
+       let view = AnAnluminanceView()
+        return view
+    }()
 //    点击手势
     private lazy var tapGesture:UITapGestureRecognizer = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapClick))
@@ -249,8 +254,6 @@ class AnAnVideoPlayerViewController: UIViewController {
         initTimer()
         currentScrrenBrightness = getCurrentScreenBrightness()
         currentVolume = getSystemVolumValue()
-        
-        addVolumeView()
     }
     
     private func createSubviews() {
@@ -405,6 +408,19 @@ class AnAnVideoPlayerViewController: UIViewController {
         volumeView.removeFromSuperview()
     }
     
+    private func addLuminanceView(){
+        brightnessView.removeFromSuperview()
+        view.addSubview(brightnessView)
+        brightnessView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 176, height: 48))
+        }
+    }
+    
+    private func removeLuminanceView(){
+        brightnessView.removeFromSuperview()
+    }
+    
     private func initPlayerManagerView(){
         loadingView.isHidden = false;
         playerManagerView?.removeFromSuperview()
@@ -547,10 +563,12 @@ class AnAnVideoPlayerViewController: UIViewController {
                 slidingDirection = .SlidingDirectionUpOrDown
                 if locationPoint.x <= AnAnAppDevice.an_screenWidth()/2 {
 //                    调节屏幕亮度
+                    addLuminanceView()
                     verticalStateBeginIsVolume(isVolume: false)
                     oldBrightnessLocation = locationPoint.y
                 }else{
 //                    调节音量
+                    addVolumeView()
                     verticalStateBeginIsVolume(isVolume: true)
                     oldVolumeLocation = locationPoint.y
                 }
@@ -558,7 +576,7 @@ class AnAnVideoPlayerViewController: UIViewController {
             break
         case .changed:
 //            开始滑动
-            print("y--->\(locationPoint.y)")
+            print("y--->\(locationPoint.y),x--->\(locationPoint.x)")
             switch slidingDirection {
             case .SlidingDirectionUpOrDown:
                 verticalStateChangedValue(value: locationPoint.y)
@@ -584,7 +602,6 @@ class AnAnVideoPlayerViewController: UIViewController {
                             isAdd = true
                         }
                         horizontalStateChangedValue(value: Float(loction),isAdd: isAdd)
-                        oldHorizontalLocation = movePoint.x
                     }
 //                }
                 break
@@ -595,9 +612,17 @@ class AnAnVideoPlayerViewController: UIViewController {
         case .ended:
             switch slidingDirection {
             case .SlidingDirectionUpOrDown:
+                guard let `isVolume` = isVolume else { return }
+                if isVolume {
+//                    移除音量提示视图
+                    removeVolumeView()
+                }else{
+                    removeLuminanceView()
+                }
                 break
             case .SlidingDirectionLeftOrRight:
                 let movePoint = panGesture.translation(in: view)
+                oldHorizontalLocation = movePoint.x
                 horizontalStateEndValue(value: movePoint.x)
                 break
             default:
@@ -770,6 +795,7 @@ extension AnAnVideoPlayerViewController{
             currentVolume = newVolume
             print("currentBrightness ====>\(newVolume), value ===>\(value)")
             MPVolumeView.setVolume(newVolume)
+            volumeView.volumeValue = newVolume
         }
     }
     
@@ -795,6 +821,7 @@ extension AnAnVideoPlayerViewController{
             currentScrrenBrightness = brightness
             print("currentBrightness ====>\(brightness), value ===>\(value)")
             UIScreen.main.brightness = brightness
+            brightnessView.brightnessValue = brightness;
         }
     }
     
