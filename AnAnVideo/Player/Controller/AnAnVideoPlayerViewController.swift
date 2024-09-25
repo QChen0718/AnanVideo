@@ -99,7 +99,15 @@ class AnAnVideoPlayerViewController: UIViewController {
             }else if btn.tag == 200 {
 //                全屏播放
                 AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_land)
-            }else if btn.tag == 600 {
+            }else if btn.tag == 300 {
+//                弹幕开关状态
+            }else if btn.tag == 400 {
+//                弹幕设置
+                addBarrageSetView()
+            }else if btn.tag == 500 {
+//                发送弹幕
+            }
+            else if btn.tag == 600 {
                 self.addEpisodeView()
             }else if btn.tag == 700 {
                 self.addSpeedView()
@@ -174,6 +182,11 @@ class AnAnVideoPlayerViewController: UIViewController {
             self.playerManagerView?.playerRate = value
             self.removeVideoOperitionView()
         }
+        return view
+    }()
+    
+    private lazy var barrageView:AnAnBarrageSetView = {
+       let view = AnAnBarrageSetView()
         return view
     }()
     
@@ -353,6 +366,16 @@ class AnAnVideoPlayerViewController: UIViewController {
         selectSpeedView.showSelectSpeedView()
     }
     
+    private func addBarrageSetView(){
+        animationHiddenVideoOperationView()
+        barrageView.removeFromSuperview()
+        view.addSubview(barrageView)
+        barrageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        barrageView.showBarrageView()
+    }
+    
     private func removeVideoOperitionView(){
         if view.subviews.contains(selectEpisodeView) {
             selectEpisodeView.hiddenSelectEpView()
@@ -362,6 +385,9 @@ class AnAnVideoPlayerViewController: UIViewController {
         }
         if view.subviews.contains(selectSpeedView)  {
             selectSpeedView.hiddenSelectSpeedView()
+        }
+        if view.subviews.contains(barrageView) {
+            barrageView.hiddenBarrageView()
         }
     }
     
@@ -717,6 +743,11 @@ extension AnAnVideoPlayerViewController:UIGestureRecognizerDelegate{
         }
         if view.subviews.contains(selectSpeedView) {
             if touch.view != selectSpeedView {
+                return false
+            }
+        }
+        if view.subviews.contains(barrageView) {
+            if touch.view != barrageView {
                 return false
             }
         }

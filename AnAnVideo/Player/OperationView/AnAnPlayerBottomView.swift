@@ -114,7 +114,7 @@ class AnAnPlayerBottomView: UIView {
     }()
     
     private lazy var barrageStatusBtn:UIButton = {
-        let btn = AnAnButton.createButton(image:UIImage(named: "ic_bulletchat_close"),selectImage: UIImage(named: "ic_bulletchat_open"),target: self, action: #selector(barrageBtnClick))
+        let btn = AnAnButton.createButton(image:UIImage(named: "ic_bulletchat_open"),selectImage: UIImage(named: "ic_bulletchat_close"),target: self, action: #selector(barrageBtnClick))
         btn.tag = 300
         return btn
     }()
@@ -423,6 +423,18 @@ class AnAnPlayerBottomView: UIView {
 //    开启或关闭弹幕
     @objc fileprivate func barrageBtnClick(btn:UIButton){
         selectBtnBlock?(btn)
+        switch btn.tag {
+        case 300:
+            btn.isSelected = !btn.isSelected
+            sendBarrageBtn.isHidden = btn.isSelected;
+            break
+        case 400:
+            break
+        case 500:
+            break
+        default:
+            break
+        }
     }
 //    选集
     @objc fileprivate func selectEpBtnClick(){

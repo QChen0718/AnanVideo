@@ -10,6 +10,9 @@
 		16110C0D2CA06B70000E705F /* AnAnVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C0C2CA06B70000E705F /* AnAnVolumeView.swift */; };
 		16110C0F2CA06B89000E705F /* AnAnluminanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C0E2CA06B89000E705F /* AnAnluminanceView.swift */; };
 		16110C112CA06CA1000E705F /* AnAnLongSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C102CA06CA1000E705F /* AnAnLongSpeedView.swift */; };
+		161281682CA2C6D9009C9C11 /* AnAnBarrageSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161281672CA2C6D9009C9C11 /* AnAnBarrageSetView.swift */; };
+		1612816A2CA2CB59009C9C11 /* AnAnBarrageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161281692CA2CB59009C9C11 /* AnAnBarrageTableView.swift */; };
+		1612816C2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1612816B2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift */; };
 		161920E129E01A4700B6668C /* AnAnSeriesCodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161920E029E01A4700B6668C /* AnAnSeriesCodeData.swift */; };
 		1621594329D5DF4F00B1A29A /* AnAnCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621594229D5DF4F00B1A29A /* AnAnCustomSlider.swift */; };
 		16275DD529E69D73002E0F69 /* AnAnNotifacationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16275DD429E69D73002E0F69 /* AnAnNotifacationName.swift */; };
@@ -160,6 +163,9 @@
 		16110C0C2CA06B70000E705F /* AnAnVolumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVolumeView.swift; sourceTree = "<group>"; };
 		16110C0E2CA06B89000E705F /* AnAnluminanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnluminanceView.swift; sourceTree = "<group>"; };
 		16110C102CA06CA1000E705F /* AnAnLongSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnLongSpeedView.swift; sourceTree = "<group>"; };
+		161281672CA2C6D9009C9C11 /* AnAnBarrageSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageSetView.swift; sourceTree = "<group>"; };
+		161281692CA2CB59009C9C11 /* AnAnBarrageTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageTableView.swift; sourceTree = "<group>"; };
+		1612816B2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageSetItemCell.swift; sourceTree = "<group>"; };
 		161920E029E01A4700B6668C /* AnAnSeriesCodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnSeriesCodeData.swift; sourceTree = "<group>"; };
 		1621594229D5DF4F00B1A29A /* AnAnCustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnCustomSlider.swift; sourceTree = "<group>"; };
 		16275DD429E69D73002E0F69 /* AnAnNotifacationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnNotifacationName.swift; sourceTree = "<group>"; };
@@ -671,6 +677,9 @@
 				16110C0C2CA06B70000E705F /* AnAnVolumeView.swift */,
 				16110C0E2CA06B89000E705F /* AnAnluminanceView.swift */,
 				16110C102CA06CA1000E705F /* AnAnLongSpeedView.swift */,
+				161281672CA2C6D9009C9C11 /* AnAnBarrageSetView.swift */,
+				161281692CA2CB59009C9C11 /* AnAnBarrageTableView.swift */,
+				1612816B2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift */,
 			);
 			path = OperationView;
 			sourceTree = "<group>";
@@ -1055,6 +1064,7 @@
 				16F60B992A1BB62600EEB255 /* AnAnDBModel.swift in Sources */,
 				16275DDF29E7DF1B002E0F69 /* AnAnEpisodeSectionItemCollectionViewCell.swift in Sources */,
 				16275DEC29E85215002E0F69 /* AnAnDownloadLoadingTableview.swift in Sources */,
+				1612816A2CA2CB59009C9C11 /* AnAnBarrageTableView.swift in Sources */,
 				16897CCF29C5FB7C006BE17E /* AnAnDetailModel.swift in Sources */,
 				1641E2EA29B0A253000D12BC /* AnAnCategoryCollectionView.swift in Sources */,
 				16475FFB29BCC8A7000B319D /* AnAnLoginViewController.swift in Sources */,
@@ -1102,6 +1112,7 @@
 				16C671A529B78BFD005AF603 /* AnAnVipView.swift in Sources */,
 				16D8F97929CB0FBB00653BE0 /* AnAnSelectQualityView.swift in Sources */,
 				16D8458129A2263F00B4EC3E /* AnAnMeViewController.swift in Sources */,
+				161281682CA2C6D9009C9C11 /* AnAnBarrageSetView.swift in Sources */,
 				16275DE629E84F06002E0F69 /* AnAnDownloadViewController.swift in Sources */,
 				16D8F9A229CC97C700653BE0 /* AnAnRecommentCollectionViewCell.swift in Sources */,
 				16B70ED72C8AE83B00D2D524 /* AnAnShortVideoCollectionView.swift in Sources */,
@@ -1131,6 +1142,7 @@
 				16275DD729E6F011002E0F69 /* AnAnWaterFallFlowLayout.swift in Sources */,
 				16D8F9A429CC9CE700653BE0 /* AnAnPeriodCollectionView.swift in Sources */,
 				16475FF229BA33FF000B319D /* AnAnHistoryMoreCollectionViewCell.swift in Sources */,
+				1612816C2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift in Sources */,
 				16275DE829E84F1F002E0F69 /* AnAnDownloadSuccessViewController.swift in Sources */,
 				16897CD629C6BF8C006BE17E /* AnAnHeaderView.swift in Sources */,
 				1641E2E429B074DB000D12BC /* AnAnImageView.swift in Sources */,
