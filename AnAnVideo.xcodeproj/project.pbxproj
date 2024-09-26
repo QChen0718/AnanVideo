@@ -110,6 +110,9 @@
 		16C671A229B78675005AF603 /* AnAnMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C671A129B78675005AF603 /* AnAnMenuCollectionViewCell.swift */; };
 		16C671A529B78BFD005AF603 /* AnAnVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C671A329B786D9005AF603 /* AnAnVipView.swift */; };
 		16D676592CA40DFC00B29249 /* AnAnBarrageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D676582CA40DFC00B29249 /* AnAnBarrageModel.swift */; };
+		16D676652CA537FF00B29249 /* AnAnBarrageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D676642CA537FF00B29249 /* AnAnBarrageView.swift */; };
+		16D676682CA538DB00B29249 /* AnAnBarrageMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D676672CA538DB00B29249 /* AnAnBarrageMananger.swift */; };
+		16D6766A2CA5512C00B29249 /* AnAnSliderScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D676692CA5512C00B29249 /* AnAnSliderScale.swift */; };
 		16D8455D29A21F7700B4EC3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D8455C29A21F7700B4EC3E /* AppDelegate.swift */; };
 		16D8456129A21F7700B4EC3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D8456029A21F7700B4EC3E /* ViewController.swift */; };
 		16D8456629A21F7900B4EC3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16D8456529A21F7900B4EC3E /* Assets.xcassets */; };
@@ -266,6 +269,9 @@
 		16C671A129B78675005AF603 /* AnAnMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		16C671A329B786D9005AF603 /* AnAnVipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVipView.swift; sourceTree = "<group>"; };
 		16D676582CA40DFC00B29249 /* AnAnBarrageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageModel.swift; sourceTree = "<group>"; };
+		16D676642CA537FF00B29249 /* AnAnBarrageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageView.swift; sourceTree = "<group>"; };
+		16D676672CA538DB00B29249 /* AnAnBarrageMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageMananger.swift; sourceTree = "<group>"; };
+		16D676692CA5512C00B29249 /* AnAnSliderScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSliderScale.swift; sourceTree = "<group>"; };
 		16D8455929A21F7700B4EC3E /* AnAnVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnAnVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16D8455C29A21F7700B4EC3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16D8456029A21F7700B4EC3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -683,6 +689,7 @@
 				161281672CA2C6D9009C9C11 /* AnAnBarrageSetView.swift */,
 				161281692CA2CB59009C9C11 /* AnAnBarrageTableView.swift */,
 				1612816B2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift */,
+				16D676692CA5512C00B29249 /* AnAnSliderScale.swift */,
 			);
 			path = OperationView;
 			sourceTree = "<group>";
@@ -743,6 +750,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		16D676662CA538B300B29249 /* Barrage */ = {
+			isa = PBXGroup;
+			children = (
+				16D676642CA537FF00B29249 /* AnAnBarrageView.swift */,
+				16D676672CA538DB00B29249 /* AnAnBarrageMananger.swift */,
+			);
+			path = Barrage;
+			sourceTree = "<group>";
+		};
 		16D8455029A21F7700B4EC3E = {
 			isa = PBXGroup;
 			children = (
@@ -764,6 +780,7 @@
 		16D8455B29A21F7700B4EC3E /* AnAnVideo */ = {
 			isa = PBXGroup;
 			children = (
+				16D676662CA538B300B29249 /* Barrage */,
 				16275DF329EAF80B002E0F69 /* SDK */,
 				16275DE029E84E55002E0F69 /* DownloadManager */,
 				164761AD29C2B441000B319D /* AnAnData */,
@@ -1051,6 +1068,7 @@
 				16A0810F29B0A732000DA73C /* AnAnFilterCollectionViewCell.swift in Sources */,
 				16BA71BA29F0DAE200BE7449 /* AnAnDownloadMp4Task.swift in Sources */,
 				16D8F99E29CC974800653BE0 /* AnAnVideoActorCollectionViewCell.swift in Sources */,
+				16D6766A2CA5512C00B29249 /* AnAnSliderScale.swift in Sources */,
 				16D676592CA40DFC00B29249 /* AnAnBarrageModel.swift in Sources */,
 				1641E2BC29ACFFED000D12BC /* AnAnMorePhotoCollectionView.swift in Sources */,
 				16897CF329C8B5F5006BE17E /* AnAnCommentViewController.swift in Sources */,
@@ -1058,6 +1076,7 @@
 				164761B229C2BCBC000B319D /* AnAnUserData.swift in Sources */,
 				16897CBF29C4A9CF006BE17E /* AnAnHomeActorCollectionViewCell.swift in Sources */,
 				16A0812129B34357000DA73C /* AnAnRequestApi.swift in Sources */,
+				16D676682CA538DB00B29249 /* AnAnBarrageMananger.swift in Sources */,
 				1641E2E629B07579000D12BC /* AnAnButton.swift in Sources */,
 				16D8F9B829D08DF400653BE0 /* AnAnAlbumItemCollectionViewCell.swift in Sources */,
 				16F60B972A1910A800EEB255 /* AnAnShortTableViewCell.swift in Sources */,
@@ -1186,6 +1205,7 @@
 				16BA71B829EFF5D200BE7449 /* AnAnUrlSessionTaskOperation.swift in Sources */,
 				16275DEE29E85264002E0F69 /* AnAnDownloadLoadingItemTableViewCell.swift in Sources */,
 				16897C6E29C3231A006BE17E /* AnAnVideoDetailViewController.swift in Sources */,
+				16D676652CA537FF00B29249 /* AnAnBarrageView.swift in Sources */,
 				16B70ED52C8AE7CE00D2D524 /* AnAnShortVideoCollectionViewCell.swift in Sources */,
 				16C671A029B78653005AF603 /* AnAnHistoryCollectionViewCell.swift in Sources */,
 				16E52D872C98867C00048925 /* AnAnSpeedTableView.swift in Sources */,
