@@ -9,7 +9,7 @@ import UIKit
 
 class AnAnSliderScale: UIView {
 
-    var sliderChangeBlock:((Float)->Void)?
+    var sliderChangeBlock:((Float,String)->Void)?
     
     lazy var scaleView:UIView = {
        let view = UIView()
@@ -30,7 +30,7 @@ class AnAnSliderScale: UIView {
                 view.snp.makeConstraints { make in
                     make.size.equalTo(CGSize(width: 1, height: 4))
                     make.centerY.equalToSuperview()
-                    make.leading.equalTo(i * (167-4*scaleNumber)/scaleNumber+4*i)
+                    make.leading.equalTo(i * (164-4*scaleNumber)/scaleNumber+4*i)
                 }
             }
         }
@@ -41,6 +41,8 @@ class AnAnSliderScale: UIView {
             sliderView.value = sliderValue
         }
     }
+    
+    var valueList:[String] = []
     
     private lazy var sliderView:AnAnCustomSlider = {
        let slider = AnAnCustomSlider()
@@ -87,14 +89,22 @@ class AnAnSliderScale: UIView {
   
         if scaleNumber == 0 {
             sliderView.setValue(clampedValue, animated: true)
-            sliderChangeBlock?(clampedValue)
+            sliderChangeBlock?(clampedValue,String(format: "%d%%", Int(clampedValue*100)))
         }else{
             // 设置 slider 的 value
-            let value2 = clampedValue*10
-            var step = roundf(value2/Float(10/scaleNumber))
-            step *= Float(10/scaleNumber)
-            sliderView.setValue(step/10.0, animated: true)
-            sliderChangeBlock?(step/10.0)
+//            let chushu:Int = Int(10/scaleNumber)
+            let value = clampedValue*10
+            var step = roundf(value/Float(10/scaleNumber))
+            if step > Float(scaleNumber) {
+                step = Float(scaleNumber)
+            }
+//            step *= Float(10/scaleNumber)
+            var newvalue = (1.0/Float(scaleNumber)) * step;
+            if newvalue > 1 {
+                newvalue = 1;
+            }
+            sliderView.setValue(newvalue, animated: true)
+            sliderChangeBlock?(newvalue,valueList[Int(step)])
         }
         
         // 这里可以获取并处理新的 value
@@ -105,15 +115,21 @@ class AnAnSliderScale: UIView {
         print("value--->\(sender.value)")
         if scaleNumber == 0 {
             sender.setValue(sender.value, animated: true)
-            sliderChangeBlock?(sender.value)
+            sliderChangeBlock?(sender.value,String(format: "%d%%", Int(sender.value*100)))
         }else{
-            let chushu:Int = Int(10/scaleNumber)
+//            let chushu:Int = Int(10/scaleNumber)
             let value = sender.value*10
             var step = roundf(value/Float(10/scaleNumber))
+            if step > Float(scaleNumber) {
+                step = Float(scaleNumber)
+            }
 //            step *= Float(10/scaleNumber)
-            let newvalue = (1.0/Float(scaleNumber)) * step;
+            var newvalue = (1.0/Float(scaleNumber)) * step;
+            if newvalue > 1 {
+                newvalue = 1;
+            }
             sender.setValue(newvalue, animated: true)
-            sliderChangeBlock?(newvalue)
+            sliderChangeBlock?(newvalue,valueList[Int(step)])
         }
         
     }

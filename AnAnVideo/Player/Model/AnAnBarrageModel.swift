@@ -18,9 +18,11 @@ class AnAnBarrageModel: NSObject {
     var setType:BarrageSetType?
     var setName:String?
     var value:Float = 0.0
-    init(setType: BarrageSetType? = nil,setName: String? = nil, value: Float) {
+    var valueName:String?
+    init(setType: BarrageSetType? = nil,setName: String? = nil, value: Float, valueName:String? = nil) {
         self.setType = setType
         self.setName = setName
         self.value = value
+        self.valueName = valueName
     }
 }

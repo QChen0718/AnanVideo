@@ -106,6 +106,7 @@ class AnAnVideoPlayerViewController: UIViewController {
                 addBarrageSetView()
             }else if btn.tag == 500 {
 //                发送弹幕
+                addBarrageInputView()
             }
             else if btn.tag == 600 {
                 self.addEpisodeView()
@@ -187,6 +188,14 @@ class AnAnVideoPlayerViewController: UIViewController {
     
     private lazy var barrageView:AnAnBarrageSetView = {
        let view = AnAnBarrageSetView()
+        return view
+    }()
+    
+    private lazy var barrageInputView:AnAnBarrageInputView = {
+       let view = AnAnBarrageInputView()
+        view.sendBarrageBlock = { [weak self] content in
+            print("barrageContent--->\(content)")
+        }
         return view
     }()
     
@@ -445,6 +454,24 @@ class AnAnVideoPlayerViewController: UIViewController {
     
     private func removeLuminanceView(){
         brightnessView.removeFromSuperview()
+    }
+    
+    private func addBarrageInputView(){
+        barrageInputView.removeFromSuperview()
+        view.addSubview(barrageInputView)
+        barrageInputView.responseTextField()
+        barrageInputView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+//        暂停播放
+        playerManagerView?.pausePlayer()
+        bottomView.updateBtnStatus = false
+    }
+    
+    private func removeBarrageInputView(){
+        barrageInputView.removeFromSuperview()
+        playerManagerView?.startPlayer()
+        bottomView.updateBtnStatus = true
     }
     
     private func initPlayerManagerView(){

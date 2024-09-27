@@ -9,7 +9,7 @@ import UIKit
 
 class AnAnBarrageTableView: UITableView {
 
-    private let dataList:[AnAnBarrageModel] = [AnAnBarrageModel(setType:.BarrageSetTypeArea,setName: "显示区域", value: 0.0),AnAnBarrageModel(setType:.BarrageSetTypeAlpha,setName: "不透明度", value: 0.0),AnAnBarrageModel(setType:.BarrageSetTypeFont,setName: "字体大小", value: 0.0),AnAnBarrageModel(setType:.BarrageSetTypeSpeed,setName: "弹幕速度", value: 0.0)]
+    private let dataList:[AnAnBarrageModel] = [AnAnBarrageModel(setType:.BarrageSetTypeArea,setName: "显示区域", value: 0.0,valueName: "25%"),AnAnBarrageModel(setType:.BarrageSetTypeAlpha,setName: "不透明度", value: 0.0,valueName: "25%"),AnAnBarrageModel(setType:.BarrageSetTypeFont,setName: "字体大小", value: 0.5,valueName: "标准"),AnAnBarrageModel(setType:.BarrageSetTypeSpeed,setName: "弹幕速度", value: 0.5,valueName: "标准")]
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -17,6 +17,7 @@ class AnAnBarrageTableView: UITableView {
         dataSource = self
         backgroundColor = .clear
         contentInsetAdjustmentBehavior = .never
+        separatorStyle = .none
         rowHeight = 67
         register(AnAnBarrageSetItemCell.self, forCellReuseIdentifier: AnAnBarrageSetItemCell.description())
     }

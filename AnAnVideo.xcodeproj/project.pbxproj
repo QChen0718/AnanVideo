@@ -159,6 +159,7 @@
 		16F60B992A1BB62600EEB255 /* AnAnDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B982A1BB62600EEB255 /* AnAnDBModel.swift */; };
 		16F60B9B2A1BBAB500EEB255 /* DownloadDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B9A2A1BBAB500EEB255 /* DownloadDB.swift */; };
 		16F60B9D2A1BC43000EEB255 /* AnAnShortVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B9C2A1BC43000EEB255 /* AnAnShortVideoView.swift */; };
+		16FF44B42CA65D7600EAD344 /* AnAnBarrageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF44B32CA65D7600EAD344 /* AnAnBarrageInputView.swift */; };
 		16FFD08529E2F6B300679682 /* AnAnDragPlayerTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFD08429E2F6B300679682 /* AnAnDragPlayerTimeView.swift */; };
 		FB10DC9F039A6D0F538F7A1C /* Pods_AnAnVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D0C7C0891A39FB633D6563 /* Pods_AnAnVideo.framework */; };
 /* End PBXBuildFile section */
@@ -320,6 +321,7 @@
 		16F60B982A1BB62600EEB255 /* AnAnDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnDBModel.swift; sourceTree = "<group>"; };
 		16F60B9A2A1BBAB500EEB255 /* DownloadDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadDB.swift; sourceTree = "<group>"; };
 		16F60B9C2A1BC43000EEB255 /* AnAnShortVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortVideoView.swift; sourceTree = "<group>"; };
+		16FF44B32CA65D7600EAD344 /* AnAnBarrageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageInputView.swift; sourceTree = "<group>"; };
 		16FFD08429E2F6B300679682 /* AnAnDragPlayerTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnDragPlayerTimeView.swift; sourceTree = "<group>"; };
 		30C0DDA79C9448473E9348F7 /* Pods-AnAnVideo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnAnVideo.debug.xcconfig"; path = "Target Support Files/Pods-AnAnVideo/Pods-AnAnVideo.debug.xcconfig"; sourceTree = "<group>"; };
 		65D0C7C0891A39FB633D6563 /* Pods_AnAnVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnAnVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -690,6 +692,7 @@
 				161281692CA2CB59009C9C11 /* AnAnBarrageTableView.swift */,
 				1612816B2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift */,
 				16D676692CA5512C00B29249 /* AnAnSliderScale.swift */,
+				16FF44B32CA65D7600EAD344 /* AnAnBarrageInputView.swift */,
 			);
 			path = OperationView;
 			sourceTree = "<group>";
@@ -1118,6 +1121,7 @@
 				1647600029BD73DB000B319D /* AnAnJumpPageManager.swift in Sources */,
 				16A0811129B0A78B000DA73C /* AnAnSpreadCollectionViewCell.swift in Sources */,
 				1647600329BE1447000B319D /* AnAnLoginModel.swift in Sources */,
+				16FF44B42CA65D7600EAD344 /* AnAnBarrageInputView.swift in Sources */,
 				16C671A229B78675005AF603 /* AnAnMenuCollectionViewCell.swift in Sources */,
 				16D8F9B229D00D9A00653BE0 /* AnAnVideoActorCollectionView.swift in Sources */,
 				16D8457629A2258E00B4EC3E /* AnAnTabBarViewController.swift in Sources */,

@@ -18,9 +18,9 @@ class AnAnBarrageSetItemCell: UITableViewCell {
     
     private lazy var sliderView:AnAnSliderScale = {
        let slider = AnAnSliderScale()
-        slider.sliderChangeBlock = {[weak self] value in
+        slider.sliderChangeBlock = {[weak self] value,str in
             guard let `self` else {return}
-            self.updateTypeValue(type: barrageSetModel?.setType, value: value)
+            self.typeLab.text = str
         }
         return slider
     }()
@@ -71,83 +71,30 @@ class AnAnBarrageSetItemCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-//    @objc func sliderValueTouch(sender:UISlider){
-//        print("value--->\(sender.value)")
-//        let value = sender.value*10
-//        var step = roundf(value/2.5)
-//        step *= 2.5
-//        sender.setValue(step/10.0, animated: true)
-//        updateTypeValue(type: barrageSetModel?.setType, value: step/10.0)
-//    }
-    
     var barrageSetModel:AnAnBarrageModel? {
         didSet{
             titleLab.text = barrageSetModel?.setName
             sliderView.sliderValue = barrageSetModel?.value ?? 0.0
-            updateTypeValue(type: barrageSetModel?.setType, value: barrageSetModel?.value ?? 0.0)
+            typeLab.text = barrageSetModel?.valueName
             switch barrageSetModel?.setType {
             case .BarrageSetTypeArea:
                 sliderView.scaleNumber = 3
+                sliderView.valueList = ["25%","50%","75%","100%"]
                 break
             case .BarrageSetTypeAlpha:
                 sliderView.scaleNumber = 0
                 break
             case .BarrageSetTypeFont:
                 sliderView.scaleNumber = 4
+                sliderView.valueList = ["特小","小","标准","大","特大"]
                 break
             case .BarrageSetTypeSpeed:
                 sliderView.scaleNumber = 4
+                sliderView.valueList = ["最慢","慢","标准","快","特快"]
                 break
             default:
                 break
             }
         }
-    }
-    
-    func updateTypeValue(type:BarrageSetType?,value:Float)  {
-        switch type {
-        case .BarrageSetTypeArea:
-            typeLab.text = valueToStr(value: value)
-            
-            break
-        case .BarrageSetTypeAlpha:
-            typeLab.text = valueToStr(value: value)
-            
-            break
-        case .BarrageSetTypeFont:
-//            特小，小，标准，大，特大
-            typeLab.text = "标准"
-            
-            break
-        case .BarrageSetTypeSpeed:
-//            最慢，慢，标准，快，特快
-            typeLab.text = "最慢"
-            
-            break
-        default:
-            break
-        }
-    }
-    
-    func valueToStr(value:Float) -> String {
-        var str = ""
-        switch value {
-        case 0...0.25:
-            str = "25%"
-            break
-        case 0.26...0.5:
-            str = "50%"
-            break
-        case 0.51...0.75:
-            str = "75%"
-            break
-        case 1.0:
-            str = "100%"
-            break
-        default:
-            break
-        }
-        return str
     }
 }
