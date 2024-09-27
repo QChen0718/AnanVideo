@@ -107,17 +107,17 @@ class AnAnSliderScale: UIView {
             sender.setValue(sender.value, animated: true)
             sliderChangeBlock?(sender.value)
         }else{
-            let quduan = scaleNumber
-            
+            let chushu:Int = Int(10/scaleNumber)
             let value = sender.value*10
             var step = roundf(value/Float(10/scaleNumber))
-            step *= Float(10/scaleNumber)
-            let newvalue = (1.0/Float(scaleNumber)) * Float(Int(step)/scaleNumber);
+//            step *= Float(10/scaleNumber)
+            let newvalue = (1.0/Float(scaleNumber)) * step;
             sender.setValue(newvalue, animated: true)
-//            sliderChangeBlock?(step)
+            sliderChangeBlock?(newvalue)
         }
+        
     }
-   
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
