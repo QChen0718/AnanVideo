@@ -33,6 +33,7 @@ class AnAnVideoPlayerViewController: UIViewController {
             selectQualityView.qualityArray = videoDetail?.watchInfo?.sortedItems
             topView.movieName = String(format: "%@ 第%d集", videoDetail?.dramaInfo?.title ?? "",currentPlayerEpisode+1)
             sid = videoDetail?.watchInfo?.m3u8?.episodeSid
+            barragePlayView.videoDetail = videoDetail
         }
     }
     
@@ -101,6 +102,11 @@ class AnAnVideoPlayerViewController: UIViewController {
                 AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_land)
             }else if btn.tag == 300 {
 //                弹幕开关状态
+                if btn.isSelected {
+                    addBarragePlayView()
+                }else{
+                    removeBarragePlayView()
+                }
             }else if btn.tag == 400 {
 //                弹幕设置
                 addBarrageSetView()
@@ -196,6 +202,16 @@ class AnAnVideoPlayerViewController: UIViewController {
         view.sendBarrageBlock = { [weak self] content in
             print("barrageContent--->\(content)")
         }
+        view.closeBarrageBlock = { [weak self] in
+            guard let `self` else { return }
+            self.removeBarrageInputView()
+        }
+        return view
+    }()
+    
+//    弹幕展示视图
+    lazy var barragePlayView:AnAnBarrageView = {
+       let view = AnAnBarrageView()
         return view
     }()
     
@@ -417,6 +433,18 @@ class AnAnVideoPlayerViewController: UIViewController {
         dragPlayerTimeView.removeFromSuperview()
     }
     
+    private func addBarragePlayView(){
+        barragePlayView.removeFromSuperview()
+        playerManagerView?.addSubview(barragePlayView)
+        barragePlayView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func removeBarragePlayView(){
+        barragePlayView.removeFromSuperview()
+    }
+    
     private func addLongSpeedView(){
         longSpeedView.removeFromSuperview()
         view.addSubview(longSpeedView)
@@ -505,6 +533,7 @@ class AnAnVideoPlayerViewController: UIViewController {
         playerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        addBarragePlayView()
     }
 //    播放视频
     private func startPlayerVideo(){

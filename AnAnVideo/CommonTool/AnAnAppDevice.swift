@@ -73,6 +73,8 @@ class AnAnAppDevice: NSObject {
     static let AnAnDefaultHttpScheme = "https://"
     
     static let AnAnServiceUrlFragment = "api."
+//    弹幕域名
+    static let AnAnServiceUrlDanmu = "static-dm."
     
     static let AnAnServiceDomainName = "duoduo.pro"
     

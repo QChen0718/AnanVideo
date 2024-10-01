@@ -138,4 +138,17 @@ class AnAnRequest{
             
         }
     }
+    
+//    获取CDN弹幕数据
+    func requestCDNBarrageData(episodeId:String,success:@escaping (AnAnCategoryDataModel?)->Void) {
+        provider.requestModel(.cdnBarrage(episodeId: episodeId), model: AnAnBarrageDataModel.self) { returnData, msg in
+            
+        }
+    }
+//    获取实时弹幕数据
+    func requestNewBarrageData(param:[String:Any],success:@escaping (AnAnCategoryDataModel?)->Void) {
+        provider.requestModel(.newBarrage(params: param), model: AnAnBarrageDataModel.self) { returnData, msg in
+            
+        }
+    }
 }

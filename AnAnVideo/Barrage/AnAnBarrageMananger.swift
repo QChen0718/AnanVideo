@@ -8,5 +8,11 @@
 import UIKit
 
 class AnAnBarrageMananger: NSObject {
-
+    func showBarrageView() {
+        
+    }
+    
+    func hiddenBarrageView() {
+        
+    }
 }
