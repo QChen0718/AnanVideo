@@ -30,6 +30,7 @@
 		16275DF229E999F5002E0F69 /* AnAnDownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16275DF129E999F5002E0F69 /* AnAnDownloadModel.swift */; };
 		16275DF929EAFA37002E0F69 /* qnlibtitan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16275DF829EAFA37002E0F69 /* qnlibtitan.a */; };
 		16275DFB29EAFC56002E0F69 /* AnAnDownloadPcdnUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16275DFA29EAFC56002E0F69 /* AnAnDownloadPcdnUrl.swift */; };
+		162E5C562CAC2BA800AC610F /* AnAnBarrageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162E5C552CAC2BA700AC610F /* AnAnBarrageDataModel.swift */; };
 		163D14C22C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163D14C12C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift */; };
 		163D14C42C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163D14C32C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift */; };
 		1641E2B129ACF86A000D12BC /* AnAnAppDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641E2B029ACF86A000D12BC /* AnAnAppDevice.swift */; };
@@ -190,6 +191,7 @@
 		16275DF629EAF81E002E0F69 /* TitanSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitanSDK.h; sourceTree = "<group>"; };
 		16275DF829EAFA37002E0F69 /* qnlibtitan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = qnlibtitan.a; sourceTree = "<group>"; };
 		16275DFA29EAFC56002E0F69 /* AnAnDownloadPcdnUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnDownloadPcdnUrl.swift; sourceTree = "<group>"; };
+		162E5C552CAC2BA700AC610F /* AnAnBarrageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageDataModel.swift; sourceTree = "<group>"; };
 		163D14C12C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnMAGICCUBETableViewCell.swift; sourceTree = "<group>"; };
 		163D14C32C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnCUBECollectionViewCell.swift; sourceTree = "<group>"; };
 		1641E2B029ACF86A000D12BC /* AnAnAppDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnAppDevice.swift; sourceTree = "<group>"; };
@@ -761,6 +763,7 @@
 			children = (
 				16D676642CA537FF00B29249 /* AnAnBarrageView.swift */,
 				16D676672CA538DB00B29249 /* AnAnBarrageMananger.swift */,
+				162E5C552CAC2BA700AC610F /* AnAnBarrageDataModel.swift */,
 			);
 			path = Barrage;
 			sourceTree = "<group>";
@@ -1182,6 +1185,7 @@
 				16D8F9A429CC9CE700653BE0 /* AnAnPeriodCollectionView.swift in Sources */,
 				16475FF229BA33FF000B319D /* AnAnHistoryMoreCollectionViewCell.swift in Sources */,
 				1612816C2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift in Sources */,
+				162E5C562CAC2BA800AC610F /* AnAnBarrageDataModel.swift in Sources */,
 				16275DE829E84F1F002E0F69 /* AnAnDownloadSuccessViewController.swift in Sources */,
 				16897CD629C6BF8C006BE17E /* AnAnHeaderView.swift in Sources */,
 				1641E2E429B074DB000D12BC /* AnAnImageView.swift in Sources */,

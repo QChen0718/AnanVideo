@@ -50,12 +50,21 @@ enum AnAnRequestApi {
     case getDownloadInfo(seasonId:String,episodeSid:String,quality:String)
 //    短视频列表
     case shortVideoList
+//    cdn弹幕
+    case cdnBarrage(episodeId:String)
+//    实时弹幕
+    case newBarrage(params:[String:Any])
 }
 
 extension AnAnRequestApi:TargetType{
 //    请求baseURL
     var baseURL: URL {
-        return AnAnRequestApi.getBaseUrl()
+        switch self {
+        case .cdnBarrage:
+            return AnAnRequestApi.getBarrageBaseUrl()
+        default:
+            return AnAnRequestApi.getBaseUrl()
+        }
     }
 //    请求路径
 //    https://api.rr.tv/auth/verification-code/sms
@@ -101,12 +110,16 @@ extension AnAnRequestApi:TargetType{
             return "/watch/v4/get_movie_download_info"
         case .shortVideoList:
             return "/video/dramaList"
+        case .cdnBarrage(let epId):
+            return "/v1/produce/danmu/EPISODE/" + epId
+        case .newBarrage:
+            return "/danmu/5.1-version/realTimeList"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .home,.getCheckCode,.dramaDetail,.dramaDetailSecondary,.dramaDetailIntro,.guessLike,.category,.search,.typeFilter,.getUserInfo,.moviePlayerInfo,.dramaDetailModule,.markEntranceInDetail,.dramaDetailRecommend,.getDownloadInfo,.shortVideoList:
+        case .home,.getCheckCode,.dramaDetail,.dramaDetailSecondary,.dramaDetailIntro,.guessLike,.category,.search,.typeFilter,.getUserInfo,.moviePlayerInfo,.dramaDetailModule,.markEntranceInDetail,.dramaDetailRecommend,.getDownloadInfo,.shortVideoList,.cdnBarrage,.newBarrage:
             return .get
         case .checkCodelLogin,.loginOut,.typeCats,.dramaFocus:
             return .post
@@ -180,6 +193,9 @@ extension AnAnRequestApi:TargetType{
             parmeters["page"] = page
             parmeters["rows"] = rows
             break
+        case .newBarrage(let params):
+            parmeters = params
+            break
         default:
             break
         }
@@ -233,6 +249,10 @@ extension AnAnRequestApi:TargetType{
     
     static func getBaseUrl() -> URL{
         return URL(string: AnAnAppDevice.AnAnDefaultHttpScheme + AnAnAppDevice.AnAnServiceUrlFragment + AnAnAppDevice.AnAnServiceDomainName)!
+    }
+    
+    static func getBarrageBaseUrl() -> URL{
+        return URL(string: AnAnAppDevice.AnAnDefaultHttpScheme + AnAnAppDevice.AnAnServiceUrlDanmu + AnAnAppDevice.AnAnServiceDomainName)!
     }
 }
 

@@ -10,6 +10,7 @@ import UIKit
 class AnAnBarrageInputView: UIView {
 
     var sendBarrageBlock:((String)->Void)?
+    var closeBarrageBlock:(()->Void)?
     lazy var barrageInputBgView:UIView = {
        let view = UIView()
         view.backgroundColor = UIColor.hexadecimalColor(hexadecimal: "#F2F4F5",alpha: 0.1)
@@ -83,6 +84,7 @@ class AnAnBarrageInputView: UIView {
     }
     
     @objc func tapAction(){
+        closeBarrageBlock?()
         self.removeFromSuperview()
     }
     
