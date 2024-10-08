@@ -140,15 +140,15 @@ class AnAnRequest{
     }
     
 //    获取CDN弹幕数据
-    func requestCDNBarrageData(episodeId:String,success:@escaping (AnAnCategoryDataModel?)->Void) {
+    func requestCDNBarrageData(episodeId:String,success:@escaping (AnAnBarrageDataModel?)->Void) {
         provider.requestModel(.cdnBarrage(episodeId: episodeId), model: AnAnBarrageDataModel.self) { returnData, msg in
-            
+            success(returnData)
         }
     }
 //    获取实时弹幕数据
-    func requestNewBarrageData(param:[String:Any],success:@escaping (AnAnCategoryDataModel?)->Void) {
+    func requestNewBarrageData(param:[String:Any],success:@escaping (AnAnBarrageDataModel?)->Void) {
         provider.requestModel(.newBarrage(params: param), model: AnAnBarrageDataModel.self) { returnData, msg in
-            
+            success(returnData)
         }
     }
 }
