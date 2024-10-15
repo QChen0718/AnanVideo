@@ -212,6 +212,7 @@ class AnAnVideoPlayerViewController: UIViewController {
 //    弹幕展示视图
     lazy var barragePlayView:AnAnBarrageView = {
        let view = AnAnBarrageView()
+        view.playerManagerView = playerManagerView
         return view
     }()
     

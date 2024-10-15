@@ -23,6 +23,8 @@ class AnAnBarrageView: UIView {
     var maxShowLineCount:Int = 10
 //    时间间隔
     let timeMargin:TimeInterval = 0.08
+//    当前播放器
+    var playerManagerView:AnAnVideoPlayerManager?
 //    准备中
     var isPrepared:Bool{
         set{
@@ -50,7 +52,7 @@ class AnAnBarrageView: UIView {
     
     var videoDetail:AnAnDetailModel?{
         didSet{
-            requestBarrageListData()
+            startBarrage()
         }
     }
     
@@ -89,9 +91,11 @@ class AnAnBarrageView: UIView {
     @objc func getPlayTimeBarrageData(){
 //        判断视频是否在加载中
 //        获取当前播放的时间
+       print(playerManagerView?.currentPlayerTime)
+        getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*5)
     }
       
-    func getBarrages(withTimeStart timeStart: CGFloat, timeLength: CGFloat) -> [AnAnBarrageType]? {
+    func getBarrages(withTimeStart timeStart: Double, timeLength: CGFloat) -> [AnAnBarrageType]? {
 //        guard let allBarrages = playerDelegate?.playerModel.barrageManager.allBarrages, !allBarrages.isEmpty else {
 //            return nil
 //        }
