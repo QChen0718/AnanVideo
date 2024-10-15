@@ -9,8 +9,10 @@ import UIKit
 
 class AnAnBarrageView: UIView {
     var barrageTime:Timer?
+//    接口返回弹幕数据
+    var barrageDataList:[AnAnBarrageDataModel?] = []
 //    弹幕数据
-    var barrageDataList:[AnAnBarrageDataModel] = []
+    var barrageInfoList:[AnAnBarrageInfo] = []
 //    弹幕动画时间
     var duration:CGFloat = 2
 //    弹幕弹道高度
@@ -65,14 +67,15 @@ class AnAnBarrageView: UIView {
             
         }
         
-        AnAnRequest.shared.requestCDNBarrageData(episodeId:videoDetail?.watchInfo?.m3u8?.episodeSid ?? "") { model in
-            
+        AnAnRequest.shared.requestCDNBarrageData(episodeId:videoDetail?.watchInfo?.m3u8?.episodeSid ?? "") {[weak self] modelList in
+            guard let `self` else {return}
+            self.barrageDataList = modelList
         }
     }
         
     private func createTimer() {
         if barrageTime == nil {
-            let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getPlayTimeBarrageData), userInfo: nil, repeats: true)
+            let timer = Timer.scheduledTimer(timeInterval: timeMargin, target: self, selector: #selector(getPlayTimeBarrageData), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: .common)
             barrageTime = timer
         }
@@ -84,7 +87,55 @@ class AnAnBarrageView: UIView {
     
 //    获取播放时间段弹幕
     @objc func getPlayTimeBarrageData(){
-        
+//        判断视频是否在加载中
+//        获取当前播放的时间
+    }
+      
+    func getBarrages(withTimeStart timeStart: CGFloat, timeLength: CGFloat) -> [AnAnBarrageType]? {
+//        guard let allBarrages = playerDelegate?.playerModel.barrageManager.allBarrages, !allBarrages.isEmpty else {
+//            return nil
+//        }
+//          
+//        let allStart = allBarrages.first?.timePoint ?? 0
+//        let last = allBarrages.last?.timePoint ?? 0
+//          
+//        // timeStart: 视频播放时间, allStart: 第一条弹幕时间, last: 最后一条弹幕时间
+//        if timeStart + timeLength < allStart || last < timeStart {
+//            // 时间范围在所有弹幕时间范围之外，没有弹幕
+//            return nil
+//        }
+//          
+//        // 弹幕匀速播放, timeStart 开始重 searchIndex 弹幕位置放
+//        var searchIndex: Int = 0
+//        if timeStart > allStart {
+//            searchIndex = Int((timeStart - allStart) / (last - allStart) * CGFloat(allBarrages.count))
+//            if searchIndex >= allBarrages.count {
+//                searchIndex = allBarrages.count - 1
+//            }
+//        }
+//          
+//        // 修正播放timeStart开始播放的弹幕
+//        var barrageType: AnAnBarrageType? = allBarrages[searchIndex]
+//        while barrageType?.timePoint ?? 0 >= timeStart && searchIndex > 0 {
+//            barrageType = allBarrages[searchIndex - 1]
+//            searchIndex -= 1
+//        }
+//        while barrageType?.timePoint ?? 0 < timeStart && searchIndex < allBarrages.count - 1 {
+//            barrageType = allBarrages[searchIndex + 1]
+//            searchIndex += 1
+//        }
+          
+        var array: [AnAnBarrageType] = []
+//        for index in searchIndex..<allBarrages.count {
+//            barrageType = allBarrages[index]
+//            if barrageType?.timePoint ?? 0 < timeStart + timeLength {
+//                array.append(barrageType!)
+//            } else {
+//                break
+//            }
+//        }
+          
+        return array
     }
     
 //  发送弹幕
@@ -96,7 +147,10 @@ class AnAnBarrageView: UIView {
     func startBarrage() {
 //        请求弹幕数据
         requestBarrageListData()
-        
+        playBarrage()
+        createTimer()
+        isPlaying = true
+        isPauseing = false
     }
 //  暂停弹幕
     func pauseBarrage() {
@@ -122,8 +176,8 @@ class AnAnBarrageView: UIView {
         }
         
         DispatchQueue.main.async {
-            self.barrageDataList.forEach { model in
-                
+            self.barrageInfoList.forEach { model in
+                self.performAnimationWithDuration(duration: model.timerMargin ?? 0, info: model)
             }
         }
         let delayTime = DispatchTime.now() + timeMargin*Double(NSEC_PER_SEC)
@@ -133,7 +187,23 @@ class AnAnBarrageView: UIView {
         
     }
 //    弹幕播放动画
-    func performAnimationWithDuration(duration:TimeInterval) {
-        
+    func performAnimationWithDuration(duration:TimeInterval,info:AnAnBarrageInfo) {
+        guard let label = info.barrageBtn else {return}
+        let endFrame = CGRect(x: -(label.frame.size.width), y: label.frame.origin.y, width: label.frame.size.width, height: label.frame.size.height)
+        self.insertSubview(label, at: 0)
+        if label.layer.animationKeys()?.count != 0 {
+//            已经在运行动画了
+            return
+        }
+        UIView.animate(withDuration: duration, delay: 0,options: .curveLinear) {
+            label.frame = endFrame
+        }completion: { finished in
+            if finished {
+                label.removeFromSuperview()
+                self.barrageInfoList.removeAll { model in
+                    return model.barrageId == info.barrageId
+                }
+            }
+        }
     }
 }

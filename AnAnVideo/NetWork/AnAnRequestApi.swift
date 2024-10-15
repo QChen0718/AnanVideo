@@ -265,6 +265,14 @@ extension Response {
         guard let model = JSONDeserializer<T>.deserializeFrom(json: jsonString) else { throw MoyaError.jsonMapping(self) }
         return model
     }
+    
+    func mapListModel<T:HandyJSON>(_ type:T.Type) throws -> [T?] {
+//        data utf8编码成字符串
+        let jsonString = String(data: data, encoding: .utf8)
+//        将字符串转换成model
+        guard let modelArray = JSONDeserializer<T>.deserializeModelArrayFrom(json: jsonString) else { throw MoyaError.jsonMapping(self) }
+        return modelArray
+    }
 }
 
 
@@ -287,9 +295,9 @@ extension MoyaProvider {
             failure(error)
         }
     }
-//    返回数组
+//    返回data是数组
     @discardableResult
-    public func requestListModel<T:HandyJSON>(_ target:Target,callbackQueue:DispatchQueue? = DispatchQueue.main,
+    public func requestDataListModel<T:HandyJSON>(_ target:Target,callbackQueue:DispatchQueue? = DispatchQueue.main,
                                           model:T.Type?,success:((_ returnData:[T?],_ msg:String?) -> Void)?,failure:Failure? = nil) -> Cancellable? {
         return self.requestData(target,callbackQueue: callbackQueue,success:{ (response) in
             guard let success = success else { return }
@@ -305,6 +313,23 @@ extension MoyaProvider {
         }
     }
     
+//    直接数组返回
+    @discardableResult
+    public func requestListModel<T:HandyJSON>(_ target:Target,callbackQueue:DispatchQueue? = DispatchQueue.main,
+                                          model:T.Type?,success:((_ returnData:[T?],_ msg:String?) -> Void)?,failure:Failure? = nil) -> Cancellable? {
+        return self.requestData(target,callbackQueue: callbackQueue,success:{ (response) in
+            guard let success = success else { return }
+            do {
+                let modelarray:[T?] = try response.mapListModel(T.self)
+                success(modelarray,"")
+            } catch (let error) {
+                failure?(error as! MoyaError)
+            }
+        }){(error) in
+            guard let failure = failure else { return }
+            failure(error)
+        }
+    }
     @discardableResult
     public func requestData(_ target:Target,callbackQueue:DispatchQueue? = DispatchQueue.main,success: Success? = nil,failure: Failure? = nil) -> Cancellable?{
     

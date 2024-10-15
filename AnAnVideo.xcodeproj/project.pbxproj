@@ -153,6 +153,7 @@
 		16E52D852C98861F00048925 /* AnAnSelectSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E52D842C98861F00048925 /* AnAnSelectSpeedView.swift */; };
 		16E52D872C98867C00048925 /* AnAnSpeedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E52D862C98867C00048925 /* AnAnSpeedTableView.swift */; };
 		16E52D892C9888F500048925 /* AnAnSpeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E52D882C9888F500048925 /* AnAnSpeedTableViewCell.swift */; };
+		16EBA9422CBD22410039932C /* AnAnBarrageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EBA9412CBD22410039932C /* AnAnBarrageType.swift */; };
 		16F60B8D2A166C3800EEB255 /* AnAnDownloadSuccessTableview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B8C2A166C3800EEB255 /* AnAnDownloadSuccessTableview.swift */; };
 		16F60B8F2A166CB000EEB255 /* AnAnDownloadSuccessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B8E2A166CB000EEB255 /* AnAnDownloadSuccessTableViewCell.swift */; };
 		16F60B922A190A3D00EEB255 /* AnAnShortVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B912A190A3D00EEB255 /* AnAnShortVideoViewController.swift */; };
@@ -318,6 +319,7 @@
 		16E52D842C98861F00048925 /* AnAnSelectSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSelectSpeedView.swift; sourceTree = "<group>"; };
 		16E52D862C98867C00048925 /* AnAnSpeedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSpeedTableView.swift; sourceTree = "<group>"; };
 		16E52D882C9888F500048925 /* AnAnSpeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSpeedTableViewCell.swift; sourceTree = "<group>"; };
+		16EBA9412CBD22410039932C /* AnAnBarrageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageType.swift; sourceTree = "<group>"; };
 		16F60B8C2A166C3800EEB255 /* AnAnDownloadSuccessTableview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnDownloadSuccessTableview.swift; sourceTree = "<group>"; };
 		16F60B8E2A166CB000EEB255 /* AnAnDownloadSuccessTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnDownloadSuccessTableViewCell.swift; sourceTree = "<group>"; };
 		16F60B912A190A3D00EEB255 /* AnAnShortVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortVideoViewController.swift; sourceTree = "<group>"; };
@@ -767,6 +769,7 @@
 				16D676672CA538DB00B29249 /* AnAnBarrageMananger.swift */,
 				162E5C552CAC2BA700AC610F /* AnAnBarrageDataModel.swift */,
 				165BC9DD2CB4E230000ED2D1 /* AnAnBarrageInfo.swift */,
+				16EBA9412CBD22410039932C /* AnAnBarrageType.swift */,
 			);
 			path = Barrage;
 			sourceTree = "<group>";
@@ -1192,6 +1195,7 @@
 				162E5C562CAC2BA800AC610F /* AnAnBarrageDataModel.swift in Sources */,
 				16275DE829E84F1F002E0F69 /* AnAnDownloadSuccessViewController.swift in Sources */,
 				16897CD629C6BF8C006BE17E /* AnAnHeaderView.swift in Sources */,
+				16EBA9422CBD22410039932C /* AnAnBarrageType.swift in Sources */,
 				1641E2E429B074DB000D12BC /* AnAnImageView.swift in Sources */,
 				16475FF029BA2D77000B319D /* AnAnHistoryItemCollectionViewCell.swift in Sources */,
 				164761B429C2BD97000B319D /* AnAnSaveTool.swift in Sources */,
@@ -1374,6 +1378,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "安安视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1396,7 +1401,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "AnAnVideo/AnAnVideo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1416,6 +1421,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "安安视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1437,7 +1443,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "AnAnVideo/AnAnVideo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

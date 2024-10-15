@@ -124,7 +124,7 @@ class AnAnRequest{
 //    获取分类筛选项
     func requestCatoryFilterTagData(success:@escaping ([AnAnFilterModel?])->Void) {
         
-        provider.requestListModel(.typeFilter, model: AnAnFilterModel.self) { returnData, msg in
+        provider.requestDataListModel(.typeFilter, model: AnAnFilterModel.self) { returnData, msg in
             success(returnData)
         }failure: { error in
             
@@ -132,7 +132,7 @@ class AnAnRequest{
     }
 //    获取分类数据
     func requestCategoryListData(keys:[String:Any],page:String,rows:String,success:@escaping ([AnAnCategoryDataModel?])->Void) {
-        provider.requestListModel(.typeCats(keys: keys, page: page, rows: rows), model: AnAnCategoryDataModel.self) { returnData, msg in
+        provider.requestDataListModel(.typeCats(keys: keys, page: page, rows: rows), model: AnAnCategoryDataModel.self) { returnData, msg in
             success(returnData)
         }failure: { error in
             
@@ -140,8 +140,8 @@ class AnAnRequest{
     }
     
 //    获取CDN弹幕数据
-    func requestCDNBarrageData(episodeId:String,success:@escaping (AnAnBarrageDataModel?)->Void) {
-        provider.requestModel(.cdnBarrage(episodeId: episodeId), model: AnAnBarrageDataModel.self) { returnData, msg in
+    func requestCDNBarrageData(episodeId:String,success:@escaping ([AnAnBarrageDataModel?])->Void) {
+        provider.requestListModel(.cdnBarrage(episodeId: episodeId), model: AnAnBarrageDataModel.self) { returnData, msg in
             success(returnData)
         }
     }
