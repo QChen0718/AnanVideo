@@ -111,6 +111,7 @@
 		16C671A029B78653005AF603 /* AnAnHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C6719F29B78653005AF603 /* AnAnHistoryCollectionViewCell.swift */; };
 		16C671A229B78675005AF603 /* AnAnMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C671A129B78675005AF603 /* AnAnMenuCollectionViewCell.swift */; };
 		16C671A529B78BFD005AF603 /* AnAnVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C671A329B786D9005AF603 /* AnAnVipView.swift */; };
+		16CFE3B52CC138650066C22C /* AnAnBarrageBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CFE3B42CC138650066C22C /* AnAnBarrageBtn.swift */; };
 		16D676592CA40DFC00B29249 /* AnAnBarrageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D676582CA40DFC00B29249 /* AnAnBarrageModel.swift */; };
 		16D676652CA537FF00B29249 /* AnAnBarrageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D676642CA537FF00B29249 /* AnAnBarrageView.swift */; };
 		16D676682CA538DB00B29249 /* AnAnBarrageMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D676672CA538DB00B29249 /* AnAnBarrageMananger.swift */; };
@@ -275,6 +276,7 @@
 		16C6719F29B78653005AF603 /* AnAnHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		16C671A129B78675005AF603 /* AnAnMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		16C671A329B786D9005AF603 /* AnAnVipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVipView.swift; sourceTree = "<group>"; };
+		16CFE3B42CC138650066C22C /* AnAnBarrageBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageBtn.swift; sourceTree = "<group>"; };
 		16D676582CA40DFC00B29249 /* AnAnBarrageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageModel.swift; sourceTree = "<group>"; };
 		16D676642CA537FF00B29249 /* AnAnBarrageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageView.swift; sourceTree = "<group>"; };
 		16D676672CA538DB00B29249 /* AnAnBarrageMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageMananger.swift; sourceTree = "<group>"; };
@@ -770,6 +772,7 @@
 				162E5C552CAC2BA700AC610F /* AnAnBarrageDataModel.swift */,
 				165BC9DD2CB4E230000ED2D1 /* AnAnBarrageInfo.swift */,
 				16EBA9412CBD22410039932C /* AnAnBarrageType.swift */,
+				16CFE3B42CC138650066C22C /* AnAnBarrageBtn.swift */,
 			);
 			path = Barrage;
 			sourceTree = "<group>";
@@ -1134,6 +1137,7 @@
 				1647600029BD73DB000B319D /* AnAnJumpPageManager.swift in Sources */,
 				16A0811129B0A78B000DA73C /* AnAnSpreadCollectionViewCell.swift in Sources */,
 				1647600329BE1447000B319D /* AnAnLoginModel.swift in Sources */,
+				16CFE3B52CC138650066C22C /* AnAnBarrageBtn.swift in Sources */,
 				16FF44B42CA65D7600EAD344 /* AnAnBarrageInputView.swift in Sources */,
 				16C671A229B78675005AF603 /* AnAnMenuCollectionViewCell.swift in Sources */,
 				16D8F9B229D00D9A00653BE0 /* AnAnVideoActorCollectionView.swift in Sources */,

@@ -72,6 +72,24 @@ class AnAnBarrageView: UIView {
         AnAnRequest.shared.requestCDNBarrageData(episodeId:videoDetail?.watchInfo?.m3u8?.episodeSid ?? "") {[weak self] modelList in
             guard let `self` else {return}
             self.barrageDataList = modelList
+//            组装弹幕内容
+            DispatchQueue.global().async {
+                var curInfoList:[AnAnBarrageInfo] = []
+                modelList.forEach { model in
+                    let paramsArray = model?.p?.components(separatedBy: ",")
+                    let barrageInfo = AnAnBarrageInfo()
+                    barrageInfo.barrageId = paramsArray?[7]
+                    barrageInfo.timePoint = TimeInterval(paramsArray?.first ?? "")
+                    barrageInfo.barrageColor = paramsArray?[3] ?? ""
+                    barrageInfo.barrageContent = NSMutableAttributedString(string: model?.d ?? "")
+                    barrageInfo.barrageCover = model?.a
+                    curInfoList.append(barrageInfo)
+                }
+                DispatchQueue.main.async {
+                    self.barrageInfoList = curInfoList
+                }
+            }
+            
         }
     }
         
@@ -91,53 +109,92 @@ class AnAnBarrageView: UIView {
     @objc func getPlayTimeBarrageData(){
 //        判断视频是否在加载中
 //        获取当前播放的时间
-       print(playerManagerView?.currentPlayerTime)
-        getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*5)
+        guard var barrageArray = getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*5) else {return}
+//        存在弹幕
+        if !barrageArray.isEmpty {
+//            移除当前获取的弹幕数组中已经展示的弹幕，创建未展示的弹幕数据
+//            let showBarrages = getCurrentShowBarrages()
+//            showBarrages.forEach { barrageInfo in
+//                barrageArray.removeAll { curInfo in
+//                    barrageInfo.barrageId == curInfo.barrageId
+//                }
+//            }
+            barrageArray.forEach { info in
+//                创建弹幕lable展示弹幕
+                createBarrage(barInfo: info)
+            }
+        }
+//        print("===>弹幕数\(barrageArray.count)")
     }
-      
-    func getBarrages(withTimeStart timeStart: Double, timeLength: CGFloat) -> [AnAnBarrageType]? {
-//        guard let allBarrages = playerDelegate?.playerModel.barrageManager.allBarrages, !allBarrages.isEmpty else {
-//            return nil
-//        }
-//          
-//        let allStart = allBarrages.first?.timePoint ?? 0
-//        let last = allBarrages.last?.timePoint ?? 0
-//          
-//        // timeStart: 视频播放时间, allStart: 第一条弹幕时间, last: 最后一条弹幕时间
-//        if timeStart + timeLength < allStart || last < timeStart {
-//            // 时间范围在所有弹幕时间范围之外，没有弹幕
-//            return nil
-//        }
-//          
-//        // 弹幕匀速播放, timeStart 开始重 searchIndex 弹幕位置放
-//        var searchIndex: Int = 0
-//        if timeStart > allStart {
-//            searchIndex = Int((timeStart - allStart) / (last - allStart) * CGFloat(allBarrages.count))
-//            if searchIndex >= allBarrages.count {
-//                searchIndex = allBarrages.count - 1
-//            }
-//        }
-//          
-//        // 修正播放timeStart开始播放的弹幕
-//        var barrageType: AnAnBarrageType? = allBarrages[searchIndex]
-//        while barrageType?.timePoint ?? 0 >= timeStart && searchIndex > 0 {
-//            barrageType = allBarrages[searchIndex - 1]
-//            searchIndex -= 1
-//        }
-//        while barrageType?.timePoint ?? 0 < timeStart && searchIndex < allBarrages.count - 1 {
-//            barrageType = allBarrages[searchIndex + 1]
-//            searchIndex += 1
-//        }
+//    创建弹幕
+    func createBarrage(barInfo:AnAnBarrageInfo) {
+        let btn = AnAnBarrageBtn(type: .custom)
+        btn.setAttributedTitle(barInfo.barrageContent, for: .normal)
+        barInfo.barrageBtn = btn
+        barInfo.timerMargin = self.duration
+        for i in 0..<self.maxShowLineCount {
+            barInfo.lineCount = i
+            barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i), width: barInfo.barrageBtn?.mj_size.width ?? 0, height: barInfo.barrageBtn?.mj_size.height ?? 0)
+            self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
+        }
+        
+    }
+    
+//    获取当前屏幕中已经展示的弹幕
+    func getCurrentShowBarrages()->[AnAnBarrageInfo] {
+        var barrages:[AnAnBarrageInfo] = []
+        self.subviews.forEach { view in
+            if view.isKind(of: AnAnBarrageBtn.self) {
+                let barrageBtn = view as! AnAnBarrageBtn
+                barrages.append(barrageBtn.barrageInfo ?? AnAnBarrageInfo())
+            }
+        }
+        return barrages
+    }
+//    获取时间段内的弹幕数
+    func getBarrages(withTimeStart timeStart: Double, timeLength: CGFloat) -> [AnAnBarrageInfo]? {
+        if self.barrageInfoList.isEmpty {
+            return []
+        }
+//
+        let allStart = barrageInfoList.first?.timePoint ?? 0
+        let last = barrageInfoList.last?.timePoint ?? 0
           
-        var array: [AnAnBarrageType] = []
-//        for index in searchIndex..<allBarrages.count {
-//            barrageType = allBarrages[index]
-//            if barrageType?.timePoint ?? 0 < timeStart + timeLength {
-//                array.append(barrageType!)
-//            } else {
-//                break
-//            }
-//        }
+        // timeStart: 视频播放时间, allStart: 第一条弹幕时间, last: 最后一条弹幕时间
+        if timeStart + timeLength < allStart || last < timeStart {
+            // 时间范围在所有弹幕时间范围之外，没有弹幕
+            return nil
+        }
+          
+        // 弹幕匀速播放, timeStart 开始重 searchIndex 弹幕位置放
+        var searchIndex: Int = 0
+        if timeStart > allStart {
+            searchIndex = Int((timeStart - allStart) / (last - allStart) * CGFloat(barrageInfoList.count))
+            if searchIndex >= barrageInfoList.count {
+                searchIndex = barrageInfoList.count - 1
+            }
+        }
+          
+        // 修正播放timeStart开始播放的弹幕
+        var barrageType: AnAnBarrageInfo? = barrageInfoList[searchIndex]
+        while barrageType?.timePoint ?? 0 >= timeStart && searchIndex > 0 {
+            barrageType = barrageInfoList[searchIndex - 1]
+            searchIndex -= 1
+        }
+        while barrageType?.timePoint ?? 0 < timeStart && searchIndex < barrageInfoList.count - 1 {
+            barrageType = barrageInfoList[searchIndex + 1]
+            searchIndex += 1
+        }
+          
+        var array: [AnAnBarrageInfo] = []
+        for index in searchIndex..<barrageInfoList.count {
+            barrageType = barrageInfoList[index]
+            if barrageType?.timePoint ?? 0 < timeStart + timeLength {
+                array.append(barrageType!)
+            } else {
+                break
+            }
+        }
           
         return array
     }
