@@ -14,7 +14,7 @@ class AnAnBarrageView: UIView {
 //    弹幕数据
     var barrageInfoList:[AnAnBarrageInfo] = []
 //    弹幕动画时间
-    var duration:CGFloat = 2
+    var duration:CGFloat = 20
 //    弹幕弹道高度
     var lineHeight:CGFloat = 20
 //    弹幕弹道之间的间距
@@ -47,7 +47,10 @@ class AnAnBarrageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_000000,alpha: 0.5)
-        
+        let info = AnAnBarrageInfo()
+        info.barrageContent = NSMutableAttributedString(string: "弹幕开始了")
+        info.timerMargin = 0.3
+        createBarrage(barInfo: info)
     }
     
     var videoDetail:AnAnDetailModel?{
@@ -129,14 +132,20 @@ class AnAnBarrageView: UIView {
 //    创建弹幕
     func createBarrage(barInfo:AnAnBarrageInfo) {
         let btn = AnAnBarrageBtn(type: .custom)
+        btn.setTitleColor(.white, for: .normal)
+        btn.layer.borderWidth = 1
+        btn.layer.borderColor = UIColor.white.cgColor
+        btn.layer.cornerRadius = 5
         btn.setAttributedTitle(barInfo.barrageContent, for: .normal)
+        self.addSubview(btn)
+        btn.frame = CGRectMake(AnAnAppDevice.an_screenWidth(), 40, 100, 30)
         barInfo.barrageBtn = btn
         barInfo.timerMargin = self.duration
-        for i in 0..<self.maxShowLineCount {
-            barInfo.lineCount = i
-            barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i), width: barInfo.barrageBtn?.mj_size.width ?? 0, height: barInfo.barrageBtn?.mj_size.height ?? 0)
+//        for i in 0..<self.maxShowLineCount {
+//            barInfo.lineCount = i
+//            barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) , width: barInfo.barrageBtn?.mj_size.width ?? 0, height: barInfo.barrageBtn?.mj_size.height ?? 0)
             self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
-        }
+//        }
         
     }
     
@@ -209,7 +218,8 @@ class AnAnBarrageView: UIView {
 //        请求弹幕数据
         requestBarrageListData()
         playBarrage()
-        createTimer()
+//        createTimer()
+        
         isPlaying = true
         isPauseing = false
     }
@@ -250,14 +260,15 @@ class AnAnBarrageView: UIView {
 //    弹幕播放动画
     func performAnimationWithDuration(duration:TimeInterval,info:AnAnBarrageInfo) {
         guard let label = info.barrageBtn else {return}
-        let endFrame = CGRect(x: -(label.frame.size.width), y: label.frame.origin.y, width: label.frame.size.width, height: label.frame.size.height)
-        self.insertSubview(label, at: 0)
-        if label.layer.animationKeys()?.count != 0 {
-//            已经在运行动画了
-            return
-        }
-        UIView.animate(withDuration: duration, delay: 0,options: .curveLinear) {
-            label.frame = endFrame
+        
+//        let endFrame = CGRect(x: -(label.frame.size.width), y: label.frame.origin.y, width: label.frame.size.width, height: label.frame.size.height)
+        
+//        if label.layer.animationKeys()?.count != 0 {
+////            已经在运行动画了
+//            return
+//        }
+        UIView.animate(withDuration: 10, delay: 0,options: .curveLinear) {
+            label.frame = CGRect(x: -AnAnAppDevice.an_screenWidth(), y: 40, width: 100, height: 30)
         }completion: { finished in
             if finished {
                 label.removeFromSuperview()
