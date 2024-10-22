@@ -47,10 +47,6 @@ class AnAnBarrageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_000000,alpha: 0.5)
-        let info = AnAnBarrageInfo()
-        info.barrageContent = NSMutableAttributedString(string: "弹幕开始了")
-        info.timerMargin = 0.3
-        createBarrage(barInfo: info)
     }
     
     var videoDetail:AnAnDetailModel?{
@@ -116,34 +112,37 @@ class AnAnBarrageView: UIView {
 //        存在弹幕
         if !barrageArray.isEmpty {
 //            移除当前获取的弹幕数组中已经展示的弹幕，创建未展示的弹幕数据
-//            let showBarrages = getCurrentShowBarrages()
-//            showBarrages.forEach { barrageInfo in
-//                barrageArray.removeAll { curInfo in
-//                    barrageInfo.barrageId == curInfo.barrageId
-//                }
-//            }
-            barrageArray.forEach { info in
+            let showBarrages = getCurrentShowBarrages()
+            showBarrages.forEach { barrageInfo in
+                barrageArray.removeAll { curInfo in
+                    barrageInfo.barrageId == curInfo.barrageId
+                }
+            }
+            for i in 0..<barrageArray.count {
 //                创建弹幕lable展示弹幕
-                createBarrage(barInfo: info)
+                createBarrage(barInfo: barrageArray[i],i: CGFloat(i))
             }
         }
 //        print("===>弹幕数\(barrageArray.count)")
     }
 //    创建弹幕
-    func createBarrage(barInfo:AnAnBarrageInfo) {
+    func createBarrage(barInfo:AnAnBarrageInfo,i:CGFloat) {
         let btn = AnAnBarrageBtn(type: .custom)
         btn.setTitleColor(.white, for: .normal)
         btn.layer.borderWidth = 1
         btn.layer.borderColor = UIColor.white.cgColor
         btn.layer.cornerRadius = 5
+        btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
         btn.setAttributedTitle(barInfo.barrageContent, for: .normal)
         self.addSubview(btn)
-        btn.frame = CGRectMake(AnAnAppDevice.an_screenWidth(), 40, 100, 30)
+//        btn.frame = CGRectMake(AnAnAppDevice.an_screenWidth(), 40, 100, 30)
+        
         barInfo.barrageBtn = btn
         barInfo.timerMargin = self.duration
+        
 //        for i in 0..<self.maxShowLineCount {
-//            barInfo.lineCount = i
-//            barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) , width: barInfo.barrageBtn?.mj_size.width ?? 0, height: barInfo.barrageBtn?.mj_size.height ?? 0)
+        barInfo.lineCount = Int(i)
+        barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * i + 44 , width: calculateStringWidth(string: barInfo.barrageContent?.string ?? "",font: .systemFont(ofSize: 15, weight: .regular)), height: 30)
             self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
 //        }
         
@@ -218,8 +217,7 @@ class AnAnBarrageView: UIView {
 //        请求弹幕数据
         requestBarrageListData()
         playBarrage()
-//        createTimer()
-        
+        createTimer()
         isPlaying = true
         isPauseing = false
     }
@@ -261,14 +259,14 @@ class AnAnBarrageView: UIView {
     func performAnimationWithDuration(duration:TimeInterval,info:AnAnBarrageInfo) {
         guard let label = info.barrageBtn else {return}
         
-//        let endFrame = CGRect(x: -(label.frame.size.width), y: label.frame.origin.y, width: label.frame.size.width, height: label.frame.size.height)
+        let endFrame = CGRect(x: -(label.frame.size.width), y: label.frame.origin.y, width: label.frame.size.width, height: label.frame.size.height)
         
 //        if label.layer.animationKeys()?.count != 0 {
 ////            已经在运行动画了
 //            return
 //        }
-        UIView.animate(withDuration: 10, delay: 0,options: .curveLinear) {
-            label.frame = CGRect(x: -AnAnAppDevice.an_screenWidth(), y: 40, width: 100, height: 30)
+        UIView.animate(withDuration: duration, delay: 0,options: .curveLinear) {
+            label.frame = endFrame
         }completion: { finished in
             if finished {
                 label.removeFromSuperview()
@@ -277,5 +275,20 @@ class AnAnBarrageView: UIView {
                 }
             }
         }
+    }
+    
+//    计算文字内容大小
+    func calculateStringWidth(string: String, font: UIFont) -> CGFloat {
+        // 创建一个包含所需属性的字典
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: UIColor.black  // 可以根据需要设置其他属性，例如颜色
+        ]
+          
+        // 使用 NSString 的 size(withAttributes:) 方法计算字符串的大小
+        let size = string.size(withAttributes: attributes)
+          
+        // 返回宽度
+        return size.width
     }
 }
