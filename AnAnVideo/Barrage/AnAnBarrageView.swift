@@ -279,10 +279,6 @@ class AnAnBarrageView: UIView {
         
         let endFrame = CGRect(x: -(label.frame.size.width), y: label.frame.origin.y, width: label.frame.size.width, height: label.frame.size.height)
         
-//        if label.layer.animationKeys()?.count != 0 {
-////            已经在运行动画了
-//            return
-//        }
         UIView.animate(withDuration: duration, delay: 0,options: .curveLinear) {
             label.frame = endFrame
         }completion: { finished in
@@ -303,8 +299,9 @@ class AnAnBarrageView: UIView {
             return false
         }
         guard let firstContent = info?.barrageContent?.string else { return false}
-        let curSize = calculateStringWidth(string: firstContent,font: .systemFont(ofSize: 12, weight: .regular))
+        let curSize = calculateStringWidth(string: firstContent,font: .systemFont(ofSize: 15, weight: .regular))
         let firstSpeed = barragePlaySpeed(w: curSize)
+        let timer = curSize/firstSpeed
         let lastSpeed = barragePlaySpeed(w: lastW)
         let firstRight = (info?.timerMargin ?? 0)*firstSpeed
 
@@ -313,6 +310,7 @@ class AnAnBarrageView: UIView {
         }
 //        两个弹幕之间的间隔
         if self.frame.size.width - firstRight > 10 {
+//            前一个弹幕的速度要快后一个弹幕的速度，这样才能不会碰撞
             if lastSpeed <= firstSpeed {
                 return false
             }else{

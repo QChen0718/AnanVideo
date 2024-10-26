@@ -44,11 +44,38 @@ class AnAnBarrageInputView: UIView {
         return tap
     }()
     
+    private lazy var colorSetBtn:UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "ic_danmu_color_press"), for: .normal)
+        btn.addTarget(self, action: #selector(colorsetClick), for: .touchUpInside)
+        return btn
+    }()
+    
+    private lazy var colorSetView:AnAnBarrageColorView = {
+       let view = AnAnBarrageColorView()
+        view.isHidden = true
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.hexadecimalColor(hexadecimal: "#000000",alpha: 0.8)
         addGestureRecognizer(tapGesture)
+        addSubview(colorSetBtn)
         addSubview(barrageInputBgView)
+        addSubview(colorSetView)
+        colorSetBtn.snp.makeConstraints { make in
+            make.leading.equalTo(40)
+            make.bottom.equalToSuperview()
+            make.width.equalTo(27)
+            make.height.equalTo(36)
+        }
+        
+        colorSetView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        
         barrageInputBgView.addSubview(barrageTextField)
         barrageInputBgView.addSubview(sendBtn)
         
@@ -79,6 +106,11 @@ class AnAnBarrageInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func colorsetClick(){
+        colorSetView.isHidden = false
+        barrageTextField.resignFirstResponder()
+    }
+    
     @objc func sendBtnClick(){
         sendBarrageBlock?(barrageTextField.text ?? "")
     }
@@ -95,8 +127,14 @@ class AnAnBarrageInputView: UIView {
               
             // 使用keyboardHeight变量进行你的逻辑处理
             print("Keyboard Height: \(keyboardHeight)")
+            self.colorSetView.snp.updateConstraints { make in
+                make.height.equalTo(keyboardHeight)
+            }
             UIView.animate(withDuration: 0.3) {
                 self.barrageInputBgView.snp.updateConstraints { make in
+                    make.bottom.equalToSuperview().inset(keyboardHeight+10)
+                }
+                self.colorSetBtn.snp.updateConstraints { make in
                     make.bottom.equalToSuperview().inset(keyboardHeight+10)
                 }
                 self.layoutIfNeeded()
@@ -107,11 +145,16 @@ class AnAnBarrageInputView: UIView {
     @objc func keyboardWillHide(_ notification: Notification) {
         // 这里可以处理键盘隐藏后的逻辑
         print("Keyboard will hide")
-        UIView.animate(withDuration: 0.3) {
-            self.barrageInputBgView.snp.updateConstraints { make in
-                make.bottom.equalToSuperview()
+        if colorSetView.isHidden {
+            UIView.animate(withDuration: 0.3) {
+                self.barrageInputBgView.snp.updateConstraints { make in
+                    make.bottom.equalToSuperview()
+                }
+                self.colorSetBtn.snp.updateConstraints { make in
+                    make.bottom.equalToSuperview()
+                }
+                self.layoutIfNeeded()
             }
-            self.layoutIfNeeded()
         }
     }
     

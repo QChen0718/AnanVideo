@@ -62,6 +62,7 @@
 		164761B229C2BCBC000B319D /* AnAnUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164761B129C2BCBC000B319D /* AnAnUserData.swift */; };
 		164761B429C2BD97000B319D /* AnAnSaveTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164761B329C2BD97000B319D /* AnAnSaveTool.swift */; };
 		165BC9DE2CB4E230000ED2D1 /* AnAnBarrageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165BC9DD2CB4E230000ED2D1 /* AnAnBarrageInfo.swift */; };
+		16637CD32CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16637CD22CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift */; };
 		167451502C931576005E1D58 /* AnAnBarrageOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */; };
 		1683D7E02A3F592000B93354 /* AnAnShortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */; };
 		16897C6E29C3231A006BE17E /* AnAnVideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */; };
@@ -226,6 +227,7 @@
 		164761B129C2BCBC000B319D /* AnAnUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnUserData.swift; sourceTree = "<group>"; };
 		164761B329C2BD97000B319D /* AnAnSaveTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSaveTool.swift; sourceTree = "<group>"; };
 		165BC9DD2CB4E230000ED2D1 /* AnAnBarrageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageInfo.swift; sourceTree = "<group>"; };
+		16637CD22CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageColorItemCell.swift; sourceTree = "<group>"; };
 		1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageOpenView.swift; sourceTree = "<group>"; };
 		1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortModel.swift; sourceTree = "<group>"; };
 		16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -914,6 +916,7 @@
 				16D8F97E29CB1DC100653BE0 /* AnAnEpisodeCollectionViewCell.swift */,
 				16D8F98229CB1E0E00653BE0 /* AnAnQualityTableViewCell.swift */,
 				16E52D882C9888F500048925 /* AnAnSpeedTableViewCell.swift */,
+				16637CD22CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1153,6 +1156,7 @@
 				1641E2E829B07B9F000D12BC /* AnAnLabel.swift in Sources */,
 				16D8458729A22EE400B4EC3E /* ColorNameManager.swift in Sources */,
 				16C6719E29B7862F005AF603 /* AnAnHeaderCollectionViewCell.swift in Sources */,
+				16637CD32CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift in Sources */,
 				16897CF129C8B5C5006BE17E /* AnAnDetailViewController.swift in Sources */,
 				1621594329D5DF4F00B1A29A /* AnAnCustomSlider.swift in Sources */,
 				16E52D852C98861F00048925 /* AnAnSelectSpeedView.swift in Sources */,
