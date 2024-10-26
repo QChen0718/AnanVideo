@@ -15,7 +15,7 @@ class AnAnBarrageInfo: NSObject {
 //    弹幕之间时间间隔
     var timerMargin:TimeInterval?
 //    弹幕并发条数
-    var lineCount:Int?
+    var lineCount:Int = 0
 //    弹幕id
     var barrageId:String?
 //    时间戳

@@ -14,13 +14,15 @@ class AnAnBarrageView: UIView {
 //    弹幕数据
     var barrageInfoList:[AnAnBarrageInfo] = []
 //    弹幕动画时间
-    var duration:CGFloat = 20
+    var duration:CGFloat = 7.5
 //    弹幕弹道高度
-    var lineHeight:CGFloat = 20
+    var lineHeight:CGFloat = 30
 //    弹幕弹道之间的间距
     var lineMargin:CGFloat = 5
 //    弹幕弹道最大行数
-    var maxShowLineCount:Int = 10
+    var maxShowLineCount:Int = 3
+//    记录轨道上是否有弹幕
+    var lineDict:[Int:Any] = [:]
 //    时间间隔
     let timeMargin:TimeInterval = 0.08
 //    当前播放器
@@ -86,6 +88,7 @@ class AnAnBarrageView: UIView {
                 }
                 DispatchQueue.main.async {
                     self.barrageInfoList = curInfoList
+//                    self.getPlayTimeBarrageDatatest()
                 }
             }
             
@@ -109,6 +112,7 @@ class AnAnBarrageView: UIView {
 //        判断视频是否在加载中
 //        获取当前播放的时间
         guard var barrageArray = getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*5) else {return}
+        
 //        存在弹幕
         if !barrageArray.isEmpty {
 //            移除当前获取的弹幕数组中已经展示的弹幕，创建未展示的弹幕数据
@@ -120,31 +124,45 @@ class AnAnBarrageView: UIView {
             }
             for i in 0..<barrageArray.count {
 //                创建弹幕lable展示弹幕
-                createBarrage(barInfo: barrageArray[i],i: CGFloat(i))
+                createBarrage(barInfo: barrageArray[i])
             }
         }
 //        print("===>弹幕数\(barrageArray.count)")
     }
 //    创建弹幕
-    func createBarrage(barInfo:AnAnBarrageInfo,i:CGFloat) {
+    func createBarrage(barInfo:AnAnBarrageInfo) {
         let btn = AnAnBarrageBtn(type: .custom)
         btn.setTitleColor(.white, for: .normal)
         btn.layer.borderWidth = 1
         btn.layer.borderColor = UIColor.white.cgColor
         btn.layer.cornerRadius = 5
         btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
+        btn.titleEdgeInsets = UIEdgeInsets(top: 4, left: 5, bottom: 4, right: 5)
         btn.setAttributedTitle(barInfo.barrageContent, for: .normal)
         self.addSubview(btn)
-//        btn.frame = CGRectMake(AnAnAppDevice.an_screenWidth(), 40, 100, 30)
-        
         barInfo.barrageBtn = btn
-        barInfo.timerMargin = self.duration
+        barInfo.timerMargin = 5
         
-//        for i in 0..<self.maxShowLineCount {
-        barInfo.lineCount = Int(i)
-        barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * i + 44 , width: calculateStringWidth(string: barInfo.barrageContent?.string ?? "",font: .systemFont(ofSize: 15, weight: .regular)), height: 30)
-            self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
-//        }
+        let width = calculateStringWidth(string: barInfo.barrageContent?.string ?? "",font: .systemFont(ofSize: 15, weight: .regular))
+        for i in 0..<self.maxShowLineCount {
+            let oldInfo = lineDict[i]
+            if lineDict[i] == nil {
+                barInfo.lineCount = i
+                barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) + 44 , width: width, height: lineHeight)
+                
+                    self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
+                break
+            }
+            if !judgeIsRunintoWithFirstDanmakuInfo(info: oldInfo as? AnAnBarrageInfo, lastW: width) {
+                barInfo.lineCount = i
+                barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) + 44 , width: width, height: lineHeight)
+                    self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
+                break
+            }else if (i == maxShowLineCount-1){
+                btn.removeFromSuperview()
+            }
+        }
+        lineDict[barInfo.lineCount] = barInfo
         
     }
     
@@ -273,8 +291,43 @@ class AnAnBarrageView: UIView {
                 self.barrageInfoList.removeAll { model in
                     return model.barrageId == info.barrageId
                 }
+//                销毁已经动画结束的弹幕，在弹幕轨道上创建新的弹幕
+                info.barrageBtn = nil
             }
         }
+    }
+    
+//    弹幕碰撞检测，防止弹幕重叠在一起
+    func judgeIsRunintoWithFirstDanmakuInfo(info:AnAnBarrageInfo?,lastW:CGFloat) -> Bool {
+        if info?.barrageBtn == nil {
+            return false
+        }
+        guard let firstContent = info?.barrageContent?.string else { return false}
+        let curSize = calculateStringWidth(string: firstContent,font: .systemFont(ofSize: 12, weight: .regular))
+        let firstSpeed = barragePlaySpeed(w: curSize)
+        let lastSpeed = barragePlaySpeed(w: lastW)
+        let firstRight = (info?.timerMargin ?? 0)*firstSpeed
+
+        if (info?.timerMargin ?? 0) <= 1 {
+            return false
+        }
+//        两个弹幕之间的间隔
+        if self.frame.size.width - firstRight > 10 {
+            if lastSpeed <= firstSpeed {
+                return false
+            }else{
+                let lastEndLeft = self.frame.size.width - lastSpeed * (info?.timerMargin ?? 0)
+                if lastEndLeft >= 3 {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+//    计算弹幕速度
+    func barragePlaySpeed(w:CGFloat) -> CGFloat {
+        return (self.bounds.size.width + w)/duration;
     }
     
 //    计算文字内容大小
@@ -289,6 +342,6 @@ class AnAnBarrageView: UIView {
         let size = string.size(withAttributes: attributes)
           
         // 返回宽度
-        return size.width
+        return size.width+10
     }
 }
