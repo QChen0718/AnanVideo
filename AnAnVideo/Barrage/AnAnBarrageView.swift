@@ -22,7 +22,9 @@ class AnAnBarrageView: UIView {
 //    弹幕弹道最大行数
     var maxShowLineCount:Int = 3
 //    记录轨道上是否有弹幕
-    var lineDict:[Int:Any] = [:]
+    var lineDict:[Int:AnAnBarrageInfo] = [:]
+//    记录时间段的弹幕数
+    var subBarrageInfoList:[AnAnBarrageInfo] = []
 //    时间间隔
     let timeMargin:TimeInterval = 0.08
 //    当前播放器
@@ -111,6 +113,13 @@ class AnAnBarrageView: UIView {
     @objc func getPlayTimeBarrageData(){
 //        判断视频是否在加载中
 //        获取当前播放的时间
+        
+        subBarrageInfoList.forEach { info in
+            guard var leftTime = info.timerMargin else {return}
+            leftTime -= timeMargin
+            info.timerMargin = leftTime
+        }
+        
         guard var barrageArray = getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*5) else {return}
         
 //        存在弹幕
@@ -122,9 +131,10 @@ class AnAnBarrageView: UIView {
                     barrageInfo.barrageId == curInfo.barrageId
                 }
             }
-            for i in 0..<barrageArray.count {
+            let uniqueArray = Array(Set(barrageArray))
+            for i in 0..<uniqueArray.count {
 //                创建弹幕lable展示弹幕
-                createBarrage(barInfo: barrageArray[i])
+                createBarrage(barInfo: uniqueArray[i])
             }
         }
 //        print("===>弹幕数\(barrageArray.count)")
@@ -141,7 +151,7 @@ class AnAnBarrageView: UIView {
         btn.setAttributedTitle(barInfo.barrageContent, for: .normal)
         self.addSubview(btn)
         barInfo.barrageBtn = btn
-        barInfo.timerMargin = 5
+        barInfo.timerMargin = duration
         
         let width = calculateStringWidth(string: barInfo.barrageContent?.string ?? "",font: .systemFont(ofSize: 15, weight: .regular))
         for i in 0..<self.maxShowLineCount {
@@ -153,7 +163,7 @@ class AnAnBarrageView: UIView {
                     self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
                 break
             }
-            if !judgeIsRunintoWithFirstDanmakuInfo(info: oldInfo as? AnAnBarrageInfo, lastW: width) {
+            if !judgeIsRunintoWithFirstDanmakuInfo(info: oldInfo, lastW: width) {
                 barInfo.lineCount = i
                 barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) + 44 , width: width, height: lineHeight)
                     self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
@@ -163,7 +173,7 @@ class AnAnBarrageView: UIView {
             }
         }
         lineDict[barInfo.lineCount] = barInfo
-        
+        subBarrageInfoList.append(barInfo)
     }
     
 //    获取当前屏幕中已经展示的弹幕
@@ -284,11 +294,11 @@ class AnAnBarrageView: UIView {
         }completion: { finished in
             if finished {
                 label.removeFromSuperview()
-                self.barrageInfoList.removeAll { model in
-                    return model.barrageId == info.barrageId
-                }
+                
 //                销毁已经动画结束的弹幕，在弹幕轨道上创建新的弹幕
-                info.barrageBtn = nil
+                self.subBarrageInfoList.removeAll { subinfo in
+                    return subinfo.barrageId == info.barrageId
+                }
             }
         }
     }
@@ -301,7 +311,7 @@ class AnAnBarrageView: UIView {
         guard let firstContent = info?.barrageContent?.string else { return false}
         let curSize = calculateStringWidth(string: firstContent,font: .systemFont(ofSize: 15, weight: .regular))
         let firstSpeed = barragePlaySpeed(w: curSize)
-        let timer = curSize/firstSpeed
+        
         let lastSpeed = barragePlaySpeed(w: lastW)
         let firstRight = (info?.timerMargin ?? 0)*firstSpeed
 
@@ -309,8 +319,8 @@ class AnAnBarrageView: UIView {
             return false
         }
 //        两个弹幕之间的间隔
-        if self.frame.size.width - firstRight > 10 {
-//            前一个弹幕的速度要快后一个弹幕的速度，这样才能不会碰撞
+        if self.frame.size.width - firstRight > 20 {
+//            前一个弹幕的速度要快后一个弹幕的速度，这样才能不会碰撞遮挡
             if lastSpeed <= firstSpeed {
                 return false
             }else{
