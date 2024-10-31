@@ -158,22 +158,28 @@ class AnAnBarrageView: UIView {
             let oldInfo = lineDict[i]
             if lineDict[i] == nil {
                 barInfo.lineCount = i
+                lineDict[barInfo.lineCount] = barInfo
+                subBarrageInfoList.append(barInfo)
                 barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) + 44 , width: width, height: lineHeight)
                 
                     self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
                 break
             }
-            if !judgeIsRunintoWithFirstDanmakuInfo(info: oldInfo, lastW: width) {
+            if !judgeIsRunintoWithFirstDanmakuInfo(info: oldInfo, lastInfo: barInfo) {
                 barInfo.lineCount = i
+                lineDict[barInfo.lineCount] = barInfo
+                subBarrageInfoList.append(barInfo)
                 barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) + 44 , width: width, height: lineHeight)
                     self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
                 break
             }else if (i == maxShowLineCount-1){
                 btn.removeFromSuperview()
+                barrageInfoList.removeAll { info in
+                    return info.barrageId == barInfo.barrageId;
+                }
             }
         }
-        lineDict[barInfo.lineCount] = barInfo
-        subBarrageInfoList.append(barInfo)
+        
     }
     
 //    获取当前屏幕中已经展示的弹幕
@@ -289,6 +295,12 @@ class AnAnBarrageView: UIView {
         
         let endFrame = CGRect(x: -(label.frame.size.width), y: label.frame.origin.y, width: label.frame.size.width, height: label.frame.size.height)
         
+//        if ([label.layer.animationKeys].count != 0) {
+//            print("====>\(label.layer.animationKeys)")
+//            //已经在运行动画了
+//            return;
+//        }
+        
         UIView.animate(withDuration: duration, delay: 0,options: .curveLinear) {
             label.frame = endFrame
         }completion: { finished in
@@ -304,15 +316,16 @@ class AnAnBarrageView: UIView {
     }
     
 //    弹幕碰撞检测，防止弹幕重叠在一起
-    func judgeIsRunintoWithFirstDanmakuInfo(info:AnAnBarrageInfo?,lastW:CGFloat) -> Bool {
+    func judgeIsRunintoWithFirstDanmakuInfo(info:AnAnBarrageInfo?,lastInfo:AnAnBarrageInfo?) -> Bool {
         if info?.barrageBtn == nil {
             return false
         }
-        guard let firstContent = info?.barrageContent?.string else { return false}
+        guard let firstContent = info?.barrageContent?.string else { return true}
+        guard let lastContent = lastInfo?.barrageContent?.string else { return true}
         let curSize = calculateStringWidth(string: firstContent,font: .systemFont(ofSize: 15, weight: .regular))
+        let lastSize = calculateStringWidth(string: lastContent,font: .systemFont(ofSize: 15, weight: .regular))
         let firstSpeed = barragePlaySpeed(w: curSize)
-        
-        let lastSpeed = barragePlaySpeed(w: lastW)
+        let lastSpeed = barragePlaySpeed(w: lastSize)
         let firstRight = (info?.timerMargin ?? 0)*firstSpeed
 
         if (info?.timerMargin ?? 0) <= 1 {
@@ -321,11 +334,13 @@ class AnAnBarrageView: UIView {
 //        两个弹幕之间的间隔
         if self.frame.size.width - firstRight > 20 {
 //            前一个弹幕的速度要快后一个弹幕的速度，这样才能不会碰撞遮挡
+            
             if lastSpeed <= firstSpeed {
                 return false
-            }else{
+            }
+            else{
                 let lastEndLeft = self.frame.size.width - lastSpeed * (info?.timerMargin ?? 0)
-                if lastEndLeft >= 3 {
+                if lastEndLeft >= 23 {
                     return false
                 }
             }
