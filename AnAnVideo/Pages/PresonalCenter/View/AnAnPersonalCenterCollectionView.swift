@@ -140,8 +140,10 @@ extension AnAnPersonalCenterCollectionView:UICollectionViewDelegate,UICollection
                 print("我的追剧")
                 break
             case .MenuTypeHelpFeedback:
+                
                 break
             case .MenuTypeSetting:
+                AnAnJumpPageManager.goToSeetingPage()
                 break
             default:
                 break

@@ -13,6 +13,8 @@
 		161281682CA2C6D9009C9C11 /* AnAnBarrageSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161281672CA2C6D9009C9C11 /* AnAnBarrageSetView.swift */; };
 		1612816A2CA2CB59009C9C11 /* AnAnBarrageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161281692CA2CB59009C9C11 /* AnAnBarrageTableView.swift */; };
 		1612816C2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1612816B2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift */; };
+		161546842CDCCCBE00504909 /* AnAnSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161546832CDCCCBE00504909 /* AnAnSettingViewController.swift */; };
+		161546862CDCCCDA00504909 /* AnAnSettingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161546852CDCCCDA00504909 /* AnAnSettingTable.swift */; };
 		161920E129E01A4700B6668C /* AnAnSeriesCodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161920E029E01A4700B6668C /* AnAnSeriesCodeData.swift */; };
 		1621594329D5DF4F00B1A29A /* AnAnCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621594229D5DF4F00B1A29A /* AnAnCustomSlider.swift */; };
 		16275DD529E69D73002E0F69 /* AnAnNotifacationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16275DD429E69D73002E0F69 /* AnAnNotifacationName.swift */; };
@@ -63,6 +65,10 @@
 		164761B429C2BD97000B319D /* AnAnSaveTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164761B329C2BD97000B319D /* AnAnSaveTool.swift */; };
 		165BC9DE2CB4E230000ED2D1 /* AnAnBarrageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165BC9DD2CB4E230000ED2D1 /* AnAnBarrageInfo.swift */; };
 		16637CD32CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16637CD22CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift */; };
+		1666BC3A2CDA430B00FBC168 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1666BC392CDA430B00FBC168 /* StoreKit.framework */; };
+		16681AA02CDDFD0D004291C8 /* AnAnSettingBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16681A9F2CDDFD0D004291C8 /* AnAnSettingBaseTableViewCell.swift */; };
+		16681AA22CDDFD54004291C8 /* AnAnSettingSwichTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16681AA12CDDFD54004291C8 /* AnAnSettingSwichTableViewCell.swift */; };
+		16681AA42CDDFD8D004291C8 /* AnAnSettingContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16681AA32CDDFD8D004291C8 /* AnAnSettingContentTableViewCell.swift */; };
 		167451502C931576005E1D58 /* AnAnBarrageOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */; };
 		1683D7E02A3F592000B93354 /* AnAnShortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */; };
 		16897C6E29C3231A006BE17E /* AnAnVideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */; };
@@ -177,6 +183,8 @@
 		161281672CA2C6D9009C9C11 /* AnAnBarrageSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageSetView.swift; sourceTree = "<group>"; };
 		161281692CA2CB59009C9C11 /* AnAnBarrageTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageTableView.swift; sourceTree = "<group>"; };
 		1612816B2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageSetItemCell.swift; sourceTree = "<group>"; };
+		161546832CDCCCBE00504909 /* AnAnSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSettingViewController.swift; sourceTree = "<group>"; };
+		161546852CDCCCDA00504909 /* AnAnSettingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSettingTable.swift; sourceTree = "<group>"; };
 		161920E029E01A4700B6668C /* AnAnSeriesCodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnSeriesCodeData.swift; sourceTree = "<group>"; };
 		1621594229D5DF4F00B1A29A /* AnAnCustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnCustomSlider.swift; sourceTree = "<group>"; };
 		16275DD429E69D73002E0F69 /* AnAnNotifacationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnNotifacationName.swift; sourceTree = "<group>"; };
@@ -228,6 +236,10 @@
 		164761B329C2BD97000B319D /* AnAnSaveTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSaveTool.swift; sourceTree = "<group>"; };
 		165BC9DD2CB4E230000ED2D1 /* AnAnBarrageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageInfo.swift; sourceTree = "<group>"; };
 		16637CD22CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageColorItemCell.swift; sourceTree = "<group>"; };
+		1666BC392CDA430B00FBC168 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		16681A9F2CDDFD0D004291C8 /* AnAnSettingBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSettingBaseTableViewCell.swift; sourceTree = "<group>"; };
+		16681AA12CDDFD54004291C8 /* AnAnSettingSwichTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSettingSwichTableViewCell.swift; sourceTree = "<group>"; };
+		16681AA32CDDFD8D004291C8 /* AnAnSettingContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSettingContentTableViewCell.swift; sourceTree = "<group>"; };
 		1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageOpenView.swift; sourceTree = "<group>"; };
 		1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortModel.swift; sourceTree = "<group>"; };
 		16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +357,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1666BC3A2CDA430B00FBC168 /* StoreKit.framework in Frameworks */,
 				FB10DC9F039A6D0F538F7A1C /* Pods_AnAnVideo.framework in Frameworks */,
 				16275DF929EAFA37002E0F69 /* qnlibtitan.a in Frameworks */,
 			);
@@ -353,6 +366,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1615467D2CDCCBE600504909 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				16681A9E2CDDFCF0004291C8 /* Cell */,
+				1615467F2CDCCC1400504909 /* View */,
+				1615467E2CDCCC0200504909 /* Controller */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		1615467E2CDCCC0200504909 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				161546832CDCCCBE00504909 /* AnAnSettingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1615467F2CDCCC1400504909 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				161546852CDCCCDA00504909 /* AnAnSettingTable.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		16275DE029E84E55002E0F69 /* DownloadManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +617,16 @@
 				16F60B9A2A1BBAB500EEB255 /* DownloadDB.swift */,
 			);
 			path = DownloadData;
+			sourceTree = "<group>";
+		};
+		16681A9E2CDDFCF0004291C8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				16681A9F2CDDFD0D004291C8 /* AnAnSettingBaseTableViewCell.swift */,
+				16681AA12CDDFD54004291C8 /* AnAnSettingSwichTableViewCell.swift */,
+				16681AA32CDDFD8D004291C8 /* AnAnSettingContentTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		1683D7DE2A3F590700B93354 /* Model */ = {
@@ -850,6 +899,7 @@
 		16D8457929A225BF00B4EC3E /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				1615467D2CDCCBE600504909 /* Setting */,
 				16F60B902A19075000EEB255 /* Video */,
 				16275DE129E84E85002E0F69 /* Download */,
 				16897C6C29C32256006BE17E /* Detail */,
@@ -961,6 +1011,7 @@
 		6DCB342D94BEC23D36DFF56F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1666BC392CDA430B00FBC168 /* StoreKit.framework */,
 				65D0C7C0891A39FB633D6563 /* Pods_AnAnVideo.framework */,
 			);
 			name = Frameworks;
@@ -1094,6 +1145,7 @@
 				1641E2BC29ACFFED000D12BC /* AnAnMorePhotoCollectionView.swift in Sources */,
 				16897CF329C8B5F5006BE17E /* AnAnCommentViewController.swift in Sources */,
 				16F60B8F2A166CB000EEB255 /* AnAnDownloadSuccessTableViewCell.swift in Sources */,
+				161546862CDCCCDA00504909 /* AnAnSettingTable.swift in Sources */,
 				164761B229C2BCBC000B319D /* AnAnUserData.swift in Sources */,
 				16897CBF29C4A9CF006BE17E /* AnAnHomeActorCollectionViewCell.swift in Sources */,
 				16FF44B72CA6B4C800EAD344 /* AnAnBarrageColorView.swift in Sources */,
@@ -1153,6 +1205,7 @@
 				1641E2CE29AE50A4000D12BC /* AnAnTableSectionView.swift in Sources */,
 				16C6718F29B63846005AF603 /* AnAnBaseModel.swift in Sources */,
 				16275DDB29E7D52A002E0F69 /* AnAnDownloadEpisodePopView.swift in Sources */,
+				16681AA02CDDFD0D004291C8 /* AnAnSettingBaseTableViewCell.swift in Sources */,
 				1641E2E829B07B9F000D12BC /* AnAnLabel.swift in Sources */,
 				16D8458729A22EE400B4EC3E /* ColorNameManager.swift in Sources */,
 				16C6719E29B7862F005AF603 /* AnAnHeaderCollectionViewCell.swift in Sources */,
@@ -1168,6 +1221,7 @@
 				16897CBD29C4A8B6006BE17E /* AnAnActorCollectionView.swift in Sources */,
 				16C671A529B78BFD005AF603 /* AnAnVipView.swift in Sources */,
 				16D8F97929CB0FBB00653BE0 /* AnAnSelectQualityView.swift in Sources */,
+				16681AA42CDDFD8D004291C8 /* AnAnSettingContentTableViewCell.swift in Sources */,
 				16D8458129A2263F00B4EC3E /* AnAnMeViewController.swift in Sources */,
 				161281682CA2C6D9009C9C11 /* AnAnBarrageSetView.swift in Sources */,
 				16275DE629E84F06002E0F69 /* AnAnDownloadViewController.swift in Sources */,
@@ -1177,6 +1231,7 @@
 				163D14C22C89DBD200E8BDFF /* AnAnMAGICCUBETableViewCell.swift in Sources */,
 				161920E129E01A4700B6668C /* AnAnSeriesCodeData.swift in Sources */,
 				16897CFA29C9A8A1006BE17E /* AnAnPlayerBottomView.swift in Sources */,
+				161546842CDCCCBE00504909 /* AnAnSettingViewController.swift in Sources */,
 				16D8F97B29CB1B3F00653BE0 /* AnAnEpisodeCollectionView.swift in Sources */,
 				16D8F9A629CC9CFF00653BE0 /* AnAnDetailEpisodeCollectionView.swift in Sources */,
 				16275DF029E99942002E0F69 /* AnAnDownloadManager.swift in Sources */,
@@ -1237,6 +1292,7 @@
 				16B70ED52C8AE7CE00D2D524 /* AnAnShortVideoCollectionViewCell.swift in Sources */,
 				16C671A029B78653005AF603 /* AnAnHistoryCollectionViewCell.swift in Sources */,
 				16E52D872C98867C00048925 /* AnAnSpeedTableView.swift in Sources */,
+				16681AA22CDDFD54004291C8 /* AnAnSettingSwichTableViewCell.swift in Sources */,
 				1641E2B129ACF86A000D12BC /* AnAnAppDevice.swift in Sources */,
 				167451502C931576005E1D58 /* AnAnBarrageOpenView.swift in Sources */,
 			);

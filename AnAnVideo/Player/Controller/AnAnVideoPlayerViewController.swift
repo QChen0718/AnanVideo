@@ -613,10 +613,12 @@ class AnAnVideoPlayerViewController: UIViewController {
 //            暂停
             playerManagerView?.pausePlayer()
             bottomView.updateBtnStatus = false
+            barragePlayView.pauseBarrage()
         }else {
 //            播放
             playerManagerView?.startPlayer()
             bottomView.updateBtnStatus = true
+            barragePlayView.resumeBarrage()
         }
     }
     

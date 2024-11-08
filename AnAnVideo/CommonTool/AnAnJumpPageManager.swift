@@ -67,4 +67,13 @@ class AnAnJumpPageManager: NSObject {
         vc.isLookDownloading = isLookDownloading
         AnAnJumpPageManager.shared.currentVC?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    static func goToSeetingPage() {
+        let vc = AnAnSettingViewController()
+        AnAnJumpPageManager.shared.currentVC?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    static func backPage(){
+        AnAnJumpPageManager.shared.currentVC?.navigationController?.popViewController(animated: true)
+    }
 }

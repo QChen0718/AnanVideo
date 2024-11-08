@@ -23,6 +23,11 @@ class AnAnUserData {
         let model:AnAnLoginModel? = NSKeyedUnarchiver.unarchiveObject(with: myuserData ?? Data()) as? AnAnLoginModel
         return model
    }
+
+//   移除本地用户信息，退出登录
+    class func removeUserData(){
+        AnAnSaveTool.removeNormalUserDefault(key: "userInfo")
+    }
     
     class var isLogin:Bool{
         if let model = readUserData(){

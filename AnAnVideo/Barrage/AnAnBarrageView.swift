@@ -50,7 +50,7 @@ class AnAnBarrageView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_000000,alpha: 0.5)
+        backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_000000,alpha: 0.0)
     }
     
     var videoDetail:AnAnDetailModel?{
@@ -257,10 +257,40 @@ class AnAnBarrageView: UIView {
     }
 //  暂停弹幕
     func pauseBarrage() {
-        
+        barrageTime?.fireDate = .distantFuture
+            for label in subviews.filter({ $0 is UIButton }) {
+                guard let label = label as? UIButton else { continue }
+                let layer = label.layer
+                var rect = label.frame
+                if let presentationLayer = layer.presentation() {
+                    rect = presentationLayer.frame
+                }
+                label.frame = rect
+                label.layer.removeAllAnimations()
+            }
+            isPauseing = true
+            isPlaying = false
     }
 //  继续弹幕
     func resumeBarrage() {
+        print("barrageViewDebug: resume")
+        guard isPrepared && !isPlaying else {
+            print("barrageViewDebug: resume doing nothing")
+            return
+        }
+      
+        DispatchQueue.main.async {
+            self.subBarrageInfoList.forEach { info in
+                self.performAnimationWithDuration(duration: info.timerMargin ?? 0, info: info)
+                
+            }
+        }
+      
+        let timeMarginSeconds = Double(timeMargin) // 假设timeMargin是一个TimeInterval或者可以转换为TimeInterval的类型
+        let delayTime = DispatchTime.now() + timeMarginSeconds
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            self.barrageTime?.fireDate = .distantPast
+        }
         
     }
 //  停止弹幕
@@ -340,7 +370,7 @@ class AnAnBarrageView: UIView {
             }
             else{
                 let lastEndLeft = self.frame.size.width - lastSpeed * (info?.timerMargin ?? 0)
-                if lastEndLeft >= 23 {
+                if lastEndLeft >= 3 {
                     return false
                 }
             }
