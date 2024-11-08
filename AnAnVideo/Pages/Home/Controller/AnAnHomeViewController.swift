@@ -74,6 +74,7 @@ class AnAnHomeViewController: AnAnBaseViewController {
         btn.clipsToBounds = true
         btn.setTitleColor(UIColor.hexadecimalColor(hexadecimal: An_6877AE), for: .normal)
         btn.titleLabel?.font = UIFont.pingFangRegularWithSize(fontSize: 12)
+        btn.addTarget(self, action: #selector(searchBtnClick), for: .touchUpInside)
         return btn
     }()
     
@@ -96,6 +97,10 @@ class AnAnHomeViewController: AnAnBaseViewController {
         self.addChild(pageControllers)
         createSubviews()
         setSubviewsFrame()
+    }
+    
+    @objc func searchBtnClick(){
+        AnAnJumpPageManager.goToSearchPage()
     }
 
     func createSubviews() {

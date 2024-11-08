@@ -76,4 +76,9 @@ class AnAnJumpPageManager: NSObject {
     static func backPage(){
         AnAnJumpPageManager.shared.currentVC?.navigationController?.popViewController(animated: true)
     }
+    
+    static func goToSearchPage() {
+        let vc = AnAnSearchViewController()
+        AnAnJumpPageManager.shared.currentVC?.navigationController?.pushViewController(vc, animated: true)
+    }
 }
