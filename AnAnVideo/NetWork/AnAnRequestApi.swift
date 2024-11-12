@@ -54,6 +54,10 @@ enum AnAnRequestApi {
     case cdnBarrage(episodeId:String)
 //    实时弹幕
     case newBarrage(params:[String:Any])
+//    搜索top列表
+    case relatedTopList(page:String,rows:String)
+//    热门推荐列表
+    case recommendHotList
 }
 
 extension AnAnRequestApi:TargetType{
@@ -114,14 +118,18 @@ extension AnAnRequestApi:TargetType{
             return "/v1/produce/danmu/EPISODE/" + epId
         case .newBarrage:
             return "/danmu/5.1-version/realTimeList"
+        case .relatedTopList:
+            return "/v3plus/video/amwayRelatedTopList"
+        case .recommendHotList:
+            return "/hot/recommend/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .home,.getCheckCode,.dramaDetail,.dramaDetailSecondary,.dramaDetailIntro,.guessLike,.category,.search,.typeFilter,.getUserInfo,.moviePlayerInfo,.dramaDetailModule,.markEntranceInDetail,.dramaDetailRecommend,.getDownloadInfo,.shortVideoList,.cdnBarrage,.newBarrage:
+        case .home,.getCheckCode,.dramaDetail,.dramaDetailSecondary,.dramaDetailIntro,.guessLike,.category,.search,.typeFilter,.getUserInfo,.moviePlayerInfo,.dramaDetailModule,.markEntranceInDetail,.dramaDetailRecommend,.getDownloadInfo,.shortVideoList,.cdnBarrage,.newBarrage,.recommendHotList:
             return .get
-        case .checkCodelLogin,.loginOut,.typeCats,.dramaFocus:
+        case .checkCodelLogin,.loginOut,.typeCats,.dramaFocus,.relatedTopList:
             return .post
         }
     }
@@ -196,6 +204,9 @@ extension AnAnRequestApi:TargetType{
         case .newBarrage(let params):
             parmeters = params
             break
+        case .relatedTopList(let page, let rows):
+            parmeters["page"] = page
+            parmeters["rows"] = rows
         default:
             break
         }

@@ -17,6 +17,11 @@ class AnAnSearchItemCollectionViewCell: UICollectionViewCell {
         return img
     }()
     
+    lazy var topNumImg:UIImageView = {
+       let img = UIImageView()
+        return img
+    }()
+    
     lazy var topNumLab:UILabel = {
        let lab = UILabel()
         lab.textColor = .white
@@ -50,19 +55,51 @@ class AnAnSearchItemCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         self.contentView.backgroundColor = .white
         self.contentView.addSubview(videoCoverImg)
-        self.videoCoverImg.addSubview(topNumLab)
+        videoCoverImg.addSubview(topNumImg)
+        topNumImg.addSubview(topNumLab)
         videoCoverImg.addSubview(pfLabl)
         contentView.addSubview(videoNameLab)
         contentView.addSubview(videoSubnameLab)
-        let width = floorf((Float(AnAnAppDevice.an_screenWidth())-48)/3)
         videoCoverImg.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
-            make.height.equalTo(141)
-            make.width.equalTo(width)
+            make.height.equalTo(self.mj_size.height - 42)
+        }
+        topNumImg.snp.makeConstraints { make in
+            make.leading.top.equalToSuperview()
+            make.size.equalTo(20)
+        }
+        
+        topNumLab.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        pfLabl.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().inset(2)
+            make.leading.equalToSuperview()
+        }
+        
+        videoNameLab.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(videoCoverImg.snp.bottom).offset(8.5)
+        }
+        
+        videoSubnameLab.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(videoNameLab.snp.bottom).offset(3)
         }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    var recomModel:AnanSearchRecommendDtos?{
+        didSet{
+            videoCoverImg.setImageWith(url: recomModel?.picUrl ?? "")
+            pfLabl.text = recomModel?.score
+            videoNameLab.text = recomModel?.title
+            videoSubnameLab.text = recomModel?.subtitle
+        }
     }
 }

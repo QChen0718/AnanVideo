@@ -173,6 +173,8 @@
 		16F60B992A1BB62600EEB255 /* AnAnDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B982A1BB62600EEB255 /* AnAnDBModel.swift */; };
 		16F60B9B2A1BBAB500EEB255 /* DownloadDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B9A2A1BBAB500EEB255 /* DownloadDB.swift */; };
 		16F60B9D2A1BC43000EEB255 /* AnAnShortVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B9C2A1BC43000EEB255 /* AnAnShortVideoView.swift */; };
+		16FEF3142CE372A800422D2B /* AnAnSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3132CE372A800422D2B /* AnAnSearchModel.swift */; };
+		16FEF3162CE37E1300422D2B /* AnAnHotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3152CE37E1300422D2B /* AnAnHotModel.swift */; };
 		16FF44B42CA65D7600EAD344 /* AnAnBarrageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF44B32CA65D7600EAD344 /* AnAnBarrageInputView.swift */; };
 		16FF44B72CA6B4C800EAD344 /* AnAnBarrageColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF44B62CA6B4C800EAD344 /* AnAnBarrageColorView.swift */; };
 		16FFD08529E2F6B300679682 /* AnAnDragPlayerTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFD08429E2F6B300679682 /* AnAnDragPlayerTimeView.swift */; };
@@ -350,6 +352,8 @@
 		16F60B982A1BB62600EEB255 /* AnAnDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnDBModel.swift; sourceTree = "<group>"; };
 		16F60B9A2A1BBAB500EEB255 /* DownloadDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadDB.swift; sourceTree = "<group>"; };
 		16F60B9C2A1BC43000EEB255 /* AnAnShortVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortVideoView.swift; sourceTree = "<group>"; };
+		16FEF3132CE372A800422D2B /* AnAnSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchModel.swift; sourceTree = "<group>"; };
+		16FEF3152CE37E1300422D2B /* AnAnHotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHotModel.swift; sourceTree = "<group>"; };
 		16FF44B32CA65D7600EAD344 /* AnAnBarrageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageInputView.swift; sourceTree = "<group>"; };
 		16FF44B62CA6B4C800EAD344 /* AnAnBarrageColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageColorView.swift; sourceTree = "<group>"; };
 		16FFD08429E2F6B300679682 /* AnAnDragPlayerTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnDragPlayerTimeView.swift; sourceTree = "<group>"; };
@@ -657,6 +661,8 @@
 		16681AA72CDE1842004291C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				16FEF3132CE372A800422D2B /* AnAnSearchModel.swift */,
+				16FEF3152CE37E1300422D2B /* AnAnHotModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1212,6 +1218,7 @@
 				16897CCC29C5FB03006BE17E /* AnAnVideoDetailCollectionView.swift in Sources */,
 				16D8F97D29CB1CD500653BE0 /* AnAnQualityTableView.swift in Sources */,
 				16A0812329B4C732000DA73C /* AnAnRequest.swift in Sources */,
+				16FEF3162CE37E1300422D2B /* AnAnHotModel.swift in Sources */,
 				16897CC129C58991006BE17E /* AnAnBannerTableViewCell.swift in Sources */,
 				16475FEE29BA2CA3000B319D /* AnAnHistoryCollectionView.swift in Sources */,
 				16897CF529C8B643006BE17E /* AnAnFilmReviewViewController.swift in Sources */,
@@ -1221,6 +1228,7 @@
 				1612816A2CA2CB59009C9C11 /* AnAnBarrageTableView.swift in Sources */,
 				16897CCF29C5FB7C006BE17E /* AnAnDetailModel.swift in Sources */,
 				1641E2EA29B0A253000D12BC /* AnAnCategoryCollectionView.swift in Sources */,
+				16FEF3142CE372A800422D2B /* AnAnSearchModel.swift in Sources */,
 				16475FFB29BCC8A7000B319D /* AnAnLoginViewController.swift in Sources */,
 				16110C0F2CA06B89000E705F /* AnAnluminanceView.swift in Sources */,
 				16D8457229A2212F00B4EC3E /* AnAnBaseViewController.swift in Sources */,

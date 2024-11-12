@@ -151,4 +151,17 @@ class AnAnRequest{
             success(returnData)
         }
     }
+//    获取搜索top列表
+    func requestSearchTopListData(page:Int,rows:Int,success:@escaping((AnAnSearchModel?)->Void)) {
+        provider.requestModel(.relatedTopList(page: "\(page)", rows: "\(rows)"), model: AnAnSearchModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
+    
+//    获取热门推荐列表
+    func requestHotRecommendListData(success:@escaping ([AnAnHotModel?])->Void) {
+        provider.requestDataListModel(.recommendHotList, model: AnAnHotModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
 }
