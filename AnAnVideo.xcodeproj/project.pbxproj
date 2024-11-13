@@ -175,6 +175,17 @@
 		16F60B9D2A1BC43000EEB255 /* AnAnShortVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F60B9C2A1BC43000EEB255 /* AnAnShortVideoView.swift */; };
 		16FEF3142CE372A800422D2B /* AnAnSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3132CE372A800422D2B /* AnAnSearchModel.swift */; };
 		16FEF3162CE37E1300422D2B /* AnAnHotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3152CE37E1300422D2B /* AnAnHotModel.swift */; };
+		16FEF31A2CE479A900422D2B /* AnAnSearchTableview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3192CE479A900422D2B /* AnAnSearchTableview.swift */; };
+		16FEF31C2CE47ACD00422D2B /* AnAnSearchHitoryKeyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF31B2CE47ACD00422D2B /* AnAnSearchHitoryKeyTableViewCell.swift */; };
+		16FEF31E2CE47B3700422D2B /* AnAnHotRecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF31D2CE47B3700422D2B /* AnAnHotRecommendTableViewCell.swift */; };
+		16FEF3202CE47BE300422D2B /* AnAnPageTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF31F2CE47BE300422D2B /* AnAnPageTitleTableViewCell.swift */; };
+		16FEF3222CE47C6F00422D2B /* AnAnSearchHistoryKeyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3212CE47C6F00422D2B /* AnAnSearchHistoryKeyCollectionView.swift */; };
+		16FEF3242CE47EB800422D2B /* AnAnPageTitleCollectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3232CE47EB800422D2B /* AnAnPageTitleCollectionview.swift */; };
+		16FEF3262CE4801000422D2B /* AnAnSearchHistoryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3252CE4801000422D2B /* AnAnSearchHistoryItemCollectionViewCell.swift */; };
+		16FEF3282CE4805800422D2B /* AnAnPageTitleItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3272CE4805800422D2B /* AnAnPageTitleItemCollectionViewCell.swift */; };
+		16FEF32A2CE49F8B00422D2B /* AnAnSearchLinkTableview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF3292CE49F8B00422D2B /* AnAnSearchLinkTableview.swift */; };
+		16FEF32C2CE4A16800422D2B /* AnAnSearchResultNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF32B2CE4A16800422D2B /* AnAnSearchResultNameTableViewCell.swift */; };
+		16FEF32E2CE4A18300422D2B /* AnAnSearchResultVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEF32D2CE4A18300422D2B /* AnAnSearchResultVideoTableViewCell.swift */; };
 		16FF44B42CA65D7600EAD344 /* AnAnBarrageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF44B32CA65D7600EAD344 /* AnAnBarrageInputView.swift */; };
 		16FF44B72CA6B4C800EAD344 /* AnAnBarrageColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF44B62CA6B4C800EAD344 /* AnAnBarrageColorView.swift */; };
 		16FFD08529E2F6B300679682 /* AnAnDragPlayerTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFD08429E2F6B300679682 /* AnAnDragPlayerTimeView.swift */; };
@@ -354,6 +365,17 @@
 		16F60B9C2A1BC43000EEB255 /* AnAnShortVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortVideoView.swift; sourceTree = "<group>"; };
 		16FEF3132CE372A800422D2B /* AnAnSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchModel.swift; sourceTree = "<group>"; };
 		16FEF3152CE37E1300422D2B /* AnAnHotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHotModel.swift; sourceTree = "<group>"; };
+		16FEF3192CE479A900422D2B /* AnAnSearchTableview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchTableview.swift; sourceTree = "<group>"; };
+		16FEF31B2CE47ACD00422D2B /* AnAnSearchHitoryKeyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchHitoryKeyTableViewCell.swift; sourceTree = "<group>"; };
+		16FEF31D2CE47B3700422D2B /* AnAnHotRecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHotRecommendTableViewCell.swift; sourceTree = "<group>"; };
+		16FEF31F2CE47BE300422D2B /* AnAnPageTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnPageTitleTableViewCell.swift; sourceTree = "<group>"; };
+		16FEF3212CE47C6F00422D2B /* AnAnSearchHistoryKeyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchHistoryKeyCollectionView.swift; sourceTree = "<group>"; };
+		16FEF3232CE47EB800422D2B /* AnAnPageTitleCollectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnPageTitleCollectionview.swift; sourceTree = "<group>"; };
+		16FEF3252CE4801000422D2B /* AnAnSearchHistoryItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchHistoryItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		16FEF3272CE4805800422D2B /* AnAnPageTitleItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnPageTitleItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		16FEF3292CE49F8B00422D2B /* AnAnSearchLinkTableview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchLinkTableview.swift; sourceTree = "<group>"; };
+		16FEF32B2CE4A16800422D2B /* AnAnSearchResultNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchResultNameTableViewCell.swift; sourceTree = "<group>"; };
+		16FEF32D2CE4A18300422D2B /* AnAnSearchResultVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchResultVideoTableViewCell.swift; sourceTree = "<group>"; };
 		16FF44B32CA65D7600EAD344 /* AnAnBarrageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageInputView.swift; sourceTree = "<group>"; };
 		16FF44B62CA6B4C800EAD344 /* AnAnBarrageColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageColorView.swift; sourceTree = "<group>"; };
 		16FFD08429E2F6B300679682 /* AnAnDragPlayerTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnAnDragPlayerTimeView.swift; sourceTree = "<group>"; };
@@ -671,6 +693,10 @@
 			isa = PBXGroup;
 			children = (
 				16681AAC2CDE1BCA004291C8 /* AnAnSearchCollectionview.swift */,
+				16FEF3192CE479A900422D2B /* AnAnSearchTableview.swift */,
+				16FEF3212CE47C6F00422D2B /* AnAnSearchHistoryKeyCollectionView.swift */,
+				16FEF3232CE47EB800422D2B /* AnAnPageTitleCollectionview.swift */,
+				16FEF3292CE49F8B00422D2B /* AnAnSearchLinkTableview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -678,7 +704,14 @@
 		16681AA92CDE184F004291C8 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				16FEF32B2CE4A16800422D2B /* AnAnSearchResultNameTableViewCell.swift */,
+				16FEF32D2CE4A18300422D2B /* AnAnSearchResultVideoTableViewCell.swift */,
 				16681AAE2CDE1D06004291C8 /* AnAnSearchItemCollectionViewCell.swift */,
+				16FEF31B2CE47ACD00422D2B /* AnAnSearchHitoryKeyTableViewCell.swift */,
+				16FEF31D2CE47B3700422D2B /* AnAnHotRecommendTableViewCell.swift */,
+				16FEF31F2CE47BE300422D2B /* AnAnPageTitleTableViewCell.swift */,
+				16FEF3252CE4801000422D2B /* AnAnSearchHistoryItemCollectionViewCell.swift */,
+				16FEF3272CE4805800422D2B /* AnAnPageTitleItemCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1195,14 +1228,17 @@
 				16A0810F29B0A732000DA73C /* AnAnFilterCollectionViewCell.swift in Sources */,
 				16BA71BA29F0DAE200BE7449 /* AnAnDownloadMp4Task.swift in Sources */,
 				16D8F99E29CC974800653BE0 /* AnAnVideoActorCollectionViewCell.swift in Sources */,
+				16FEF32A2CE49F8B00422D2B /* AnAnSearchLinkTableview.swift in Sources */,
 				16D6766A2CA5512C00B29249 /* AnAnSliderScale.swift in Sources */,
 				16D676592CA40DFC00B29249 /* AnAnBarrageModel.swift in Sources */,
+				16FEF3262CE4801000422D2B /* AnAnSearchHistoryItemCollectionViewCell.swift in Sources */,
 				1641E2BC29ACFFED000D12BC /* AnAnMorePhotoCollectionView.swift in Sources */,
 				16897CF329C8B5F5006BE17E /* AnAnCommentViewController.swift in Sources */,
 				16F60B8F2A166CB000EEB255 /* AnAnDownloadSuccessTableViewCell.swift in Sources */,
 				161546862CDCCCDA00504909 /* AnAnSettingTable.swift in Sources */,
 				164761B229C2BCBC000B319D /* AnAnUserData.swift in Sources */,
 				16897CBF29C4A9CF006BE17E /* AnAnHomeActorCollectionViewCell.swift in Sources */,
+				16FEF3242CE47EB800422D2B /* AnAnPageTitleCollectionview.swift in Sources */,
 				16FF44B72CA6B4C800EAD344 /* AnAnBarrageColorView.swift in Sources */,
 				16A0812129B34357000DA73C /* AnAnRequestApi.swift in Sources */,
 				16D676682CA538DB00B29249 /* AnAnBarrageMananger.swift in Sources */,
@@ -1229,6 +1265,7 @@
 				16897CCF29C5FB7C006BE17E /* AnAnDetailModel.swift in Sources */,
 				1641E2EA29B0A253000D12BC /* AnAnCategoryCollectionView.swift in Sources */,
 				16FEF3142CE372A800422D2B /* AnAnSearchModel.swift in Sources */,
+				16FEF3202CE47BE300422D2B /* AnAnPageTitleTableViewCell.swift in Sources */,
 				16475FFB29BCC8A7000B319D /* AnAnLoginViewController.swift in Sources */,
 				16110C0F2CA06B89000E705F /* AnAnluminanceView.swift in Sources */,
 				16D8457229A2212F00B4EC3E /* AnAnBaseViewController.swift in Sources */,
@@ -1244,8 +1281,11 @@
 				16D8F98329CB1E0E00653BE0 /* AnAnQualityTableViewCell.swift in Sources */,
 				1641E2E229B07343000D12BC /* AnAnSearch.swift in Sources */,
 				16BA71D929F2D9E300BE7449 /* AnAnDownloadData.swift in Sources */,
+				16FEF32E2CE4A18300422D2B /* AnAnSearchResultVideoTableViewCell.swift in Sources */,
 				16897CC529C5945A006BE17E /* AnAnBannerCollectionViewCell.swift in Sources */,
+				16FEF31A2CE479A900422D2B /* AnAnSearchTableview.swift in Sources */,
 				16897CFC29C9AB6B006BE17E /* AnAnPlayerLoadingView.swift in Sources */,
+				16FEF31E2CE47B3700422D2B /* AnAnHotRecommendTableViewCell.swift in Sources */,
 				16897CFE29CAADF0006BE17E /* AnAnPlayerTopView.swift in Sources */,
 				1647600029BD73DB000B319D /* AnAnJumpPageManager.swift in Sources */,
 				16A0811129B0A78B000DA73C /* AnAnSpreadCollectionViewCell.swift in Sources */,
@@ -1264,6 +1304,7 @@
 				16C6718F29B63846005AF603 /* AnAnBaseModel.swift in Sources */,
 				16275DDB29E7D52A002E0F69 /* AnAnDownloadEpisodePopView.swift in Sources */,
 				16681AA02CDDFD0D004291C8 /* AnAnSettingBaseTableViewCell.swift in Sources */,
+				16FEF3222CE47C6F00422D2B /* AnAnSearchHistoryKeyCollectionView.swift in Sources */,
 				1641E2E829B07B9F000D12BC /* AnAnLabel.swift in Sources */,
 				16D8458729A22EE400B4EC3E /* ColorNameManager.swift in Sources */,
 				16C6719E29B7862F005AF603 /* AnAnHeaderCollectionViewCell.swift in Sources */,
@@ -1281,6 +1322,7 @@
 				16D8F97929CB0FBB00653BE0 /* AnAnSelectQualityView.swift in Sources */,
 				16681AA42CDDFD8D004291C8 /* AnAnSettingContentTableViewCell.swift in Sources */,
 				16D8458129A2263F00B4EC3E /* AnAnMeViewController.swift in Sources */,
+				16FEF32C2CE4A16800422D2B /* AnAnSearchResultNameTableViewCell.swift in Sources */,
 				161281682CA2C6D9009C9C11 /* AnAnBarrageSetView.swift in Sources */,
 				16275DE629E84F06002E0F69 /* AnAnDownloadViewController.swift in Sources */,
 				16D8F9A229CC97C700653BE0 /* AnAnRecommentCollectionViewCell.swift in Sources */,
@@ -1296,6 +1338,7 @@
 				16F60B9B2A1BBAB500EEB255 /* DownloadDB.swift in Sources */,
 				1683D7E02A3F592000B93354 /* AnAnShortModel.swift in Sources */,
 				16681AAD2CDE1BCA004291C8 /* AnAnSearchCollectionview.swift in Sources */,
+				16FEF31C2CE47ACD00422D2B /* AnAnSearchHitoryKeyTableViewCell.swift in Sources */,
 				16D8F9AC29CF3BE000653BE0 /* AnAnEpisodeBgCollectionViewCell.swift in Sources */,
 				16F60B8D2A166C3800EEB255 /* AnAnDownloadSuccessTableview.swift in Sources */,
 				1641E2C229AD01BF000D12BC /* AnAnHorizontalCollectionViewCell.swift in Sources */,
@@ -1355,6 +1398,7 @@
 				16681AA22CDDFD54004291C8 /* AnAnSettingSwichTableViewCell.swift in Sources */,
 				1641E2B129ACF86A000D12BC /* AnAnAppDevice.swift in Sources */,
 				167451502C931576005E1D58 /* AnAnBarrageOpenView.swift in Sources */,
+				16FEF3282CE4805800422D2B /* AnAnPageTitleItemCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

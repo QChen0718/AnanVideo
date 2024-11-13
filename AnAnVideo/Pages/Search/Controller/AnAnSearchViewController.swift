@@ -14,10 +14,15 @@ class AnAnSearchViewController: AnAnBaseViewController {
         return view
     }()
     
-    lazy var searchCollectionView:AnAnSearchCollectionview = {
-        let view = AnAnSearchCollectionview(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    lazy var searchTableview:AnAnSearchTableview = {
+        let view = AnAnSearchTableview(frame: .zero, style: .grouped)
         return view
     }()
+    
+//    lazy var searchCollectionView:AnAnSearchCollectionview = {
+//        let view = AnAnSearchCollectionview(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+//        return view
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +35,13 @@ class AnAnSearchViewController: AnAnBaseViewController {
             make.height.equalTo(48)
             make.top.equalTo(160)
         }
-        view.addSubview(searchCollectionView)
-        searchCollectionView.snp.makeConstraints { make in
+        view.addSubview(searchTableview)
+        searchTableview.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(searchView.snp.bottom).offset(16)
         }
         
-        searchCollectionView.loadSearchTopData()
+        searchTableview.loadSearchTopData()
     }
 
 }

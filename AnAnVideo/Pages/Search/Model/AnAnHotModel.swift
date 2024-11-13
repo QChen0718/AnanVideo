@@ -8,8 +8,10 @@
 import UIKit
 import HandyJSON
 
-struct AnAnHotModel: HandyJSON {
-
+class AnAnHotModel: HandyJSON {
+    required init() {
+        
+    }
     var newUserEnable:Bool = false
     var userRiskLevelName:String?
     var hotSearchBoo:Bool = false
@@ -22,6 +24,7 @@ struct AnAnHotModel: HandyJSON {
     var hotRecommend:String?
     var orderNum:Int = 0
     var topId:String?
+    var isSelect:Bool = false
 }
 
 struct AnanSearchRecommendDtos: HandyJSON {
