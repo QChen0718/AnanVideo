@@ -31,4 +31,9 @@ class AnAnSearchResultNameTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var searchTipModel:AnAnSearchTipModel?{
+        didSet{
+            videoNameLab.text = searchTipModel?.title
+        }
+    }
 }

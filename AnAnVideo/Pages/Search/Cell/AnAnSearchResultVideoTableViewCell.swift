@@ -61,4 +61,14 @@ class AnAnSearchResultVideoTableViewCell: AnAnSearchResultNameTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var seasonModel:AnAnSeasonListModel?{
+        didSet{
+            guard let model = seasonModel else { return }
+            videoCoverImg.setImageWith(url: model.cover ?? "")
+            videoNameLab.text = model.title
+            videoTagLab.text = "\(model.score ?? "")/\(model.classify ?? "")/\(model.year ?? "")/\(model.area ?? "")/\(model.cat ?? "")"
+            videoActorLab.text = model.actor
+        }
+    }
+    
 }

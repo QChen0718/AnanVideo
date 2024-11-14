@@ -11,6 +11,7 @@ class AnAnSearchViewController: AnAnBaseViewController {
 
    fileprivate lazy var searchView:SearchView = {
        let view = SearchView()
+       view.searchTextField.delegate = self
         return view
     }()
     
@@ -19,10 +20,11 @@ class AnAnSearchViewController: AnAnBaseViewController {
         return view
     }()
     
-//    lazy var searchCollectionView:AnAnSearchCollectionview = {
-//        let view = AnAnSearchCollectionview(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-//        return view
-//    }()
+    lazy var searchLinkTableview: AnAnSearchLinkTableview = {
+        let view = AnAnSearchLinkTableview(frame: .zero, style: .plain)
+        view.isHidden = true
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +43,35 @@ class AnAnSearchViewController: AnAnBaseViewController {
             make.top.equalTo(searchView.snp.bottom).offset(16)
         }
         
+        view.addSubview(searchLinkTableview)
+        searchLinkTableview.snp.makeConstraints { make in
+            make.edges.equalTo(searchTableview)
+        }
+        
         searchTableview.loadSearchTopData()
     }
 
+}
+
+extension AnAnSearchViewController:UITextFieldDelegate{
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if textField.text == "" {
+            searchLinkTableview.isHidden = true
+        }
+        loadSearchLinkData(keyword: textField.text ?? "")
+    }
+}
+
+extension AnAnSearchViewController{
+    func loadSearchLinkData(keyword:String) {
+        AnAnRequest.shared.requestSearchLinkListData(keyword: keyword) {[weak self] model in
+            guard let `self` else { return }
+            if (model?.seasonList?.count ?? 0) > 0 || (model?.searchTips?.count ?? 0) > 0{
+                self.searchLinkTableview.isHidden = false
+            }
+            self.searchLinkTableview.searchlinkModel = model
+        }
+    }
 }
 
 fileprivate class SearchView: UIView {

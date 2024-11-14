@@ -157,10 +157,15 @@ class AnAnRequest{
             success(returnData)
         }
     }
-    
 //    获取热门推荐列表
     func requestHotRecommendListData(success:@escaping ([AnAnHotModel?])->Void) {
         provider.requestDataListModel(.recommendHotList, model: AnAnHotModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
+//    获取搜索联想数据
+    func requestSearchLinkListData(keyword:String,success:@escaping (AnAnSearchLinkModel?)->Void) {
+        provider.requestModel(.searchLink(keywords: keyword), model: AnAnSearchLinkModel.self) { returnData, msg in
             success(returnData)
         }
     }
