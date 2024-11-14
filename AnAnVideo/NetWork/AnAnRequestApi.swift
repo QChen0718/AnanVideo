@@ -60,6 +60,8 @@ enum AnAnRequestApi {
     case recommendHotList
 //    搜索联想
     case searchLink(keywords:String)
+//    搜索结果
+    case searchResult(params:[String:Any])
 }
 
 extension AnAnRequestApi:TargetType{
@@ -126,12 +128,14 @@ extension AnAnRequestApi:TargetType{
             return "/hot/recommend/list"
         case .searchLink:
             return "/search/lenovo"
+        case .searchResult:
+            return "/search/new/multiple"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .home,.getCheckCode,.dramaDetail,.dramaDetailSecondary,.dramaDetailIntro,.guessLike,.category,.search,.typeFilter,.getUserInfo,.moviePlayerInfo,.dramaDetailModule,.markEntranceInDetail,.dramaDetailRecommend,.getDownloadInfo,.shortVideoList,.cdnBarrage,.newBarrage,.recommendHotList,.searchLink:
+        case .home,.getCheckCode,.dramaDetail,.dramaDetailSecondary,.dramaDetailIntro,.guessLike,.category,.search,.typeFilter,.getUserInfo,.moviePlayerInfo,.dramaDetailModule,.markEntranceInDetail,.dramaDetailRecommend,.getDownloadInfo,.shortVideoList,.cdnBarrage,.newBarrage,.recommendHotList,.searchLink,.searchResult:
             return .get
         case .checkCodelLogin,.loginOut,.typeCats,.dramaFocus,.relatedTopList:
             return .post
@@ -211,8 +215,13 @@ extension AnAnRequestApi:TargetType{
         case .relatedTopList(let page, let rows):
             parmeters["page"] = page
             parmeters["rows"] = rows
+            break
         case .searchLink(let keywords):
             parmeters["keywords"] = keywords
+            break
+        case .searchResult(let params):
+            parmeters = params
+            break
         default:
             break
         }

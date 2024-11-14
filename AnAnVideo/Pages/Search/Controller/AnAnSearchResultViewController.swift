@@ -9,11 +9,24 @@ import UIKit
 
 class AnAnSearchResultViewController: AnAnBaseViewController {
 
+    fileprivate lazy var searchView:SearchView = {
+      let view = SearchView()
+        return view
+    }()
+    
+    var searchKey:String?{
+        didSet{
+            searchView.searchTextField.text = searchKey
+            loadSearchResultListData(keyword: searchKey ?? "")
+        }
+    }
+    
     lazy var cancelBtn:UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("取消", for: .normal)
         btn.setTitleColor(UIColor.hexadecimalColor(hexadecimal: An_222222), for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
+        btn.addTarget(self, action: #selector(cancelBtnClick), for: .touchUpInside)
         return btn
     }()
     
@@ -30,11 +43,42 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        view.addSubview(searchView)
+        view.addSubview(cancelBtn)
+        view.addSubview(pagetitleCollection)
+        view.addSubview(resultPagecontrol.view)
+        searchView.snp.makeConstraints { make in
+            make.leading.equalTo(16)
+            make.trailing.equalTo(cancelBtn.snp.leading).offset(-20)
+            make.top.equalTo(AnAnAppDevice.deviceTop()+6)
+            make.height.equalTo(36)
+        }
+        cancelBtn.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(16)
+            make.centerY.equalTo(searchView)
+            make.size.equalTo(CGSize(width: 40, height: 21))
+        }
+        pagetitleCollection.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(searchView.snp.bottom).offset(6)
+            make.height.equalTo(40)
+        }
     }
 
+    @objc func cancelBtnClick(){
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
+
+extension AnAnSearchResultViewController{
+    func loadSearchResultListData(keyword:String) {
+        let params:[String:Any] = ["keywords":keyword,"size":"20","search_after":"1","order":""]
+        AnAnRequest.shared.requestSearchResultListData(params: params) { searchModel in
+            
+        }
+    }
+}
 
 fileprivate class SearchView: UIView {
     
@@ -48,14 +92,16 @@ fileprivate class SearchView: UIView {
     
     lazy var closeBtn:UIButton = {
         let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: ""), for: .normal)
+        btn.addTarget(self, action: #selector(closeBtnClick), for: .touchUpInside)
         return btn
     }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
-        self.layer.cornerRadius = 24
+        self.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_00A3FF,alpha: 0.1)
+        self.layer.cornerRadius = 18
         
         addSubview(searchTextField)
 
@@ -70,4 +116,7 @@ fileprivate class SearchView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    @objc func closeBtnClick(){
+        
+    }
 }

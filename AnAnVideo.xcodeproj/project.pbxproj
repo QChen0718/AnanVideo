@@ -12,6 +12,8 @@
 		160E7F632CE5AB71009802B3 /* AnAnSearchVideoItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160E7F622CE5AB71009802B3 /* AnAnSearchVideoItemCollectionViewCell.swift */; };
 		160E7F652CE5AB86009802B3 /* AnAnSearchPDItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160E7F642CE5AB86009802B3 /* AnAnSearchPDItemCollectionViewCell.swift */; };
 		160E7F672CE5AE2A009802B3 /* AnAnSearchVideoTagCollectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160E7F662CE5AE2A009802B3 /* AnAnSearchVideoTagCollectionview.swift */; };
+		160E7F692CE62710009802B3 /* AnAnSearchShortVideoItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160E7F682CE62710009802B3 /* AnAnSearchShortVideoItemCollectionViewCell.swift */; };
+		160E7F6B2CE62773009802B3 /* AnAnSearchHPDItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160E7F6A2CE62773009802B3 /* AnAnSearchHPDItemCollectionViewCell.swift */; };
 		16110C0D2CA06B70000E705F /* AnAnVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C0C2CA06B70000E705F /* AnAnVolumeView.swift */; };
 		16110C0F2CA06B89000E705F /* AnAnluminanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C0E2CA06B89000E705F /* AnAnluminanceView.swift */; };
 		16110C112CA06CA1000E705F /* AnAnLongSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16110C102CA06CA1000E705F /* AnAnLongSpeedView.swift */; };
@@ -206,6 +208,8 @@
 		160E7F622CE5AB71009802B3 /* AnAnSearchVideoItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchVideoItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		160E7F642CE5AB86009802B3 /* AnAnSearchPDItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchPDItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		160E7F662CE5AE2A009802B3 /* AnAnSearchVideoTagCollectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchVideoTagCollectionview.swift; sourceTree = "<group>"; };
+		160E7F682CE62710009802B3 /* AnAnSearchShortVideoItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchShortVideoItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		160E7F6A2CE62773009802B3 /* AnAnSearchHPDItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchHPDItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		16110C0C2CA06B70000E705F /* AnAnVolumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVolumeView.swift; sourceTree = "<group>"; };
 		16110C0E2CA06B89000E705F /* AnAnluminanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnluminanceView.swift; sourceTree = "<group>"; };
 		16110C102CA06CA1000E705F /* AnAnLongSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnLongSpeedView.swift; sourceTree = "<group>"; };
@@ -736,6 +740,8 @@
 				16FEF31F2CE47BE300422D2B /* AnAnPageTitleTableViewCell.swift */,
 				16FEF3252CE4801000422D2B /* AnAnSearchHistoryItemCollectionViewCell.swift */,
 				16FEF3272CE4805800422D2B /* AnAnPageTitleItemCollectionViewCell.swift */,
+				160E7F682CE62710009802B3 /* AnAnSearchShortVideoItemCollectionViewCell.swift */,
+				160E7F6A2CE62773009802B3 /* AnAnSearchHPDItemCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1268,6 +1274,7 @@
 				16A0812129B34357000DA73C /* AnAnRequestApi.swift in Sources */,
 				16D676682CA538DB00B29249 /* AnAnBarrageMananger.swift in Sources */,
 				1641E2E629B07579000D12BC /* AnAnButton.swift in Sources */,
+				160E7F692CE62710009802B3 /* AnAnSearchShortVideoItemCollectionViewCell.swift in Sources */,
 				16D8F9B829D08DF400653BE0 /* AnAnAlbumItemCollectionViewCell.swift in Sources */,
 				16F60B972A1910A800EEB255 /* AnAnShortTableViewCell.swift in Sources */,
 				1641E2B529ACF956000D12BC /* AnAnHomeTableView.swift in Sources */,
@@ -1325,6 +1332,7 @@
 				16BA71BC29F0DB1500BE7449 /* AnAnDownloadM3u8Task.swift in Sources */,
 				1641E2D129AE5731000D12BC /* ViewCustomCornerRadius.swift in Sources */,
 				16475FFE29BCCBD0000B319D /* AnAnLoginInputView.swift in Sources */,
+				160E7F6B2CE62773009802B3 /* AnAnSearchHPDItemCollectionViewCell.swift in Sources */,
 				160E7F612CE5AAC3009802B3 /* AnAnSearchPDCollectionview.swift in Sources */,
 				16D8458529A22E0F00B4EC3E /* AnAnColor.swift in Sources */,
 				1641E2CE29AE50A4000D12BC /* AnAnTableSectionView.swift in Sources */,

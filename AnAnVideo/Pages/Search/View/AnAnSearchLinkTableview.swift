@@ -59,4 +59,9 @@ extension AnAnSearchLinkTableview:UITableViewDelegate,UITableViewDataSource {
         }
         return 43
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.isHidden = true
+        AnAnJumpPageManager.goToSearchResultPage(keyword: "女王")
+    }
 }

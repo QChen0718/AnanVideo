@@ -169,4 +169,10 @@ class AnAnRequest{
             success(returnData)
         }
     }
+//    获取搜索结果数据
+    func requestSearchResultListData(params:[String:Any],success:@escaping (AnAnSearchModel?)->Void) {
+        provider.requestModel(.searchResult(params: params), model: AnAnSearchModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
 }
