@@ -40,6 +40,11 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
         return control
     }()
     
+    lazy var resultCollection:AnAnSearchResultCollectionView = {
+        let view = AnAnSearchResultCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -47,6 +52,7 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
         view.addSubview(cancelBtn)
         view.addSubview(pagetitleCollection)
         view.addSubview(resultPagecontrol.view)
+        view.addSubview(resultCollection)
         searchView.snp.makeConstraints { make in
             make.leading.equalTo(16)
             make.trailing.equalTo(cancelBtn.snp.leading).offset(-20)
@@ -62,6 +68,10 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(searchView.snp.bottom).offset(6)
             make.height.equalTo(40)
+        }
+        resultCollection.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(pagetitleCollection.snp.bottom).offset(10)
         }
     }
 
