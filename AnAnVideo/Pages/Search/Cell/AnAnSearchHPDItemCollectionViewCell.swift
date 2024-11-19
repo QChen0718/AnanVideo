@@ -100,4 +100,22 @@ class AnAnSearchHPDItemCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var sheetModel:AnAnSheetModel?{
+        didSet{
+            guard let content = sheetModel?.content else { return  }
+            for (i,model) in content.enumerated() {
+                if i == 0 {
+                    videoCover1Img.setImageWith(url: model.cover ?? "")
+                }else if i == 1 {
+                    videoCover2Img.setImageWith(url: model.cover ?? "")
+                }else{
+                    videoCover3Img.setImageWith(url: model.cover ?? "")
+                }
+            }
+            videoNameLab.text = sheetModel?.name
+            videoNumberLab.text = "\(sheetModel?.relevance_count ?? 0)"
+            
+        }
+    }
 }

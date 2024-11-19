@@ -115,4 +115,15 @@ class AnAnSearchShortVideoItemCollectionViewCell: UICollectionViewCell {
     @objc func likeBtnClick(){
         
     }
+    
+    var videoModel:AnAnVideoModel?{
+        didSet{
+            videoCoverImg.setImageWith(url: videoModel?.cover ?? "")
+            videoNameLab.text = videoModel?.title
+            videoTimeLab.text = videoModel?.duration
+            userHeaderImg.setImageWith(url: videoModel?.author?.headImgUrl ?? "")
+            userNameLab.text = videoModel?.author?.nickName
+            likeBtn.setTitle("\(videoModel?.likeCount ?? 0)", for: .normal)
+        }
+    }
 }

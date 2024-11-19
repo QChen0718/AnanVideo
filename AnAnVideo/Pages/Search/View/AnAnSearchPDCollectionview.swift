@@ -28,14 +28,20 @@ class AnAnSearchPDCollectionview: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var pdList:[AnAnSheetModel] = []{
+        didSet{
+            self.reloadData()
+        }
+    }
 }
 
 extension AnAnSearchPDCollectionview:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return pdList.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:AnAnSearchHPDItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnAnSearchHPDItemCollectionViewCell", for: indexPath) as! AnAnSearchHPDItemCollectionViewCell
+        cell.sheetModel = pdList[indexPath.row]
         return cell
     }
     

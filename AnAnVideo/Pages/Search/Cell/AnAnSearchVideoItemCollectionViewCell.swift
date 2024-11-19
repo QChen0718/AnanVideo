@@ -41,6 +41,7 @@ class AnAnSearchVideoItemCollectionViewCell: UICollectionViewCell {
     
     lazy var searchTagCollection:AnAnSearchVideoTagCollectionview = {
         let view = AnAnSearchVideoTagCollectionview(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        view.isHidden = true
         return view
     }()
     
@@ -56,20 +57,20 @@ class AnAnSearchVideoItemCollectionViewCell: UICollectionViewCell {
         vidoeCover.snp.makeConstraints { make in
             make.leading.equalTo(16)
             make.top.bottom.equalToSuperview()
-            make.width.equalTo(100)
+            make.width.equalTo(50)
         }
         videoNameLab.snp.makeConstraints { make in
-            make.leading.equalTo(vidoeCover.snp.trailing).offset(12)
-            make.top.equalTo(vidoeCover.snp.top).offset(6.5)
+            make.leading.equalTo(vidoeCover.snp.trailing).offset(10)
+            make.top.equalTo(vidoeCover.snp.top).offset(4)
             make.trailing.equalToSuperview().inset(16)
         }
         videoTagLab.snp.makeConstraints { make in
             make.leading.trailing.equalTo(videoNameLab)
-            make.top.equalTo(videoNameLab.snp.bottom).offset(12)
+            make.top.equalTo(videoNameLab.snp.bottom).offset(4.5)
         }
         subTitleLab.snp.makeConstraints { make in
             make.leading.trailing.equalTo(videoNameLab)
-            make.top.equalTo(videoTagLab.snp.bottom).offset(10)
+            make.top.equalTo(videoTagLab.snp.bottom).offset(5.5)
         }
         searchTagCollection.snp.makeConstraints { make in
             make.leading.trailing.equalTo(videoNameLab)
@@ -80,5 +81,14 @@ class AnAnSearchVideoItemCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    var seasonModel:AnAnMovieModel?{
+        didSet{
+            vidoeCover.setImageWith(url: seasonModel?.cover ?? "")
+            videoNameLab.text = seasonModel?.title
+            videoTagLab.text = "\(seasonModel?.classify ?? "")/\(seasonModel?.year ?? "")/\(seasonModel?.area ?? "")/\(seasonModel?.cat ?? "")"
+            subTitleLab.text = seasonModel?.subtitle
+        }
     }
 }

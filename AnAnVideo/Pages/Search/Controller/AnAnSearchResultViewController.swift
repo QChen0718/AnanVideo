@@ -7,12 +7,21 @@
 
 import UIKit
 
+enum SearchResultType {
+    case season
+    case actor
+    case sheet
+    case video
+}
+
 class AnAnSearchResultViewController: AnAnBaseViewController {
 
     fileprivate lazy var searchView:SearchView = {
       let view = SearchView()
         return view
     }()
+    
+    var sectionArray:[[String:Any]] = []
     
     var searchKey:String?{
         didSet{
@@ -84,8 +93,29 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
 extension AnAnSearchResultViewController{
     func loadSearchResultListData(keyword:String) {
         let params:[String:Any] = ["keywords":keyword,"size":"20","search_after":"1","order":""]
-        AnAnRequest.shared.requestSearchResultListData(params: params) { searchModel in
-            
+        AnAnRequest.shared.requestSearchResultListData(params: params) {[weak self] searchModel in
+            guard let `self` else {return}
+            guard let seasonList = searchModel?.seasonList else { return }
+            guard let actorList = searchModel?.actorList else { return }
+            guard let sheetList = searchModel?.sheetList else { return }
+            guard let videoList = searchModel?.videoList else { return}
+            if !seasonList.isEmpty {
+                let dict = ["type":SearchResultType.season,"dataArray":seasonList]
+                self.sectionArray.append(dict)
+            }
+            if !actorList.isEmpty {
+                let dict = ["type":SearchResultType.actor,"dataArray":actorList]
+                self.sectionArray.append(dict)
+            }
+            if !sheetList.isEmpty{
+                let dict = ["type":SearchResultType.sheet,"dataArray":sheetList]
+                self.sectionArray.append(dict)
+            }
+            if !videoList.isEmpty{
+                let dict = ["type":SearchResultType.video,"dataArray":videoList]
+                self.sectionArray.append(dict)
+            }
+            self.resultCollection.dataList = self.sectionArray;
         }
     }
 }
