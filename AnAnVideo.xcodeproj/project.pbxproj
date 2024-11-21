@@ -84,6 +84,14 @@
 		166BA76F2CEDECF400409144 /* AnAnSearchActorCollectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA76E2CEDECF400409144 /* AnAnSearchActorCollectionview.swift */; };
 		166BA7712CEED4A100409144 /* AnAnSearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7702CEED4A100409144 /* AnAnSearchCollectionReusableView.swift */; };
 		166BA7732CEED57000409144 /* AnAnMoreBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7722CEED57000409144 /* AnAnMoreBtn.swift */; };
+		166BA7C62CEF032000409144 /* AnAnSearchSynthesisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7C52CEF032000409144 /* AnAnSearchSynthesisViewController.swift */; };
+		166BA7C82CEF035100409144 /* AnAnSearchDramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7C72CEF035100409144 /* AnAnSearchDramaViewController.swift */; };
+		166BA7CA2CEF035F00409144 /* AnAnSearchPDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7C92CEF035F00409144 /* AnAnSearchPDViewController.swift */; };
+		166BA7CC2CEF038700409144 /* AnAnSearchShortVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7CB2CEF038700409144 /* AnAnSearchShortVideoViewController.swift */; };
+		166BA7CE2CEF044800409144 /* AnAnSearchActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7CD2CEF044800409144 /* AnAnSearchActorViewController.swift */; };
+		166BA7D02CEF117D00409144 /* AnAnSearchVPDCollectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7CF2CEF117D00409144 /* AnAnSearchVPDCollectionview.swift */; };
+		166BA7D22CEF11B700409144 /* AnAnSearchShotVideoCollectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7D12CEF11B700409144 /* AnAnSearchShotVideoCollectionview.swift */; };
+		166BA7D42CEF122E00409144 /* AnAnSearchMXCollectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7D32CEF122E00409144 /* AnAnSearchMXCollectionview.swift */; };
 		167451502C931576005E1D58 /* AnAnBarrageOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */; };
 		1683D7E02A3F592000B93354 /* AnAnShortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */; };
 		16897C6E29C3231A006BE17E /* AnAnVideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */; };
@@ -286,6 +294,14 @@
 		166BA76E2CEDECF400409144 /* AnAnSearchActorCollectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchActorCollectionview.swift; sourceTree = "<group>"; };
 		166BA7702CEED4A100409144 /* AnAnSearchCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchCollectionReusableView.swift; sourceTree = "<group>"; };
 		166BA7722CEED57000409144 /* AnAnMoreBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnMoreBtn.swift; sourceTree = "<group>"; };
+		166BA7C52CEF032000409144 /* AnAnSearchSynthesisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchSynthesisViewController.swift; sourceTree = "<group>"; };
+		166BA7C72CEF035100409144 /* AnAnSearchDramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchDramaViewController.swift; sourceTree = "<group>"; };
+		166BA7C92CEF035F00409144 /* AnAnSearchPDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchPDViewController.swift; sourceTree = "<group>"; };
+		166BA7CB2CEF038700409144 /* AnAnSearchShortVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchShortVideoViewController.swift; sourceTree = "<group>"; };
+		166BA7CD2CEF044800409144 /* AnAnSearchActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchActorViewController.swift; sourceTree = "<group>"; };
+		166BA7CF2CEF117D00409144 /* AnAnSearchVPDCollectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchVPDCollectionview.swift; sourceTree = "<group>"; };
+		166BA7D12CEF11B700409144 /* AnAnSearchShotVideoCollectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchShotVideoCollectionview.swift; sourceTree = "<group>"; };
+		166BA7D32CEF122E00409144 /* AnAnSearchMXCollectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchMXCollectionview.swift; sourceTree = "<group>"; };
 		1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageOpenView.swift; sourceTree = "<group>"; };
 		1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortModel.swift; sourceTree = "<group>"; };
 		16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -707,6 +723,11 @@
 			children = (
 				16681AAA2CDE1869004291C8 /* AnAnSearchViewController.swift */,
 				16FEF3332CE5A10000422D2B /* AnAnSearchResultViewController.swift */,
+				166BA7C52CEF032000409144 /* AnAnSearchSynthesisViewController.swift */,
+				166BA7C72CEF035100409144 /* AnAnSearchDramaViewController.swift */,
+				166BA7C92CEF035F00409144 /* AnAnSearchPDViewController.swift */,
+				166BA7CB2CEF038700409144 /* AnAnSearchShortVideoViewController.swift */,
+				166BA7CD2CEF044800409144 /* AnAnSearchActorViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -736,6 +757,9 @@
 				166BA76E2CEDECF400409144 /* AnAnSearchActorCollectionview.swift */,
 				166BA7702CEED4A100409144 /* AnAnSearchCollectionReusableView.swift */,
 				166BA7722CEED57000409144 /* AnAnMoreBtn.swift */,
+				166BA7CF2CEF117D00409144 /* AnAnSearchVPDCollectionview.swift */,
+				166BA7D12CEF11B700409144 /* AnAnSearchShotVideoCollectionview.swift */,
+				166BA7D32CEF122E00409144 /* AnAnSearchMXCollectionview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1291,11 +1315,13 @@
 				1641E2E629B07579000D12BC /* AnAnButton.swift in Sources */,
 				160E7F692CE62710009802B3 /* AnAnSearchShortVideoItemCollectionViewCell.swift in Sources */,
 				16D8F9B829D08DF400653BE0 /* AnAnAlbumItemCollectionViewCell.swift in Sources */,
+				166BA7CA2CEF035F00409144 /* AnAnSearchPDViewController.swift in Sources */,
 				16F60B972A1910A800EEB255 /* AnAnShortTableViewCell.swift in Sources */,
 				1641E2B529ACF956000D12BC /* AnAnHomeTableView.swift in Sources */,
 				16A0811529B0A902000DA73C /* AnAnFilterCollectionView.swift in Sources */,
 				16D8F9B029CF3D7300653BE0 /* AnAnEpisodeItemCollectionViewCell.swift in Sources */,
 				16A0812529B4E70E000DA73C /* AnAnString.swift in Sources */,
+				166BA7D42CEF122E00409144 /* AnAnSearchMXCollectionview.swift in Sources */,
 				16D8456129A21F7700B4EC3E /* ViewController.swift in Sources */,
 				163D14C42C89DE2200E8BDFF /* AnAnCUBECollectionViewCell.swift in Sources */,
 				16897CCC29C5FB03006BE17E /* AnAnVideoDetailCollectionView.swift in Sources */,
@@ -1307,6 +1333,8 @@
 				16897CF529C8B643006BE17E /* AnAnFilmReviewViewController.swift in Sources */,
 				16F60B992A1BB62600EEB255 /* AnAnDBModel.swift in Sources */,
 				16275DDF29E7DF1B002E0F69 /* AnAnEpisodeSectionItemCollectionViewCell.swift in Sources */,
+				166BA7D02CEF117D00409144 /* AnAnSearchVPDCollectionview.swift in Sources */,
+				166BA7CC2CEF038700409144 /* AnAnSearchShortVideoViewController.swift in Sources */,
 				16275DEC29E85215002E0F69 /* AnAnDownloadLoadingTableview.swift in Sources */,
 				1612816A2CA2CB59009C9C11 /* AnAnBarrageTableView.swift in Sources */,
 				16897CCF29C5FB7C006BE17E /* AnAnDetailModel.swift in Sources */,
@@ -1373,6 +1401,7 @@
 				16D8F97929CB0FBB00653BE0 /* AnAnSelectQualityView.swift in Sources */,
 				16681AA42CDDFD8D004291C8 /* AnAnSettingContentTableViewCell.swift in Sources */,
 				16D8458129A2263F00B4EC3E /* AnAnMeViewController.swift in Sources */,
+				166BA7C62CEF032000409144 /* AnAnSearchSynthesisViewController.swift in Sources */,
 				16FEF32C2CE4A16800422D2B /* AnAnSearchResultNameTableViewCell.swift in Sources */,
 				161281682CA2C6D9009C9C11 /* AnAnBarrageSetView.swift in Sources */,
 				166BA76D2CEDEBA900409144 /* AnAnSearchActorCollectionViewCell.swift in Sources */,
@@ -1402,6 +1431,8 @@
 				16275DFB29EAFC56002E0F69 /* AnAnDownloadPcdnUrl.swift in Sources */,
 				16475FF529BC9015000B319D /* AnAnPersonalCenterModel.swift in Sources */,
 				16D8457829A225AF00B4EC3E /* AnAnNavigationViewController.swift in Sources */,
+				166BA7C82CEF035100409144 /* AnAnSearchDramaViewController.swift in Sources */,
+				166BA7CE2CEF044800409144 /* AnAnSearchActorViewController.swift in Sources */,
 				16F60B9D2A1BC43000EEB255 /* AnAnShortVideoView.swift in Sources */,
 				16D8F9A029CC979F00653BE0 /* AnAnHotSheetCollectionViewCell.swift in Sources */,
 				16FFD08529E2F6B300679682 /* AnAnDragPlayerTimeView.swift in Sources */,
@@ -1424,6 +1455,7 @@
 				16897CF729C9540D006BE17E /* AnAnSengmentTitleCollectionViewCell.swift in Sources */,
 				1641E2B829ACFC53000D12BC /* AnAnHomeRecommentTableViewCell.swift in Sources */,
 				16A0811729B0A914000DA73C /* AnAnFilterItemCollectionViewCell.swift in Sources */,
+				166BA7D22CEF11B700409144 /* AnAnSearchShotVideoCollectionview.swift in Sources */,
 				16F60B952A190FE600EEB255 /* AnAnShortTableView.swift in Sources */,
 				16D8457C29A2261600B4EC3E /* AnAnHomeViewController.swift in Sources */,
 				166BA7732CEED57000409144 /* AnAnMoreBtn.swift in Sources */,

@@ -21,12 +21,79 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
         return view
     }()
     
-    var sectionArray:[[String:Any]] = []
+    private lazy var synthesisController:AnAnSearchSynthesisViewController = {
+       let controll = AnAnSearchSynthesisViewController()
+        return controll
+    }()
+    
+    private lazy var dramaController:AnAnSearchDramaViewController = {
+       let controll = AnAnSearchDramaViewController()
+        return controll
+    }()
+    
+    private lazy var pdController:AnAnSearchPDViewController = {
+       let controll = AnAnSearchPDViewController()
+        return controll
+    }()
+    
+    private lazy var shortvideoController:AnAnSearchShortVideoViewController = {
+       let controll = AnAnSearchShortVideoViewController()
+        return controll
+    }()
+    
+    private lazy var actorController:AnAnSearchActorViewController = {
+       let controll = AnAnSearchActorViewController()
+        return controll
+    }()
+    
+    fileprivate lazy var controllersArray:[UIViewController] = {
+        let array = [synthesisController,dramaController,pdController,shortvideoController,actorController]
+        return array
+    }()
+    
+//    当前滑动的位置
+    fileprivate var currentScrollIndex:Int = 0
+//    上次滑动的位置
+    fileprivate var oldScrollIndex:Int = 0
+    
+    lazy var zhModel:AnAnHotModel = {
+       let m = AnAnHotModel()
+        m.hotRecommend = "综合"
+        m.isSelect = true
+        return m
+    }()
+    lazy var videoModel:AnAnHotModel = {
+       let m = AnAnHotModel()
+        m.hotRecommend = "影视"
+        m.isSelect = false
+        return m
+    }()
+    lazy var pdModel:AnAnHotModel = {
+       let m = AnAnHotModel()
+        m.hotRecommend = "片单"
+        m.isSelect = false
+        return m
+    }()
+    lazy var quikModel:AnAnHotModel = {
+       let m = AnAnHotModel()
+        m.hotRecommend = "快看"
+        m.isSelect = false
+        return m
+    }()
+    lazy var actorModel:AnAnHotModel = {
+       let m = AnAnHotModel()
+        m.hotRecommend = "明星"
+        m.isSelect = false
+        return m
+    }()
+    
+    private var pageTitleArray:[AnAnHotModel?] = []
+    
     
     var searchKey:String?{
         didSet{
             searchView.searchTextField.text = searchKey
-            loadSearchResultListData(keyword: searchKey ?? "")
+            synthesisController.searchKey = searchKey
         }
     }
     
@@ -45,23 +112,31 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
     }()
     
     lazy var resultPagecontrol:UIPageViewController = {
-        let control = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        let control = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewController.OptionsKey.spineLocation:0,UIPageViewController.OptionsKey.interPageSpacing:0])
+        control.setViewControllers([synthesisController], direction: .forward, animated: true)
+        control.delegate = self
+        control.dataSource = self
         return control
     }()
     
-    lazy var resultCollection:AnAnSearchResultCollectionView = {
-        let view = AnAnSearchResultCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        return view
-    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pageTitleArray.append(zhModel)
+        pageTitleArray.append(videoModel)
+        pageTitleArray.append(pdModel)
+        pageTitleArray.append(quikModel)
+        pageTitleArray.append(actorModel)
+        self.addChild(resultPagecontrol)
         view.backgroundColor = .white
         view.addSubview(searchView)
         view.addSubview(cancelBtn)
         view.addSubview(pagetitleCollection)
         view.addSubview(resultPagecontrol.view)
-        view.addSubview(resultCollection)
+        
+        pagetitleCollection.dataList = pageTitleArray
+        
         searchView.snp.makeConstraints { make in
             make.leading.equalTo(16)
             make.trailing.equalTo(cancelBtn.snp.leading).offset(-20)
@@ -78,10 +153,12 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
             make.top.equalTo(searchView.snp.bottom).offset(6)
             make.height.equalTo(40)
         }
-        resultCollection.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+        resultPagecontrol.view.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(AnAnAppDevice.deviceBottom)
             make.top.equalTo(pagetitleCollection.snp.bottom).offset(10)
         }
+        
     }
 
     @objc func cancelBtnClick(){
@@ -91,31 +168,42 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
 
 
 extension AnAnSearchResultViewController{
-    func loadSearchResultListData(keyword:String) {
-        let params:[String:Any] = ["keywords":keyword,"size":"20","search_after":"1","order":""]
-        AnAnRequest.shared.requestSearchResultListData(params: params) {[weak self] searchModel in
-            guard let `self` else {return}
-            guard let seasonList = searchModel?.seasonList else { return }
-            guard let actorList = searchModel?.actorList else { return }
-            guard let sheetList = searchModel?.sheetList else { return }
-            guard let videoList = searchModel?.videoList else { return}
-            if !seasonList.isEmpty {
-                let dict = ["type":SearchResultType.season,"dataArray":seasonList]
-                self.sectionArray.append(dict)
-            }
-            if !actorList.isEmpty {
-                let dict = ["type":SearchResultType.actor,"dataArray":actorList]
-                self.sectionArray.append(dict)
-            }
-            if !sheetList.isEmpty{
-                let dict = ["type":SearchResultType.sheet,"dataArray":sheetList]
-                self.sectionArray.append(dict)
-            }
-            if !videoList.isEmpty{
-                let dict = ["type":SearchResultType.video,"dataArray":videoList]
-                self.sectionArray.append(dict)
-            }
-            self.resultCollection.dataList = self.sectionArray;
+    
+}
+
+extension AnAnSearchResultViewController:UIPageViewControllerDelegate,UIPageViewControllerDataSource{
+//    上个界面
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        var index:Int = controllersArray.firstIndex(of: viewController) ?? 0
+//        第一页
+        if index == 0 || index == NSNotFound{
+            return nil
+        }
+        index-=1
+        return controllersArray[index]
+    }
+//    下个界面
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
+        var index:Int = controllersArray.firstIndex(of: viewController) ?? 0
+//        第一页
+        if index == controllersArray.count-1 || index == NSNotFound{
+            return nil
+        }
+        index+=1
+        return controllersArray[index]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        let index:Int = controllersArray.firstIndex(of: pendingViewControllers.first ?? UIViewController()) ?? 0
+        currentScrollIndex = index
+        print("index----->\(currentScrollIndex)")
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if(completed){
+//            sengmentCollectionView.selectIndex = currentScrollIndex
+            oldScrollIndex = currentScrollIndex
         }
     }
 }
