@@ -62,6 +62,14 @@ enum AnAnRequestApi {
     case searchLink(keywords:String)
 //    搜索结果
     case searchResult(params:[String:Any])
+//    搜索影视
+    case searchVideos(params:[String:Any])
+//    搜索片单
+    case searchSheet(params:[String:Any])
+//    搜索快看
+    case searchQuick(params:[String:Any])
+//    搜索明星
+    case searchActor(params:[String:Any])
 }
 
 extension AnAnRequestApi:TargetType{
@@ -130,12 +138,20 @@ extension AnAnRequestApi:TargetType{
             return "/search/lenovo"
         case .searchResult:
             return "/search/new/multiple"
+        case .searchVideos:
+            return "/search/v5/season"
+        case .searchSheet:
+            return "/search/new/sheet"
+        case .searchQuick:
+            return "/drama/app/v5/search/video"
+        case .searchActor:
+            return "/search/v5/actor"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .home,.getCheckCode,.dramaDetail,.dramaDetailSecondary,.dramaDetailIntro,.guessLike,.category,.search,.typeFilter,.getUserInfo,.moviePlayerInfo,.dramaDetailModule,.markEntranceInDetail,.dramaDetailRecommend,.getDownloadInfo,.shortVideoList,.cdnBarrage,.newBarrage,.recommendHotList,.searchLink,.searchResult:
+        case .home,.getCheckCode,.dramaDetail,.dramaDetailSecondary,.dramaDetailIntro,.guessLike,.category,.search,.typeFilter,.getUserInfo,.moviePlayerInfo,.dramaDetailModule,.markEntranceInDetail,.dramaDetailRecommend,.getDownloadInfo,.shortVideoList,.cdnBarrage,.newBarrage,.recommendHotList,.searchLink,.searchResult,.searchVideos,.searchSheet,.searchQuick,.searchActor:
             return .get
         case .checkCodelLogin,.loginOut,.typeCats,.dramaFocus,.relatedTopList:
             return .post
@@ -220,6 +236,18 @@ extension AnAnRequestApi:TargetType{
             parmeters["keywords"] = keywords
             break
         case .searchResult(let params):
+            parmeters = params
+            break
+        case .searchVideos(let params):
+            parmeters = params
+            break
+        case .searchSheet(let params):
+            parmeters = params
+            break
+        case .searchQuick(let params):
+            parmeters = params
+            break
+        case .searchActor(let params):
             parmeters = params
             break
         default:

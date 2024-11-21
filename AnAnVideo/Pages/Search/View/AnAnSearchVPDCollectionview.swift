@@ -15,6 +15,7 @@ class AnAnSearchVPDCollectionview: UICollectionView {
         flowlayout.minimumLineSpacing = 8
         flowlayout.minimumInteritemSpacing = 8
         flowlayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        flowlayout.itemSize = CGSize(width: floor((AnAnAppDevice.an_screenWidth()-40)/2), height: 208)
         delegate = self
         dataSource = self
         register(AnAnSearchPDItemCollectionViewCell.self, forCellWithReuseIdentifier: "AnAnSearchPDItemCollectionViewCell")
