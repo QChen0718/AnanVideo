@@ -102,4 +102,12 @@ class AnAnSearchItemCollectionViewCell: UICollectionViewCell {
             videoSubnameLab.text = recomModel?.subtitle
         }
     }
+    var dramaModel:AnAnRelatedDramaModel?{
+        didSet{
+            videoCoverImg.setImageWith(url: dramaModel?.imageUrl ?? "")
+            pfLabl.text = dramaModel?.score
+            videoNameLab.text = dramaModel?.dramaName
+            videoSubnameLab.text = dramaModel?.dramaType
+        }
+    }
 }

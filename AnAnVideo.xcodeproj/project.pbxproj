@@ -80,6 +80,10 @@
 		16681AAB2CDE1869004291C8 /* AnAnSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16681AAA2CDE1869004291C8 /* AnAnSearchViewController.swift */; };
 		16681AAD2CDE1BCA004291C8 /* AnAnSearchCollectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16681AAC2CDE1BCA004291C8 /* AnAnSearchCollectionview.swift */; };
 		16681AAF2CDE1D06004291C8 /* AnAnSearchItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16681AAE2CDE1D06004291C8 /* AnAnSearchItemCollectionViewCell.swift */; };
+		166BA76D2CEDEBA900409144 /* AnAnSearchActorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA76C2CEDEBA900409144 /* AnAnSearchActorCollectionViewCell.swift */; };
+		166BA76F2CEDECF400409144 /* AnAnSearchActorCollectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA76E2CEDECF400409144 /* AnAnSearchActorCollectionview.swift */; };
+		166BA7712CEED4A100409144 /* AnAnSearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7702CEED4A100409144 /* AnAnSearchCollectionReusableView.swift */; };
+		166BA7732CEED57000409144 /* AnAnMoreBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BA7722CEED57000409144 /* AnAnMoreBtn.swift */; };
 		167451502C931576005E1D58 /* AnAnBarrageOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */; };
 		1683D7E02A3F592000B93354 /* AnAnShortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */; };
 		16897C6E29C3231A006BE17E /* AnAnVideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */; };
@@ -278,6 +282,10 @@
 		16681AAA2CDE1869004291C8 /* AnAnSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchViewController.swift; sourceTree = "<group>"; };
 		16681AAC2CDE1BCA004291C8 /* AnAnSearchCollectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchCollectionview.swift; sourceTree = "<group>"; };
 		16681AAE2CDE1D06004291C8 /* AnAnSearchItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		166BA76C2CEDEBA900409144 /* AnAnSearchActorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchActorCollectionViewCell.swift; sourceTree = "<group>"; };
+		166BA76E2CEDECF400409144 /* AnAnSearchActorCollectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchActorCollectionview.swift; sourceTree = "<group>"; };
+		166BA7702CEED4A100409144 /* AnAnSearchCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSearchCollectionReusableView.swift; sourceTree = "<group>"; };
+		166BA7722CEED57000409144 /* AnAnMoreBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnMoreBtn.swift; sourceTree = "<group>"; };
 		1674514F2C931576005E1D58 /* AnAnBarrageOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnBarrageOpenView.swift; sourceTree = "<group>"; };
 		1683D7DF2A3F592000B93354 /* AnAnShortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnShortModel.swift; sourceTree = "<group>"; };
 		16897C6D29C3231A006BE17E /* AnAnVideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnVideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -725,6 +733,9 @@
 				160E7F5E2CE5AA7D009802B3 /* AnAnSearchVideosCollectionview.swift */,
 				160E7F602CE5AAC3009802B3 /* AnAnSearchPDCollectionview.swift */,
 				160E7F662CE5AE2A009802B3 /* AnAnSearchVideoTagCollectionview.swift */,
+				166BA76E2CEDECF400409144 /* AnAnSearchActorCollectionview.swift */,
+				166BA7702CEED4A100409144 /* AnAnSearchCollectionReusableView.swift */,
+				166BA7722CEED57000409144 /* AnAnMoreBtn.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -745,6 +756,7 @@
 				160E7F682CE62710009802B3 /* AnAnSearchShortVideoItemCollectionViewCell.swift */,
 				160E7F6A2CE62773009802B3 /* AnAnSearchHPDItemCollectionViewCell.swift */,
 				160E80122CEB2209009802B3 /* AnAnSearchPDCollectionViewCell.swift */,
+				166BA76C2CEDEBA900409144 /* AnAnSearchActorCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1347,6 +1359,7 @@
 				16D8458729A22EE400B4EC3E /* ColorNameManager.swift in Sources */,
 				16C6719E29B7862F005AF603 /* AnAnHeaderCollectionViewCell.swift in Sources */,
 				16637CD32CCCD28B00FA7215 /* AnAnBarrageColorItemCell.swift in Sources */,
+				166BA76F2CEDECF400409144 /* AnAnSearchActorCollectionview.swift in Sources */,
 				16897CF129C8B5C5006BE17E /* AnAnDetailViewController.swift in Sources */,
 				1621594329D5DF4F00B1A29A /* AnAnCustomSlider.swift in Sources */,
 				16E52D852C98861F00048925 /* AnAnSelectSpeedView.swift in Sources */,
@@ -1362,6 +1375,7 @@
 				16D8458129A2263F00B4EC3E /* AnAnMeViewController.swift in Sources */,
 				16FEF32C2CE4A16800422D2B /* AnAnSearchResultNameTableViewCell.swift in Sources */,
 				161281682CA2C6D9009C9C11 /* AnAnBarrageSetView.swift in Sources */,
+				166BA76D2CEDEBA900409144 /* AnAnSearchActorCollectionViewCell.swift in Sources */,
 				16275DE629E84F06002E0F69 /* AnAnDownloadViewController.swift in Sources */,
 				16D8F9A229CC97C700653BE0 /* AnAnRecommentCollectionViewCell.swift in Sources */,
 				160E7F652CE5AB86009802B3 /* AnAnSearchPDItemCollectionViewCell.swift in Sources */,
@@ -1391,6 +1405,7 @@
 				16F60B9D2A1BC43000EEB255 /* AnAnShortVideoView.swift in Sources */,
 				16D8F9A029CC979F00653BE0 /* AnAnHotSheetCollectionViewCell.swift in Sources */,
 				16FFD08529E2F6B300679682 /* AnAnDragPlayerTimeView.swift in Sources */,
+				166BA7712CEED4A100409144 /* AnAnSearchCollectionReusableView.swift in Sources */,
 				16D8F9AA29CF3BCF00653BE0 /* AnAnPeriodBgCollectionViewCell.swift in Sources */,
 				16897CD429C609DD006BE17E /* AnAnScreenTool.swift in Sources */,
 				16275DD729E6F011002E0F69 /* AnAnWaterFallFlowLayout.swift in Sources */,
@@ -1411,6 +1426,7 @@
 				16A0811729B0A914000DA73C /* AnAnFilterItemCollectionViewCell.swift in Sources */,
 				16F60B952A190FE600EEB255 /* AnAnShortTableView.swift in Sources */,
 				16D8457C29A2261600B4EC3E /* AnAnHomeViewController.swift in Sources */,
+				166BA7732CEED57000409144 /* AnAnMoreBtn.swift in Sources */,
 				16897CEF29C8B47E006BE17E /* AnAnSengmentTitleCollectionView.swift in Sources */,
 				16897CBB29C4776B006BE17E /* AnAnHomeActorTableViewCell.swift in Sources */,
 				160E80132CEB2209009802B3 /* AnAnSearchPDCollectionViewCell.swift in Sources */,

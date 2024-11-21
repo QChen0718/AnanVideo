@@ -58,6 +58,7 @@ class AnAnSearchHPDItemCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_475766)
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
         contentView.addSubview(videoCover1Img)

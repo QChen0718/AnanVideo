@@ -16,6 +16,8 @@ class AnAnSearchResultCollectionView: UICollectionView {
         register(AnAnSearchVideoItemCollectionViewCell.self, forCellWithReuseIdentifier: "AnAnSearchVideoItemCollectionViewCell")
         register(AnAnSearchPDCollectionViewCell.self, forCellWithReuseIdentifier: "AnAnSearchPDCollectionViewCell")
         register(AnAnSearchShortVideoItemCollectionViewCell.self, forCellWithReuseIdentifier: "AnAnSearchShortVideoItemCollectionViewCell")
+        register(AnAnSearchActorCollectionViewCell.self, forCellWithReuseIdentifier: "AnAnSearchActorCollectionViewCell")
+        register(AnAnSearchCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AnAnSearchCollectionReusableView")
         backgroundColor = .white
         contentInsetAdjustmentBehavior = .never
     }
@@ -55,7 +57,12 @@ extension AnAnSearchResultCollectionView:UICollectionViewDelegate,UICollectionVi
             return cell
         }else if type == SearchResultType.sheet {
             let cell:AnAnSearchPDCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnAnSearchPDCollectionViewCell", for: indexPath) as! AnAnSearchPDCollectionViewCell
-            cell.pdcollection.pdList = (array as? [AnAnSheetModel]? ?? []) ?? []
+            cell.pdcollection.pdList = array as? [AnAnSheetModel] ?? []
+            return cell
+        }
+        else if type == SearchResultType.actor {
+            let cell:AnAnSearchActorCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnAnSearchActorCollectionViewCell", for: indexPath) as! AnAnSearchActorCollectionViewCell
+            cell.actorModels = array as? [AnAnactorModel]
             return cell
         }
         else{
@@ -71,10 +78,35 @@ extension AnAnSearchResultCollectionView:UICollectionViewDelegate,UICollectionVi
             return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 65)
         }else if type == SearchResultType.sheet {
             return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 127)
+        }else if type == SearchResultType.actor {
+            return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 320)
         }else{
             return CGSize(width: floor((AnAnAppDevice.an_screenWidth()-40)/2), height: 178)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: AnAnAppDevice.an_screenWidth(), height: 51)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let type:SearchResultType = dataList[indexPath.section]["type"] as? SearchResultType else { return UICollectionReusableView() }
+        if kind == UICollectionView.elementKindSectionHeader {
+            let headerResusa:AnAnSearchCollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AnAnSearchCollectionReusableView", for: indexPath) as! AnAnSearchCollectionReusableView
+            if type == SearchResultType.season {
+                headerResusa.sectionTitleLab.text = "影视"
+            }else if type == SearchResultType.actor {
+                headerResusa.sectionTitleLab.text = "明星"
+            }else if type == SearchResultType.sheet {
+                headerResusa.sectionTitleLab.text = "片单"
+            }else{
+                headerResusa.sectionTitleLab.text = "快看"
+            }
+            return headerResusa
+        }
+        return UICollectionReusableView()
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         guard let type:SearchResultType = dataList[section]["type"] as? SearchResultType else { return .zero }
@@ -87,6 +119,9 @@ extension AnAnSearchResultCollectionView:UICollectionViewDelegate,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         guard let type:SearchResultType = dataList[section]["type"] as? SearchResultType else { return .zero }
         if type == SearchResultType.video {
+            return 8
+        }
+        if type == SearchResultType.season {
             return 8
         }
         return .zero
