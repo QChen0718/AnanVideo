@@ -52,6 +52,7 @@ struct AnAnactorModel:HandyJSON {
     var stageName:[String]?
     var relatedDramaList:[AnAnRelatedDramaModel]?
     var chineseName:String?
+    var chinese_name:String?
     var highlights:[AnAnHighlightModel]?
     var description:String?
     var birthday:String?
@@ -61,6 +62,7 @@ struct AnAnactorModel:HandyJSON {
     var headUrl:String?
     var communityEnable:Bool = false
     var nickName:[String]?
+    var head_url:String?
 }
 
 struct AnAnRelatedDramaModel:HandyJSON{
@@ -145,4 +147,31 @@ struct AnAnSeasonInfo: HandyJSON {
    var id: Int?
    var dramaId: Int?
    var cover: String?
+}
+
+
+struct AnAnPDModel:HandyJSON {
+    var choice:Bool = false
+    var authorId:String?
+    var content:String?
+    var search_after:String?
+    var recomItemId:String?
+    var recomTraceId:String?
+    var likeCount:Int = 0
+    var liked:Bool = false
+    var headImgUrl:String?
+    var recomItemType:String?
+    var recomTraceInfo:String?
+    var albumRelated:String?
+    var authorName:String?
+    var privacy:Bool = false
+    var id:String?
+    var createTime:String?
+    var title:String?
+    var covers:[String] = []
+    var contentType:String?
+    var updateTime:String?
+    var tags:[String] = []
+    var relevance_count:Int = 0
+
 }

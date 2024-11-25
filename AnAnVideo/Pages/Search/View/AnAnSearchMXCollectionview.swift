@@ -25,14 +25,20 @@ class AnAnSearchMXCollectionview: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    var dataList:[AnAnactorModel?] = []{
+        didSet{
+            self.reloadData()
+        }
+    }
 }
 
 extension AnAnSearchMXCollectionview:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return dataList.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:AnAnSearchActorItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnAnSearchActorItemCollectionViewCell", for: indexPath) as! AnAnSearchActorItemCollectionViewCell
+        cell.actorModel = dataList[indexPath.row]
         return cell
     }
 }

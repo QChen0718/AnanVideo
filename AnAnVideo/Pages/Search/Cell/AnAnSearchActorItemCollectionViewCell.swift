@@ -71,4 +71,12 @@ class AnAnSearchActorItemCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var actorModel:AnAnactorModel?{
+        didSet{
+            userHeaderImg.setImageWith(url: actorModel?.head_url ?? "")
+            userNameLab.text = actorModel?.chinese_name
+            userTagLab.text = "\(actorModel?.nationality ?? "")/\(actorModel?.birthday ?? "")"
+        }
+    }
 }

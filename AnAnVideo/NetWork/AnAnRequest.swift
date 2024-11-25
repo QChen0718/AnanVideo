@@ -175,4 +175,28 @@ class AnAnRequest{
             success(returnData)
         }
     }
+//    获取搜索影视数据
+    func requestSearchVideosData(params:[String:Any],success:@escaping ([AnAnMovieModel?])->Void) {
+        provider.requestDataListModel(.searchVideos(params: params), model: AnAnMovieModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
+//    获取搜索片单数据
+    func requestSearchPDData(params:[String:Any],success:@escaping ([AnAnPDModel?])->Void) {
+        provider.requestDataListModel(.searchSheet(params: params), model: AnAnPDModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
+//    获取搜索快看数据
+    func requestSearchQuickData(params:[String:Any],success:@escaping ([AnAnVideoModel?])->Void) {
+        provider.requestDataListModel(.searchQuick(params: params), model: AnAnVideoModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
+//    获取搜索明星数据
+    func requestSearchMXData(params:[String:Any],success:@escaping ([AnAnactorModel?])->Void) {
+        provider.requestDataListModel(.searchActor(params: params), model: AnAnactorModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
 }

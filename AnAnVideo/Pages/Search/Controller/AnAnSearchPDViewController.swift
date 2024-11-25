@@ -23,6 +23,18 @@ class AnAnSearchPDViewController: UIViewController {
         pdCollection.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        loadSearchResultListData(keyword: searchKey ?? "")
     }
 
+    var searchKey:String?
+}
+
+extension AnAnSearchPDViewController{
+    func loadSearchResultListData(keyword:String) {
+        let params:[String:Any] = ["keywords":keyword,"size":"20"]
+        AnAnRequest.shared.requestSearchPDData(params: params) {[weak self] searchModels in
+            guard let `self` else {return}
+            pdCollection.dataList = searchModels
+        }
+    }
 }

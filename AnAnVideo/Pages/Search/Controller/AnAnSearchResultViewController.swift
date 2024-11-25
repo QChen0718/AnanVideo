@@ -94,6 +94,10 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
         didSet{
             searchView.searchTextField.text = searchKey
             synthesisController.searchKey = searchKey
+            pdController.searchKey = searchKey
+            dramaController.searchKey = searchKey
+            shortvideoController.searchKey = searchKey
+            actorController.searchKey = searchKey
         }
     }
     

@@ -23,6 +23,17 @@ class AnAnSearchActorViewController: UIViewController {
         mxCollection.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        loadSearchResultListData(keyword: searchKey ?? "")
     }
-
+    
+    var searchKey:String?
+}
+extension AnAnSearchActorViewController{
+    func loadSearchResultListData(keyword:String) {
+        let params:[String:Any] = ["keywords":keyword,"size":"20"]
+        AnAnRequest.shared.requestSearchMXData(params: params) {[weak self] searchModels in
+            guard let `self` else {return}
+            self.mxCollection.dataList = searchModels
+        }
+    }
 }

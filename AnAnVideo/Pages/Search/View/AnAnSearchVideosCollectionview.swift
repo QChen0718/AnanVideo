@@ -25,14 +25,20 @@ class AnAnSearchVideosCollectionview: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var dataList:[AnAnMovieModel?] = []{
+        didSet{
+            self.reloadData()
+        }
+    }
 }
 
 extension AnAnSearchVideosCollectionview:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return dataList.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:AnAnSearchVideoItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnAnSearchVideoItemCollectionViewCell", for: indexPath) as! AnAnSearchVideoItemCollectionViewCell
+        cell.seasonModel = dataList[indexPath.row]
         return cell
     }
 }

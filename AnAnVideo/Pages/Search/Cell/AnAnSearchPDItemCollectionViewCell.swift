@@ -80,9 +80,9 @@ class AnAnSearchPDItemCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = .white
         contentView.layer.cornerRadius = 8
-        contentView.addSubview(videoCover1Img)
-        contentView.addSubview(videoCover2Img)
         contentView.addSubview(videoCover3Img)
+        contentView.addSubview(videoCover2Img)
+        contentView.addSubview(videoCover1Img)
         contentView.addSubview(videoNameLab)
         contentView.addSubview(bottomBgImg)
         contentView.addSubview(tagCollection)
@@ -150,5 +150,23 @@ class AnAnSearchPDItemCollectionViewCell: UICollectionViewCell {
     
     @objc func likeBtnClick(){
         
+    }
+    
+    var pdmodel:AnAnPDModel?{
+        didSet{
+            guard let content = pdmodel?.covers else { return  }
+            for (i,url) in content.enumerated() {
+                if i == 0 {
+                    videoCover1Img.setImageWith(url: url)
+                }else if i == 1 {
+                    videoCover2Img.setImageWith(url: url)
+                }else{
+                    videoCover3Img.setImageWith(url: url)
+                }
+            }
+            videoNameLab.text = pdmodel?.title
+            userBtn.setTitle(pdmodel?.authorName, for: .normal)
+            likeBtn.setTitle("\(pdmodel?.likeCount ?? 0)", for: .normal)
+        }
     }
 }

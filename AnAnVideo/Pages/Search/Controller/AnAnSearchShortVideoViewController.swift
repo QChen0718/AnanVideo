@@ -23,6 +23,17 @@ class AnAnSearchShortVideoViewController: UIViewController {
         shotCollection.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        loadSearchResultListData(keyword: searchKey ?? "")
     }
 
+    var searchKey:String?
+}
+extension AnAnSearchShortVideoViewController{
+    func loadSearchResultListData(keyword:String) {
+        let params:[String:Any] = ["keywords":keyword,"size":"20"]
+        AnAnRequest.shared.requestSearchQuickData(params: params) {[weak self] searchModels in
+            guard let `self` else {return}
+            self.shotCollection.dataList = searchModels
+        }
+    }
 }
