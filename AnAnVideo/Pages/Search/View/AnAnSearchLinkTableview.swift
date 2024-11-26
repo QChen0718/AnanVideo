@@ -62,6 +62,13 @@ extension AnAnSearchLinkTableview:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.isHidden = true
-        AnAnJumpPageManager.goToSearchResultPage(keyword: "女王")
+        if indexPath.section == 0 {
+            let seasonModel = searchlinkModel?.seasonList?[indexPath.row]
+            AnAnJumpPageManager.goToSearchResultPage(keyword: seasonModel?.title ?? "")
+        }else{
+            let tipModel = searchlinkModel?.searchTips?[indexPath.row]
+            AnAnJumpPageManager.goToSearchResultPage(keyword: tipModel?.title ?? "")
+        }
+        
     }
 }

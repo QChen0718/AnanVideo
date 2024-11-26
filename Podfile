@@ -13,6 +13,7 @@ target 'AnAnVideo' do
   pod 'Toast-Swift'
   pod 'Kingfisher'
   # swift三方数据库
+  pod 'SQLite.swift'
 #  pod 'RealmSwift'
 #  pod 'Realm'
   # Reusable 简便，快速的注册cell的三方库

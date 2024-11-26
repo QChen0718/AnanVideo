@@ -60,6 +60,12 @@ extension AnAnSearchViewController:UITextFieldDelegate{
         }
         loadSearchLinkData(keyword: textField.text ?? "")
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        AnAnJumpPageManager.goToSearchResultPage(keyword: textField.text ?? "")
+        AnAnSearchData.shareDB.insertWatchHistory(AnAnSearchLocalModel(searchId: "1", searchContent: textField.text ?? "", currentTime: Date().timeIntervalSince1970))
+        return true
+    }
 }
 
 extension AnAnSearchViewController{
@@ -86,6 +92,7 @@ fileprivate class SearchView: UIView {
         textfield.attributedPlaceholder = NSAttributedString(string: "大家都在搜“扶摇”", attributes: [NSAttributedString.Key.foregroundColor:UIColor.hexadecimalColor(hexadecimal: An_CACBCC),NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .regular)])
         textfield.textColor = UIColor.hexadecimalColor(hexadecimal: An_222222)
         textfield.font = .systemFont(ofSize: 15, weight: .regular)
+        textfield.returnKeyType = .search
         return textfield
     }()
     

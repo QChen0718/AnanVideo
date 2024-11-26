@@ -61,9 +61,9 @@ class AnAnSearchHPDItemCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = UIColor.hexadecimalColor(hexadecimal: An_475766)
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
-        contentView.addSubview(videoCover1Img)
-        contentView.addSubview(videoCover2Img)
         contentView.addSubview(videoCover3Img)
+        contentView.addSubview(videoCover2Img)
+        contentView.addSubview(videoCover1Img)
         contentView.addSubview(videoNameLab)
         contentView.addSubview(arrowIcoImg)
         contentView.addSubview(videoNumberLab)

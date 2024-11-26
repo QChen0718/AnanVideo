@@ -53,6 +53,9 @@ PODS:
   - Reusable/Storyboard (4.1.2)
   - Reusable/View (4.1.2)
   - SnapKit (5.6.0)
+  - SQLite.swift (0.14.1):
+    - SQLite.swift/standard (= 0.14.1)
+  - SQLite.swift/standard (0.14.1)
   - SwiftyJSON (5.0.1)
   - Toast-Swift (5.0.1)
 
@@ -67,6 +70,7 @@ DEPENDENCIES:
   - NetSpeed
   - Reusable
   - SnapKit
+  - SQLite.swift
   - SwiftyJSON
   - Toast-Swift
 
@@ -87,6 +91,7 @@ SPEC REPOS:
     - NetSpeed
     - Reusable
     - SnapKit
+    - SQLite.swift
     - SwiftyJSON
     - Toast-Swift
 
@@ -105,9 +110,10 @@ SPEC CHECKSUMS:
   NetSpeed: 0c08cd0c4343de6311987ffe0f0edb93fb695523
   Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SQLite.swift: 2992550ebf3c5b268bf4352603e3df87d2a4ed72
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 577424d7bd415af8115e2dee25fcd36e223271fd
+PODFILE CHECKSUM: 829f2c486cb6501c4d534780ff16fa0d55be3e59
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.16.2
