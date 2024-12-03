@@ -9,6 +9,12 @@ import UIKit
 
 class AnAnSearchViewController: AnAnBaseViewController {
 
+    lazy var searchHeaderBgImg: UIImageView = {
+        let img = UIImageView(image: UIImage(named: "img_search_bg"))
+        img.contentMode = .scaleAspectFill
+        return img
+    }()
+    
    fileprivate lazy var searchView:SearchView = {
        let view = SearchView()
        view.searchTextField.delegate = self
@@ -30,12 +36,18 @@ class AnAnSearchViewController: AnAnBaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        arrowBackBtn.setImage(UIImage(named: "ic_video_navbar_back_gray_60"), for: .normal)
+        self.view.addSubview(searchHeaderBgImg)
+        searchHeaderBgImg.snp.makeConstraints { make in
+            make.leading.top.trailing.equalToSuperview()
+            make.height.equalTo(AnAnAppDevice.an_screenWidth()*211/375)
+        }
+        arrowBackBtn.setImage(UIImage(named: "ic_arrow_back"), for: .normal)
+        self.view.bringSubviewToFront(arrowBackBtn)
         self.view.addSubview(searchView)
         searchView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(21)
             make.height.equalTo(48)
-            make.top.equalTo(160)
+            make.top.equalTo(searchHeaderBgImg.snp.bottom).offset(-24)
         }
         view.addSubview(searchTableview)
         searchTableview.snp.makeConstraints { make in
@@ -49,6 +61,18 @@ class AnAnSearchViewController: AnAnBaseViewController {
         }
         
         searchTableview.loadSearchTopData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadSearchHisotyData), name: NSNotification.Name("SearchHistoyData"), object: nil)
+        searchTableview.disKeyworld = { [weak self] in
+            guard let `self`  else { return}
+            self.searchView.searchTextField.resignFirstResponder()
+        }
+    }
+    
+    @objc func loadSearchHisotyData(noti:Notification){
+        guard let searchKey = noti.userInfo?["searchKey"] as? String else { return }
+        searchView.searchTextField.text = searchKey
+        AnAnJumpPageManager.goToSearchResultPage(keyword: searchKey)
     }
 
 }
@@ -63,7 +87,7 @@ extension AnAnSearchViewController:UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         AnAnJumpPageManager.goToSearchResultPage(keyword: textField.text ?? "")
-        AnAnSearchData.shareDB.insertWatchHistory(AnAnSearchLocalModel(searchId: "1", searchContent: textField.text ?? "", currentTime: Date().timeIntervalSince1970))
+        AnAnSearchData.shareDB.insertSearchData(AnAnSearchLocalModel(searchContent: textField.text ?? "", currentTime: Date().timeIntervalSince1970))
         return true
     }
 }

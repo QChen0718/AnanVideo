@@ -10,6 +10,7 @@ import UIKit
 class AnAnSearchTableview: UITableView {
     var hotList:[AnAnHotModel?] = []
     var selectIndex:Int = 0
+    var disKeyworld:(()->Void)?
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         delegate = self
@@ -78,7 +79,7 @@ extension AnAnSearchTableview:UITableViewDelegate,UITableViewDataSource{
 //    滑动 135
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 120
+            return AnAnSearchData.shareDB.fetchAllSearchData().count == 0 ? 0 : 120
         }else if indexPath.section == 1{
             return 47
         }else{
@@ -106,7 +107,7 @@ extension AnAnSearchTableview:UITableViewDelegate,UITableViewDataSource{
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        disKeyworld?()
     }
 }
 

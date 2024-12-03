@@ -8,11 +8,10 @@
 import UIKit
 
 class AnAnSearchLocalModel: NSObject {
-    var searchId:String
+
     var searchContent:String
     var currentTime:Double
-    init(searchId: String, searchContent: String, currentTime: Double) {
-        self.searchId = searchId
+    init( searchContent: String, currentTime: Double) {
         self.searchContent = searchContent
         self.currentTime = currentTime
     }

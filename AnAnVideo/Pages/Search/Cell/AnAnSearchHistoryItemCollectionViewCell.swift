@@ -12,7 +12,6 @@ class AnAnSearchHistoryItemCollectionViewCell: UICollectionViewCell {
        let lab = UILabel()
         lab.textColor = UIColor.hexadecimalColor(hexadecimal: An_919699)
         lab.font = .systemFont(ofSize: 12, weight: .regular)
-        lab.text = "名侦探柯南"
         return lab
     }()
     override init(frame: CGRect) {
@@ -29,5 +28,11 @@ class AnAnSearchHistoryItemCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    var model:AnAnSearchLocalModel?{
+        didSet{
+            historyKeyLab.text = model?.searchContent
+        }
     }
 }

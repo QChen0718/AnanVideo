@@ -13,7 +13,7 @@ class AnAnSearchData: NSObject {
     private var db: Connection!
     private let searchTable = Table("searchTable")
     
-    private let searchId = SQLite.Expression<String>("searchId")
+    private let searchId = SQLite.Expression<Int64>("searchId")
     private let searchContent = SQLite.Expression<String>("searchContent")
     private let currentTime = SQLite.Expression<Double>("currentTime")
     
@@ -62,10 +62,10 @@ class AnAnSearchData: NSObject {
         }
     }
     
-    // 插入观看历史记录
-    func insertWatchHistory(_ history: AnAnSearchLocalModel) {
+    // 插入搜索记录
+    func insertSearchData(_ history: AnAnSearchLocalModel) {
         let insert = searchTable.insert(
-            searchId <- history.searchId,
+//            searchId <- history.searchId,
             searchContent <- history.searchContent,
             currentTime <- history.currentTime
         )
@@ -76,9 +76,25 @@ class AnAnSearchData: NSObject {
             print("Insert error: \(error)")
         }
     }
+//    获取搜索记录
+    func fetchAllSearchData() -> [AnAnSearchLocalModel] {
+        var histories: [AnAnSearchLocalModel] = []
+        do {
+            for row in try db.prepare(searchTable) {
+                let search = AnAnSearchLocalModel(
+                    searchContent: row[searchContent], currentTime: row[currentTime])
+                histories.append(search)
+            }
+        } catch {
+            print("Fetch error: \(error)")
+        }
+        return histories.sorted { model1, model2 in
+            model1.currentTime > model2.currentTime
+        }
+    }
     
     // 清空所有观看历史记录
-    func deleteAllWatchHistories() {
+    func deleteAllSearchData() {
         do {
             try db.run(searchTable.delete())
             print("Delete all successful")

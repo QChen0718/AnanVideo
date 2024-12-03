@@ -9,6 +9,15 @@ import UIKit
 
 class AnAnSearchHistoryKeyCollectionView: UICollectionView {
 
+    var dataList:[AnAnSearchLocalModel] {
+        set {
+            
+        }
+        get {
+            return AnAnSearchData.shareDB.fetchAllSearchData()
+        }
+    }
+    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         guard let flowlayout = layout as? UICollectionViewFlowLayout else { return }
@@ -32,16 +41,18 @@ class AnAnSearchHistoryKeyCollectionView: UICollectionView {
 
 extension AnAnSearchHistoryKeyCollectionView:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return dataList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:AnAnSearchHistoryItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnAnSearchHistoryItemCollectionViewCell", for: indexPath) as! AnAnSearchHistoryItemCollectionViewCell
+        cell.model = dataList[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let model = dataList[indexPath.row]
+        NotificationCenter.default.post(name: NSNotification.Name("SearchHistoyData"), object: nil, userInfo: ["searchKey":model.searchContent])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

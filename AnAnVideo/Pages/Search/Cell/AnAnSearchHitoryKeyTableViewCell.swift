@@ -19,13 +19,13 @@ class AnAnSearchHitoryKeyTableViewCell: UITableViewCell {
     
     lazy var closeBtn:UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setImage(UIImage(named: ""), for: .normal)
+        btn.setImage(UIImage(named: "icon_delate"), for: .normal)
         btn.addTarget(self, action: #selector(closeBtnClick), for: .touchUpInside)
         return btn
     }()
     
     lazy var historyKeyCollection: AnAnSearchHistoryKeyCollectionView = {
-        let view = AnAnSearchHistoryKeyCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let view = AnAnSearchHistoryKeyCollectionView(frame: .zero, collectionViewLayout: AnAnLeftAlignedCollectionViewFlowLayout())
         return view
     }()
     
@@ -49,6 +49,12 @@ class AnAnSearchHitoryKeyTableViewCell: UITableViewCell {
             make.top.equalTo(historyTitleLab.snp.bottom).offset(16)
             make.height.equalTo(72)
         }
+        
+        if AnAnSearchData.shareDB.fetchAllSearchData().isEmpty {
+            historyTitleLab.isHidden = true
+            closeBtn.isHidden = true
+            historyKeyCollection.isHidden = true
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +62,6 @@ class AnAnSearchHitoryKeyTableViewCell: UITableViewCell {
     }
     
     @objc func closeBtnClick(){
-        
+        AnAnSearchData.shareDB.deleteAllSearchData()
     }
 }
