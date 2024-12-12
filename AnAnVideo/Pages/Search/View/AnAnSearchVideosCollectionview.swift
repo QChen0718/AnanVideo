@@ -41,4 +41,8 @@ extension AnAnSearchVideosCollectionview:UICollectionViewDelegate,UICollectionVi
         cell.seasonModel = dataList[indexPath.row]
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = dataList[indexPath.row]
+        AnAnJumpPageManager.gotToDetailPage(dramaId: model?.id ?? "")
+    }
 }

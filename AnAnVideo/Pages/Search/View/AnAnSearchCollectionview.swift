@@ -49,4 +49,7 @@ extension AnAnSearchCollectionview:UICollectionViewDelegate,UICollectionViewData
         let width = Int((Float(AnAnAppDevice.an_screenWidth())-48)/3.0)
         return CGSizeMake(CGFloat(width), CGFloat(width*141/109) + 42)
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        AnAnJumpPageManager.gotToDetailPage(dramaId: self.recommentVideoList?[indexPath.row].dramaId ?? "")
+    }
 }

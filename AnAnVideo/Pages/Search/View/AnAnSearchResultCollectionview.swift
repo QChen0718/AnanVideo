@@ -134,4 +134,21 @@ extension AnAnSearchResultCollectionView:UICollectionViewDelegate,UICollectionVi
         }
         return .zero
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let type:SearchResultType = dataList[indexPath.section]["type"] as? SearchResultType else { return }
+        guard let array = dataList[indexPath.section]["dataArray"] as? [Any] else { return }
+        switch type {
+        case .season:
+           let model = array[indexPath.row] as? AnAnMovieModel
+            AnAnJumpPageManager.gotToDetailPage(dramaId: model?.id ?? "")
+            break
+        case .actor:
+            break
+        case .sheet:
+            break
+        case .video:
+            break
+        }
+    }
 }

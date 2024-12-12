@@ -44,7 +44,7 @@ class AnAnSearchPDItemCollectionViewCell: UICollectionViewCell {
     }()
     
     lazy var bottomBgImg: UIImageView = {
-        let img = UIImageView(image: UIImage(named: ""))
+        let img = UIImageView(image: UIImage(named: "img_community_piandan_bg_w"))
         img.contentMode = .scaleAspectFill
         return img
     }()

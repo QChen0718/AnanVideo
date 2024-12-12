@@ -163,10 +163,24 @@ class AnAnSearchResultViewController: AnAnBaseViewController {
             make.top.equalTo(pagetitleCollection.snp.bottom).offset(10)
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableDataList), name: NSNotification.Name("updateSearchTable"), object: nil)
+        
     }
 
     @objc func cancelBtnClick(){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func refreshTableDataList(noti:Notification){
+        let dict = noti.userInfo
+        guard let index = dict?["selectIndex"] as? Int else { return }
+        pagetitleCollection.curIndex = index
+        if self.oldScrollIndex > index {
+            self.resultPagecontrol.setViewControllers([self.controllersArray[index]], direction: .reverse, animated: true)
+        }else{
+            self.resultPagecontrol.setViewControllers([self.controllersArray[index] ], direction: .forward, animated: true)
+        }
+        self.oldScrollIndex = index
     }
 }
 
@@ -206,7 +220,7 @@ extension AnAnSearchResultViewController:UIPageViewControllerDelegate,UIPageView
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if(completed){
-//            sengmentCollectionView.selectIndex = currentScrollIndex
+            pagetitleCollection.curIndex = currentScrollIndex
             oldScrollIndex = currentScrollIndex
         }
     }

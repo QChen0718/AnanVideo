@@ -44,5 +44,8 @@ extension AnAnSearchPDCollectionview:UICollectionViewDelegate,UICollectionViewDa
         cell.sheetModel = pdList[indexPath.row]
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = pdList[indexPath.row]
+        AnAnJumpPageManager.gotToDetailPage(dramaId: model.id ?? "")
+    }
 }

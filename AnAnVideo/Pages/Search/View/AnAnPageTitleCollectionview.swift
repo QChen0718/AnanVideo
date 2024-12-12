@@ -33,6 +33,16 @@ class AnAnPageTitleCollectionview: UICollectionView {
             self.reloadData()
         }
     }
+    
+    var curIndex:Int = 0 {
+        didSet{
+            dataList?.forEach({ model in
+                model?.isSelect = false
+            })
+            dataList?[curIndex]?.isSelect = true
+            self.reloadData()
+        }
+    }
 }
 
 

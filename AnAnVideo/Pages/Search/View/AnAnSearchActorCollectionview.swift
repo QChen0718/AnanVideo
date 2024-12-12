@@ -44,4 +44,8 @@ extension AnAnSearchActorCollectionview:UICollectionViewDelegate,UICollectionVie
         cell.dramaModel = recommentDramaList[indexPath.row]
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = recommentDramaList[indexPath.row]
+        AnAnJumpPageManager.gotToDetailPage(dramaId: model.dramaId ?? "")
+    }
 }
