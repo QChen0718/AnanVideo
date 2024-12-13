@@ -199,4 +199,11 @@ class AnAnRequest{
             success(returnData)
         }
     }
+    
+//   获取短视频数据
+    func requestShortVideoData(success:@escaping ([AnAnShortModel?])->Void) -> Void {
+        provider.requestDataListModel(.shortVideoList, model: AnAnShortModel.self) { returnData, msg in
+            success(returnData)
+        }
+    }
 }

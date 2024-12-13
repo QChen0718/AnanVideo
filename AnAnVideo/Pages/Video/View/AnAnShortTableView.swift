@@ -34,15 +34,22 @@ class AnAnShortTableView: UITableView {
         let currentcell = self.cellForRow(at: IndexPath.init(row: currentIndex, section: 0)) as? AnAnShortTableViewCell
         currentcell?.player()
     }
+    
+    var dataList:[AnAnShortModel?]? {
+        didSet{
+            reloadData()
+        }
+    }
 }
 
 extension AnAnShortTableView:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:AnAnShortTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AnAnShortTableViewCell
+        cell.model = dataList?[indexPath.row]
         if indexPath.row == currentIndex {
             cell.player()
         }else{

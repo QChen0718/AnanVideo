@@ -40,8 +40,10 @@ class AnAnShortVideoViewController: AnAnBaseViewController {
     
     
     private func requestData(){
-        AnAnRequest.shared.provider.requestModel(.shortVideoList, model: AnAnShortModel.self) { (returnData, msg) in
-            
+        AnAnRequest.shared.requestShortVideoData {[weak self] listData in
+            guard let `self` else { return}
+            print("---->\(listData.first??.title ?? "")")
+            tableView.dataList = listData
         }
     }
 }

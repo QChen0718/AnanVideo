@@ -70,6 +70,13 @@ class AnAnShortTableViewCell: UITableViewCell {
         return view
     }()
     
+    var model:AnAnShortModel?{
+        didSet{
+            videoView.playerUrl = model?.playLink
+            titleLabel.text = model?.title
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
