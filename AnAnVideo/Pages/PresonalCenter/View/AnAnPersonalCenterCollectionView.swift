@@ -112,6 +112,8 @@ extension AnAnPersonalCenterCollectionView:UICollectionViewDelegate,UICollection
             if cellType == anAnHistoryCollectionViewCellId{
                 view.titleLabel.text = "历史记录"
                 view.arrowImg.isHidden = false
+                view.arrowImg.isUserInteractionEnabled = true
+                view.arrowImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(jumpToHistoryClick)))
             }else if cellType == anAnMenuCollectionViewCellId{
                 view.titleLabel.text = "其他功能"
                 view.arrowImg.isHidden = true
@@ -149,5 +151,9 @@ extension AnAnPersonalCenterCollectionView:UICollectionViewDelegate,UICollection
                 break
             }
         }
+    }
+    
+    @objc private func jumpToHistoryClick(){
+        AnAnJumpPageManager.goToHistoryPage()
     }
 }

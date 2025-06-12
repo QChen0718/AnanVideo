@@ -87,4 +87,14 @@ class AnAnJumpPageManager: NSObject {
         vc.searchKey = keyword
         AnAnJumpPageManager.shared.currentVC?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    static func goToHistoryPage(){
+        let vc = AnAnHistoryViewController()
+        AnAnJumpPageManager.shared.currentVC?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    static func goToVipPage(){
+        let vc = AnAnPayViewController()
+        AnAnJumpPageManager.shared.currentVC?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

@@ -121,6 +121,9 @@
 		16897CFA29C9A8A1006BE17E /* AnAnPlayerBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897CF929C9A8A1006BE17E /* AnAnPlayerBottomView.swift */; };
 		16897CFC29C9AB6B006BE17E /* AnAnPlayerLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897CFB29C9AB6B006BE17E /* AnAnPlayerLoadingView.swift */; };
 		16897CFE29CAADF0006BE17E /* AnAnPlayerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16897CFD29CAADF0006BE17E /* AnAnPlayerTopView.swift */; };
+		169617082D3FC6B000A258E1 /* AnAnPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169617072D3FC6B000A258E1 /* AnAnPayViewController.swift */; };
+		1696170B2D3FC6FF00A258E1 /* AnAnHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1696170A2D3FC6FF00A258E1 /* AnAnHistoryViewController.swift */; };
+		1696170D2D3FCDF900A258E1 /* AnAnHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1696170C2D3FCDF900A258E1 /* AnAnHistoryTableViewCell.swift */; };
 		16A0810F29B0A732000DA73C /* AnAnFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A0810E29B0A732000DA73C /* AnAnFilterCollectionViewCell.swift */; };
 		16A0811129B0A78B000DA73C /* AnAnSpreadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A0811029B0A78B000DA73C /* AnAnSpreadCollectionViewCell.swift */; };
 		16A0811329B0A7BF000DA73C /* AnAnCategoryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A0811229B0A7BF000DA73C /* AnAnCategoryItemCollectionViewCell.swift */; };
@@ -336,6 +339,9 @@
 		16897CF929C9A8A1006BE17E /* AnAnPlayerBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnPlayerBottomView.swift; sourceTree = "<group>"; };
 		16897CFB29C9AB6B006BE17E /* AnAnPlayerLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnPlayerLoadingView.swift; sourceTree = "<group>"; };
 		16897CFD29CAADF0006BE17E /* AnAnPlayerTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnPlayerTopView.swift; sourceTree = "<group>"; };
+		169617072D3FC6B000A258E1 /* AnAnPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnPayViewController.swift; sourceTree = "<group>"; };
+		1696170A2D3FC6FF00A258E1 /* AnAnHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHistoryViewController.swift; sourceTree = "<group>"; };
+		1696170C2D3FCDF900A258E1 /* AnAnHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		16A0810E29B0A732000DA73C /* AnAnFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		16A0811029B0A78B000DA73C /* AnAnSpreadCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnSpreadCollectionViewCell.swift; sourceTree = "<group>"; };
 		16A0811229B0A7BF000DA73C /* AnAnCategoryItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnAnCategoryItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -930,6 +936,23 @@
 			path = OperationView;
 			sourceTree = "<group>";
 		};
+		169617062D3FC67500A258E1 /* Vip */ = {
+			isa = PBXGroup;
+			children = (
+				169617072D3FC6B000A258E1 /* AnAnPayViewController.swift */,
+			);
+			path = Vip;
+			sourceTree = "<group>";
+		};
+		169617092D3FC6EE00A258E1 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				1696170A2D3FC6FF00A258E1 /* AnAnHistoryViewController.swift */,
+				1696170C2D3FCDF900A258E1 /* AnAnHistoryTableViewCell.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		16A0811829B1DCBE000DA73C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1070,6 +1093,8 @@
 		16D8457929A225BF00B4EC3E /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				169617092D3FC6EE00A258E1 /* History */,
+				169617062D3FC67500A258E1 /* Vip */,
 				16681AA52CDE1832004291C8 /* Search */,
 				1615467D2CDCCBE600504909 /* Setting */,
 				16F60B902A19075000EEB255 /* Video */,
@@ -1327,9 +1352,11 @@
 				16FEF3262CE4801000422D2B /* AnAnSearchHistoryItemCollectionViewCell.swift in Sources */,
 				1641E2BC29ACFFED000D12BC /* AnAnMorePhotoCollectionView.swift in Sources */,
 				16897CF329C8B5F5006BE17E /* AnAnCommentViewController.swift in Sources */,
+				1696170B2D3FC6FF00A258E1 /* AnAnHistoryViewController.swift in Sources */,
 				16F60B8F2A166CB000EEB255 /* AnAnDownloadSuccessTableViewCell.swift in Sources */,
 				161546862CDCCCDA00504909 /* AnAnSettingTable.swift in Sources */,
 				164761B229C2BCBC000B319D /* AnAnUserData.swift in Sources */,
+				169617082D3FC6B000A258E1 /* AnAnPayViewController.swift in Sources */,
 				16897CBF29C4A9CF006BE17E /* AnAnHomeActorCollectionViewCell.swift in Sources */,
 				16FEF3242CE47EB800422D2B /* AnAnPageTitleCollectionview.swift in Sources */,
 				16FF44B72CA6B4C800EAD344 /* AnAnBarrageColorView.swift in Sources */,
@@ -1466,6 +1493,7 @@
 				16D8F9AA29CF3BCF00653BE0 /* AnAnPeriodBgCollectionViewCell.swift in Sources */,
 				16897CD429C609DD006BE17E /* AnAnScreenTool.swift in Sources */,
 				16275DD729E6F011002E0F69 /* AnAnWaterFallFlowLayout.swift in Sources */,
+				1696170D2D3FCDF900A258E1 /* AnAnHistoryTableViewCell.swift in Sources */,
 				16D8F9A429CC9CE700653BE0 /* AnAnPeriodCollectionView.swift in Sources */,
 				16475FF229BA33FF000B319D /* AnAnHistoryMoreCollectionViewCell.swift in Sources */,
 				1612816C2CA2CB8F009C9C11 /* AnAnBarrageSetItemCell.swift in Sources */,

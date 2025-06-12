@@ -31,6 +31,7 @@ class AnAnHeaderCollectionViewCell: UICollectionViewCell {
     }()
     private lazy var vipView:AnAnVipView = {
         let view = AnAnVipView(frame: .zero)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(vipBtnClick)))
         return view
     }()
     private lazy var lineView:UIView = {
@@ -111,5 +112,9 @@ class AnAnHeaderCollectionViewCell: UICollectionViewCell {
         if !AnAnUserData.isLogin{
             AnAnJumpPageManager.goToLoginPage()
         }
+    }
+    
+    @objc private func vipBtnClick(){
+        AnAnJumpPageManager.goToVipPage()
     }
 }
