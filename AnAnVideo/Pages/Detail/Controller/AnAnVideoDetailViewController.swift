@@ -160,22 +160,24 @@ class AnAnVideoDetailViewController: AnAnBaseViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        let orientation = UIApplication.shared.statusBarOrientation
-        switch orientation {
-        case .portrait,.portraitUpsideDown,.unknown:  /// 竖屏
-            playerViewController.view.snp.remakeConstraints { make in
-                make.leading.trailing.equalToSuperview()
-                make.top.equalTo(max(AnAnAppDevice.deviceTop(), AnAnAppDevice.deviceLeft))
-                make.height.equalTo(AnAnAppDevice.an_screenWidth() * 9/16)
-            }
-            break
-        case .landscapeLeft,.landscapeRight: ///横屏
+        let isLandscape: Bool
+        if #available(iOS 13.0, *) {
+            isLandscape = size.width > size.height
+        } else {
+            // Fallback on earlier versions
+            let orientation = UIApplication.shared.statusBarOrientation
+            isLandscape = orientation.isLandscape
+        }
+        if isLandscape {
             playerViewController.view.snp.remakeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            break
-        default:
-            break
+        }else{
+            playerViewController.view.snp.remakeConstraints { make in
+                make.leading.trailing.equalToSuperview()
+                make.top.equalTo(max(AnAnAppDevice.deviceTop(), AnAnAppDevice.deviceLeft))
+                make.height.equalTo(min(AnAnAppDevice.an_screenWidth(), AnAnAppDevice.an_screenHeight()) * 9/16)
+            }
         }
     }
     

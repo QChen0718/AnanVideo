@@ -20,5 +20,7 @@ class AnAnNavigationViewController: UINavigationController {
         }
         super.pushViewController(viewController, animated: animated)
     }
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return topViewController?.supportedInterfaceOrientations ?? .portrait
+    }
 }

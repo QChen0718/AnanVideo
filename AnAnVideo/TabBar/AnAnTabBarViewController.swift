@@ -30,4 +30,7 @@ class AnAnTabBarViewController: UITabBarController {
         nav.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.hexadecimalColor(hexadecimal: An_1890FF)], for: .selected)
         return nav
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return selectedViewController?.supportedInterfaceOrientations ?? .portrait
+    }
 }

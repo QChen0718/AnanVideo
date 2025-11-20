@@ -99,7 +99,7 @@ class AnAnVideoPlayerViewController: UIViewController {
                 self.nextPlayerVideo()
             }else if btn.tag == 200 {
 //                全屏播放
-                AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_land)
+                AnAnScreenTool.shared.switchScreenOrientation(vc: self, mode: .set_land,deviceOrientation:.landscapeLeft)
             }else if btn.tag == 300 {
 //                弹幕开关状态
                 if btn.isSelected {
@@ -138,7 +138,7 @@ class AnAnVideoPlayerViewController: UIViewController {
             if btn.tag == 100 {
                 if self.currentOrientation == .set_land{
                     //            横屏
-                    AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_port)
+                    AnAnScreenTool.shared.switchScreenOrientation(vc: self, mode: .set_port)
         
                 }else{
                     //            竖屏
@@ -326,39 +326,56 @@ class AnAnVideoPlayerViewController: UIViewController {
         topView.snp.updateConstraints { make in
             make.top.equalToSuperview()
         }
-        let orientation = UIApplication.shared.statusBarOrientation
-        switch orientation {
-        case .portrait,.portraitUpsideDown,.unknown:  /// 竖屏
-            print("---->竖屏")
-            currentOrientation = .set_port
-            bottomHeight = 45
-            break
-        case .landscapeLeft,.landscapeRight: ///横屏
-            print("---->横屏")
+        let isLandscape: Bool
+        if #available(iOS 13.0, *) {
+            isLandscape = size.width > size.height
+        } else {
+            // Fallback on earlier versions
+            let orientation = UIApplication.shared.statusBarOrientation
+            isLandscape = orientation.isLandscape
+        }
+        if isLandscape {
             currentOrientation = .set_land
             bottomHeight = 84
-            
-            break
-        default:
-            break
+        }else{
+            currentOrientation = .set_port
+            bottomHeight = 45
         }
         bottomView.snp.updateConstraints { make in
             make.height.equalTo(bottomHeight)
         }
-        topView.orientationUpdateViews()
-        bottomView.orientationUpdateViews()
+        topView.orientationUpdateViews(isLandscape: isLandscape)
+        bottomView.orientationUpdateViews(isLandscape: isLandscape)
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_auto)
+        AnAnScreenTool.shared.switchScreenOrientation(vc: self, mode: .set_auto)
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_port)
+        AnAnScreenTool.shared.switchScreenOrientation(vc: self, mode: .set_port)
     }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        // 根据 currentOrientation 控制
+        switch currentOrientation {
+        case .set_land:
+            return .landscape
+        case .set_port:
+            return .portrait
+        case .set_auto:
+            return .allButUpsideDown
+        }
+    }
+    
     
 //    添加或移除操作视图
     private func addEpisodeView(){
@@ -748,25 +765,31 @@ class AnAnVideoPlayerViewController: UIViewController {
     
 //    监听屏幕旋转方向
     @objc fileprivate func orientationDidChange() {
-        switch UIDevice.current.orientation {
-        case .unknown:
-            print("未知")
+        if AnAnScreenTool.shared.isForcingOrientation {
+                return
+            }
+        let o = UIDevice.current.orientation
+            guard o == .portrait || o == .landscapeLeft || o == .landscapeRight else {
+                return
+            }
+
+        // 如果当前是自动模式，让系统自己转就够了，不要再强制
+        if currentOrientation == .set_auto {
+            return
+        }
+
+        // 只有在你“锁定横/竖”的业务模式下，才去强制旋转
+        switch o {
         case .portrait:
-            print("竖屏")
-            AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_port)
-        case .portraitUpsideDown:
-            print("颠倒竖屏")
-//            AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_port)
+            AnAnScreenTool.shared.switchScreenOrientation(vc: self, mode: .set_port)
         case .landscapeLeft:
-            print("设备向左旋转横屏")
-            AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_land)
+            AnAnScreenTool.shared.switchScreenOrientation(vc: self,
+                                                          mode: .set_land,
+                                                          deviceOrientation: .landscapeLeft)
         case .landscapeRight:
-            print("设备向右旋转横屏")
-            AnAnScreenTool().switchScreenOrientation(vc: self, mode: .set_land)
-        case .faceUp:
-            print("屏幕朝上")
-        case .faceDown:
-            print("屏幕朝下")
+            AnAnScreenTool.shared.switchScreenOrientation(vc: self,
+                                                          mode: .set_land,
+                                                          deviceOrientation: .landscapeRight)
         default:
             break
         }

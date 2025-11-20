@@ -35,7 +35,7 @@ class AnAnVideoPlayerManager: UIView {
     
     init(playerUrl:String,isPlayerLocationFile:Bool = false) {
         super.init(frame: .zero)
-        
+        setupAudioSessionForBackgroundPlayback()
 //        播放网络地址文件
         if isPlayerLocationFile {
             //        播放本地文件
@@ -64,6 +64,16 @@ class AnAnVideoPlayerManager: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
         
     }
+    
+    private func setupAudioSessionForBackgroundPlayback() {
+            do {
+                let session = AVAudioSession.sharedInstance()
+                try session.setCategory(.playback, mode: .moviePlayback, options: [])
+                try session.setActive(true)
+            } catch {
+                print("音频会话设置失败: \(error)")
+            }
+        }
     override init(frame: CGRect) {
         super.init(frame: frame)
         playerLayer = AVPlayerLayer.init(player: player)
@@ -150,7 +160,7 @@ class AnAnVideoPlayerManager: UIView {
     var totalTimerString:String{
         if player != nil {
             if let playDuration = totalPlayerTime{
-                let timerStr = String(format: "%d", playDuration.value/1000)
+                let timerStr = String(format: "%d", playDuration.safeSeconds)
                 return timerStr.playerTimerFormat()
             }
         }
@@ -204,5 +214,17 @@ extension AnAnVideoPlayerManager{
     @objc func playerDidFinishPlaying(note: NSNotification){
         print("Video Finished")
         playerDidEndBlock?()
+    }
+}
+
+extension CMTime {
+    /// 返回安全的秒数（对 invalid/indefinite 给 0）
+    var safeSeconds: Double {
+        let s = CMTimeGetSeconds(self)
+        if s.isFinite && s >= 0 {
+            return s
+        } else {
+            return 0
+        }
     }
 }

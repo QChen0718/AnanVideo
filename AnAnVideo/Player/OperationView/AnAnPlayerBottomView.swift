@@ -172,7 +172,7 @@ class AnAnPlayerBottomView: UIView {
         backgroundColor = UIColor.hexadecimalColor(hexadecimal: "#000000", alpha: 0.5)
         createSubviews()
         setSubviewsFrame()
-        orientationUpdateViews()
+        orientationUpdateViews(isLandscape: false)
         
     }
     
@@ -201,11 +201,10 @@ class AnAnPlayerBottomView: UIView {
     }
     
 //    屏幕旋转,更新控件大小
-    func orientationUpdateViews(){
-        let orientation = UIApplication.shared.statusBarOrientation
+    func orientationUpdateViews(isLandscape:Bool){
+       
         var isSP = true
-        switch orientation {
-        case .landscapeLeft,.landscapeRight:
+        if isLandscape {
             fullScreenBtn.isHidden = true
             nextPlayerBtn.isHidden = false
             isSP = false
@@ -236,8 +235,7 @@ class AnAnPlayerBottomView: UIView {
                 make.top.equalTo(playerStartTimeLabel.snp.bottom).offset(7)
                 make.width.equalTo(40)
             }
-            break
-        case .portrait:
+        }else{
             fullScreenBtn.isHidden = false
             nextPlayerBtn.isHidden = true
             isSP = true
@@ -265,10 +263,6 @@ class AnAnPlayerBottomView: UIView {
                 make.trailing.equalTo(playerEndTimeLabel.snp.leading).offset(-10)
                 make.height.equalTo(2.5)
             }
-            
-            break
-        default:
-            break
         }
         barrageStatusBtn.isHidden = isSP
         barrageSetBtn.isHidden = isSP

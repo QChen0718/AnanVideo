@@ -67,40 +67,30 @@ class AnAnPlayerTopView: UIView {
         backgroundColor = .clear
         createSubviews()
         setSubviewsFrame()
-        orientationUpdateViews()
+        orientationUpdateViews(isLandscape: false)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func orientationUpdateViews(){
-        let orientation = UIApplication.shared.statusBarOrientation
-        switch orientation {
-        case .landscapeLeft,.landscapeRight:
+    func orientationUpdateViews(isLandscape: Bool){
+        if isLandscape {
             movieNameLabel.isHidden = false
-//            selectEpisodeBtn.isHidden = false
-//            selectQualityBtn.isHidden = false
             backArrowIconBtn.snp.updateConstraints { make in
                 make.leading.equalTo(30)
             }
             pipBtn.snp.updateConstraints { make in
                 make.trailing.equalToSuperview().inset(30)
             }
-            break
-        case .portrait:
+        }else {
             movieNameLabel.isHidden = true
-//            selectEpisodeBtn.isHidden = true
-//            selectQualityBtn.isHidden = true
             backArrowIconBtn.snp.updateConstraints { make in
                 make.leading.equalToSuperview()
             }
             pipBtn.snp.updateConstraints { make in
                 make.trailing.equalToSuperview().inset(6)
             }
-            break
-        default:
-            break
         }
     }
     
