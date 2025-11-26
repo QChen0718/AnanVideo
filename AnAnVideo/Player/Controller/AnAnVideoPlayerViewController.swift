@@ -781,12 +781,15 @@ class AnAnVideoPlayerViewController: UIViewController {
         // 只有在你“锁定横/竖”的业务模式下，才去强制旋转
         switch o {
         case .portrait:
+            print("竖屏")
             AnAnScreenTool.shared.switchScreenOrientation(vc: self, mode: .set_port)
         case .landscapeLeft:
+            print("屏幕向左")
             AnAnScreenTool.shared.switchScreenOrientation(vc: self,
                                                           mode: .set_land,
                                                           deviceOrientation: .landscapeLeft)
         case .landscapeRight:
+            print("屏幕向右")
             AnAnScreenTool.shared.switchScreenOrientation(vc: self,
                                                           mode: .set_land,
                                                           deviceOrientation: .landscapeRight)

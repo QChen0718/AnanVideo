@@ -17,6 +17,7 @@ public class AnAnScreenTool {
         myAppdelegate?.screen_set = mode
         if #available(iOS 16.0, *) {
             /// ios 16以上需要通过scene来实现屏幕方向设置
+            isForcingOrientation = true
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             switch mode {
             case .set_port:
@@ -30,6 +31,9 @@ public class AnAnScreenTool {
                 break
             }
             vc.setNeedsUpdateOfSupportedInterfaceOrientations()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                AnAnScreenTool.shared.isForcingOrientation = false
+            }
         }else{
             UIViewController.attemptRotationToDeviceOrientation()
             
@@ -42,9 +46,9 @@ public class AnAnScreenTool {
             case .set_land:
                 //                强制设置横屏
                 if deviceOrientation == .landscapeLeft {
-                    UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-                }else{
                     UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+                }else{
+                    UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
                 }
                 
                 break
