@@ -160,7 +160,11 @@ class AnAnVideoPlayerManager: UIView {
     var totalTimerString:String{
         if player != nil {
             if let playDuration = totalPlayerTime{
-                let timerStr = String(format: "%d", playDuration.safeSeconds)
+                let totalSeconds = CMTimeGetSeconds(playDuration)
+                if totalSeconds.isNaN || totalSeconds.isInfinite {
+                    return "00:00:00"
+                }
+                let timerStr = String(format: "%f", totalSeconds)
                 return timerStr.playerTimerFormat()
             }
         }

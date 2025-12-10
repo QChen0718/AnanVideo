@@ -30,7 +30,7 @@ class AnAnBarrageView: UIView {
 //    时间间隔
     let timeMargin:TimeInterval = 0.08
 //    当前播放器
-    var playerManagerView:AnAnVideoPlayerManager?
+    weak var playerManagerView:AnAnVideoPlayerManager?
 //    准备中
     var isPrepared:Bool{
         set{
@@ -142,7 +142,7 @@ class AnAnBarrageView: UIView {
             info.timerMargin = leftTime
         }
         
-        guard var barrageArray = getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*5) else {return}
+        guard let barrageArray = getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*5) else {return}
         
 //        存在弹幕
         if !barrageArray.isEmpty {
