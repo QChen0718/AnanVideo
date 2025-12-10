@@ -14,13 +14,13 @@ class AnAnBarrageView: UIView {
 //    弹幕数据
     var barrageInfoList:[AnAnBarrageInfo] = []
 //    弹幕动画时间
-    var duration:CGFloat = 7.5
+    var duration:CGFloat = 5.5
 //    弹幕弹道高度
-    var lineHeight:CGFloat = 30
+    var lineHeight:CGFloat = 20
 //    弹幕弹道之间的间距
     var lineMargin:CGFloat = 5
 //    弹幕弹道最大行数
-    var maxShowLineCount:Int = 3
+    var maxShowLineCount:Int = 5
 //    记录轨道上是否有弹幕
     var lineDict:[Int:AnAnBarrageInfo] = [:]
 //    记录时间段的弹幕数
@@ -142,7 +142,7 @@ class AnAnBarrageView: UIView {
             info.timerMargin = leftTime
         }
         
-        guard let barrageArray = getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*5) else {return}
+        guard let barrageArray = getBarrages(withTimeStart: playerManagerView?.currentPlayerTime ?? 0, timeLength: timeMargin*Double(maxShowLineCount)) else {return}
         
 //        存在弹幕
         if !barrageArray.isEmpty {
@@ -198,11 +198,8 @@ class AnAnBarrageView: UIView {
     func createBarrage(barInfo:AnAnBarrageInfo) {
         let btn = AnAnBarrageBtn(type: .custom)
         btn.setTitleColor(.white, for: .normal)
-        btn.layer.borderWidth = 1
-        btn.layer.borderColor = UIColor.white.cgColor
-        btn.layer.cornerRadius = 5
         btn.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
-        btn.titleEdgeInsets = UIEdgeInsets(top: 4, left: 5, bottom: 4, right: 5)
+        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         btn.setAttributedTitle(barInfo.barrageContent, for: .normal)
         btn.barrageInfo = barInfo  // 设置弹幕信息，用于去重检查
         self.addSubview(btn)
@@ -219,7 +216,7 @@ class AnAnBarrageView: UIView {
                 barInfo.lineCount = i
                 lineDict[barInfo.lineCount] = barInfo
                 subBarrageInfoList.append(barInfo)
-                barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) + 44 , width: width, height: lineHeight)
+                barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) , width: width, height: lineHeight)
                 
                     self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
                 break
@@ -228,7 +225,7 @@ class AnAnBarrageView: UIView {
                 barInfo.lineCount = i
                 lineDict[barInfo.lineCount] = barInfo
                 subBarrageInfoList.append(barInfo)
-                barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) + 44 , width: width, height: lineHeight)
+                barInfo.barrageBtn?.frame = CGRect(x: self.frame.width, y: (self.lineHeight + self.lineMargin) * CGFloat(i) , width: width, height: lineHeight)
                     self.performAnimationWithDuration(duration: barInfo.timerMargin ?? 0, info: barInfo)
                 break
             }else if (i == maxShowLineCount-1){
@@ -478,9 +475,10 @@ class AnAnBarrageView: UIView {
 //    根据弹幕宽度计算实际需要的动画时长（保持速度一致）
     func calculateDurationForWidth(width: CGFloat) -> TimeInterval {
         // 固定速度
-        let speed = self.bounds.size.width / duration
+        let minWidth = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+        let speed = minWidth / duration
         // 根据宽度和速度计算实际需要的时长
-        return TimeInterval((self.bounds.size.width + width) / speed)
+        return TimeInterval((minWidth + width) / speed)
     }
     
 //    计算文字内容大小
